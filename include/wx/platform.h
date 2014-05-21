@@ -167,6 +167,7 @@
 
 #ifdef __ANDROID__
 #   define __WXANDROID__
+#   include "wx/android/config_android.h"
 #endif
 
 #include "wx/compiler.h"
@@ -180,7 +181,12 @@
    the compiler macros above as msvc/wx/setup.h relies on them under Windows.
  */
 
-#include "wx/setup.h"
+// this is temp
+#ifndef __WXANDROID__
+#   include "wx/setup.h"
+#else
+#   include "wx/android/setup.h"
+#endif
 
 /*
    Convenience for any optional classes that use the wxAnyButton base class.
