@@ -31,6 +31,9 @@
 #   endif
 #endif /* wxUSE_FSWATCHER */
 
+/* GUI-only checks */
+#if wxUSE_GUI
+
 #if wxUSE_GSTREAMER
 #   if !wxUSE_THREADS
 #       ifdef wxABORT_ON_CONFIG_ERROR
@@ -41,3 +44,5 @@
 #       endif
 #   endif
 #endif /* wxUSE_GSTREAMER */
+
+#endif /* wxUSE_GUI */

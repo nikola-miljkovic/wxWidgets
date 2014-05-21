@@ -107,8 +107,12 @@ IMPLEMENT_DYNAMIC_CLASS(wxUNIXaddress, wxSockAddress)
             #include <ws2tcpip.h>
         #endif
     #endif
-#endif // __WINDOWS__
-
+#elif defined(__WXANDROID__)
+    // TODO: We should run the real tests in configure as later versions of the
+    // SDK might provide gethostbyaddr_r() too. But for now it is not there so
+    // use the not reentrant function.
+    #define HAVE_GETHOSTBYADDR
+#else // Unix
 // we assume that we have gethostbyaddr_r() if and only if we have
 // gethostbyname_r() and that it uses the similar conventions to it (see
 // comment in configure)
@@ -122,6 +126,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxUNIXaddress, wxSockAddress)
 #ifdef HAVE_FUNC_GETHOSTBYNAME_R_6
     #define HAVE_FUNC_GETHOSTBYADDR_R_6
 #endif
+#endif // platform
 
 // the _r functions need the extra buffer parameter but unfortunately its type
 // differs between different systems and for the systems which use opaque
@@ -174,7 +179,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxUNIXaddress, wxSockAddress)
 namespace
 {
 
-#if defined(HAVE_GETHOSTBYNAME)
+#if defined(HAVE_GETHOSTBYNAME) || defined(HAVE_GETHOSTBYADDR)
 hostent *deepCopyHostent(hostent *h,
                          const hostent *he,
                          char *buffer,

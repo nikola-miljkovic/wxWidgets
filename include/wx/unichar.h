@@ -14,7 +14,12 @@
 #include "wx/chartype.h"
 #include "wx/stringimpl.h"
 
-#include <algorithm>        // only for std::swap specialization below
+// We use wxUSE_STD_STRING as a proxy for whether we're using the standard
+// library at all or not and assume that if we don't want to use std::string
+// then we don't want to use any other part of the standard library neither.
+#if wxUSE_STD_STRING
+    #include <algorithm>        // only for std::swap specialization below
+#endif // wxUSE_STD_STRING
 
 class WXDLLIMPEXP_FWD_BASE wxUniCharRef;
 class WXDLLIMPEXP_FWD_BASE wxString;
@@ -291,6 +296,8 @@ inline wxUniChar& wxUniChar::operator=(const wxUniCharRef& c)
     return *this;
 }
 
+#if wxUSE_STD_STRING
+
 // wxUniCharRef doesn't behave quite like a reference, notably because template
 // deduction from wxUniCharRef doesn't yield wxUniChar as would have been the
 // case if it were a real reference. This results in a number of problems and
@@ -318,6 +325,7 @@ void swap<wxUniCharRef>(wxUniCharRef& lhs, wxUniCharRef& rhs)
 
 } // namespace std
 
+#endif // wxUSE_STD_STRING
 
 // Comparison operators for the case when wxUniChar(Ref) is the second operand
 // implemented in terms of member comparison functions
