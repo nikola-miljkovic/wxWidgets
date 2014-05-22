@@ -3016,7 +3016,7 @@ libraries returned by 'pkg-config gtk+-2.0 --libs' or 'gtk-config
     fi
     
     if test "$wxUSE_ANDROID" = 1 ; then
-        TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS} -D__ANDROID__ -D__UNIX__ -DHAVE_SYS_SELECT_H"
+        TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS}"
 
         TOOLKIT=ANDROID
         GUIDIST=ANDROID_DIR
