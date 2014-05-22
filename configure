@@ -1088,6 +1088,7 @@ with_msw
 with_directfb
 with_microwin
 with_x11
+with_android
 enable_nanox
 enable_gpe
 with_libpng
@@ -2311,6 +2312,7 @@ Optional Packages:
   --with-directfb         use DirectFB
   --with-microwin         use MicroWindows
   --with-x11              use X11
+  --with-android          use Android
   --with-libpng           use libpng (PNG image format)
   --with-libjpeg          use libjpeg (JPEG file format)
   --with-libtiff          use libtiff (TIFF file format)
@@ -3830,7 +3832,7 @@ USE_ALPHA=
 
 NEEDS_D_REENTRANT_FOR_R_FUNCS=0
 
-ALL_TOOLKITS="COCOA GTK OSX_CARBON OSX_COCOA OSX_IPHONE MICROWIN MOTIF MSW X11 DFB"
+ALL_TOOLKITS="COCOA GTK OSX_CARBON OSX_COCOA OSX_IPHONE MICROWIN MOTIF MSW X11 DFB ANDROID"
 
 DEFAULT_wxUSE_OLD_COCOA=0
 DEFAULT_wxUSE_GTK=0
@@ -3842,6 +3844,7 @@ DEFAULT_wxUSE_MOTIF=0
 DEFAULT_wxUSE_MSW=0
 DEFAULT_wxUSE_X11=0
 DEFAULT_wxUSE_DFB=0
+DEFAULT_wxUSE_ANDROID=0
 
 DEFAULT_DEFAULT_wxUSE_OLD_COCOA=0
 DEFAULT_DEFAULT_wxUSE_GTK=0
@@ -3853,6 +3856,7 @@ DEFAULT_DEFAULT_wxUSE_MOTIF=0
 DEFAULT_DEFAULT_wxUSE_MSW=0
 DEFAULT_DEFAULT_wxUSE_X11=0
 DEFAULT_DEFAULT_wxUSE_DFB=0
+DEFAULT_DEFAULT_wxUSE_ANDROID=0
 
 PROGRAM_EXT=
 SAMPLES_RPATH_FLAG=
@@ -4539,6 +4543,12 @@ if test "${with_x11+set}" = set; then :
 fi
 
 
+# Check whether --with-android was given.
+if test "${with_android+set}" = set; then :
+  withval=$with_android; wxUSE_ANDROID="$withval" CACHE_ANDROID=1 TOOLKIT_GIVEN=1
+fi
+
+
           enablestring=
           defaultval=
           if test -z "$defaultval"; then
@@ -4673,7 +4683,7 @@ if test "$wxUSE_GUI" = "yes"; then
 
             NUM_TOOLKITS=`expr ${wxUSE_OLD_COCOA:-0} + ${wxUSE_GTK:-0} + ${wxUSE_OSX_CARBON:-0} \
                   + ${wxUSE_OSX_COCOA:-0} + ${wxUSE_OSX_IPHONE:-0} + ${wxUSE_DFB:-0} \
-                  + ${wxUSE_MICROWIN:-0} + ${wxUSE_MOTIF:-0} + ${wxUSE_MSW:-0} + ${wxUSE_X11:-0}`
+                  + ${wxUSE_MICROWIN:-0} + ${wxUSE_MOTIF:-0} + ${wxUSE_MSW:-0} + ${wxUSE_X11:-0} + ${wxUSE_ANDROID:-0}`
 
     case "$NUM_TOOLKITS" in
       1)
@@ -25563,6 +25573,13 @@ done
 
         TOOLKIT=X11
         GUIDIST=X11_DIST
+    fi
+
+    if test "$wxUSE_ANDROID" = 1 ; then
+        TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS} -D__ANDROID__ -D__UNIX__ -DHAVE_SYS_SELECT_H"
+
+        TOOLKIT=ANDROID
+        GUIDIST=ANDROID_DIR
     fi
 
     if test "$wxUSE_MOTIF" = 1; then
