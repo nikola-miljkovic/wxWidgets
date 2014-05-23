@@ -1647,7 +1647,23 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
 </set>
 
 
+<!-- ====================================================================== -->
+<!--                             wxAndroid                                  -->
+<!-- ====================================================================== -->
 
+<set var="ANDROID_SRC" hints="files">
+    src/android/app.cpp
+</set>
+
+<set var="ANDROID_HDR" hints="files">
+    wx/android/app.h
+</set>
+
+<set var="ANDROID_LOWLEVEL_HDR" hints="files">
+</set>
+
+<set var="ANDROID_LOWLEVEL_SRC" hints="files">
+</set>
 <!-- ====================================================================== -->
 <!--                                wxMSW                                   -->
 <!-- ====================================================================== -->
@@ -3692,6 +3708,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
         <if cond="TOOLKIT=='COCOA'">$(COCOA_LOWLEVEL_SRC)</if>
         <if cond="TOOLKIT=='X11'">$(X11_LOWLEVEL_SRC)</if>
         <if cond="TOOLKIT=='DFB'">$(DFB_LOWLEVEL_SRC)</if>
+	<if cond="TOOLKIT=='ANDROID'">$(ANDROID_LOWLEVEL_SRC)</if>
     </set>
     <set var="LOWLEVEL_HDR" hints="files">
         <if cond="TOOLKIT=='GTK' and TOOLKIT_VERSION=='3'">$(GTK_LOWLEVEL_HDR)</if>
@@ -3706,6 +3723,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
         <if cond="TOOLKIT=='COCOA'">$(COCOA_LOWLEVEL_HDR)</if>
         <if cond="TOOLKIT=='X11'">$(X11_LOWLEVEL_HDR)</if>
         <if cond="TOOLKIT=='DFB'">$(DFB_LOWLEVEL_HDR)</if>
+	<if cond="TOOLKIT=='ANDROID'">$(ANDROID_LOWLEVEL_HDR)</if>
     </set>
 
     <set var="PLATFORM_SRC" hints="files">
@@ -3724,6 +3742,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
         <if cond="TOOLKIT=='OSX_COCOA'">$(OSX_COCOA_SRC)</if>
         <if cond="TOOLKIT=='OSX_IPHONE'">$(OSX_IPHONE_SRC)</if>
         <if cond="TOOLKIT=='COCOA'">$(COCOA_SRC)</if>
+	<if cond="TOOLKIT=='ANDROID'">$(ANDROID_SRC)</if>
     </set>
     <set var="GUI_HDR" hints="files">
         <if cond="TOOLKIT=='GTK' and TOOLKIT_VERSION=='2'">$(GTK2_HDR)</if>
@@ -3736,6 +3755,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
         <if cond="TOOLKIT=='OSX_COCOA'">$(OSX_SHARED_HDR) $(OSX_COCOA_HDR)</if>
         <if cond="TOOLKIT=='OSX_IPHONE'">$(OSX_SHARED_HDR) $(OSX_IPHONE_HDR)</if>
         <if cond="TOOLKIT=='COCOA'">$(COCOA_HDR)</if>
+	<if cond="TOOLKIT=='ANDROID'">$(ANDROID_HDR)</if>
     </set>
 
     <set var="CORE_SRC" hints="files">

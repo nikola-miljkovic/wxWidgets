@@ -2213,18 +2213,18 @@ COND_TOOLKIT_MSW_WEBVIEW_HDR_PLATFORM =  \
 	wx/msw/webview_ie.h \
 	wx/msw/webview_missing.h
 @COND_TOOLKIT_MSW@WEBVIEW_HDR_PLATFORM = $(COND_TOOLKIT_MSW_WEBVIEW_HDR_PLATFORM)
-@COND_TOOLKIT_COCOA@OPENGL_HDR_PLATFORM = wx/cocoa/glcanvas.h
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_@OPENGL_HDR_PLATFORM \
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_@	= wx/gtk1/glcanvas.h wx/unix/glx11.h
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_2@OPENGL_HDR_PLATFORM \
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_2@	= wx/gtk/glcanvas.h wx/unix/glx11.h
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_3@OPENGL_HDR_PLATFORM \
-@COND_TOOLKIT_GTK_TOOLKIT_VERSION_3@	= wx/gtk/glcanvas.h wx/unix/glx11.h
-@COND_TOOLKIT_MOTIF@OPENGL_HDR_PLATFORM = wx/x11/glcanvas.h wx/unix/glx11.h
-@COND_TOOLKIT_MSW@OPENGL_HDR_PLATFORM = wx/msw/glcanvas.h
 @COND_TOOLKIT_OSX_CARBON@OPENGL_HDR_PLATFORM = wx/osx/glcanvas.h
 @COND_TOOLKIT_OSX_COCOA@OPENGL_HDR_PLATFORM = wx/osx/glcanvas.h
+@COND_TOOLKIT_COCOA@OPENGL_HDR_PLATFORM = wx/cocoa/glcanvas.h
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_3@OPENGL_HDR_PLATFORM \
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_3@	= wx/gtk/glcanvas.h wx/unix/glx11.h
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_2@OPENGL_HDR_PLATFORM \
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_2@	= wx/gtk/glcanvas.h wx/unix/glx11.h
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_@OPENGL_HDR_PLATFORM \
+@COND_TOOLKIT_GTK_TOOLKIT_VERSION_@	= wx/gtk1/glcanvas.h wx/unix/glx11.h
+@COND_TOOLKIT_MSW@OPENGL_HDR_PLATFORM = wx/msw/glcanvas.h
 @COND_TOOLKIT_WINCE@OPENGL_HDR_PLATFORM = wx/msw/glcanvas.h
+@COND_TOOLKIT_MOTIF@OPENGL_HDR_PLATFORM = wx/x11/glcanvas.h wx/unix/glx11.h
 @COND_TOOLKIT_X11@OPENGL_HDR_PLATFORM = wx/x11/glcanvas.h wx/unix/glx11.h
 @COND_TOOLKIT_GTK_TOOLKIT_VERSION_2@AUI_GTK_HDR = wx/aui/tabartgtk.h
 COND_TOOLKIT_OSX_CARBON_BASE_OSX_SRC =  \
@@ -2618,6 +2618,7 @@ COND_PLATFORM_WIN32_1_BASE_PLATFORM_HDR =  \
 	wx/msw/fswatcher.h \
 	$(BASE_WINCE_HDR)
 @COND_PLATFORM_WIN32_1@BASE_PLATFORM_HDR = $(COND_PLATFORM_WIN32_1_BASE_PLATFORM_HDR)
+@COND_TOOLKIT_ANDROID@LOWLEVEL_HDR = 
 @COND_TOOLKIT_COCOA@LOWLEVEL_HDR = 
 COND_TOOLKIT_DFB_LOWLEVEL_HDR =  \
 	wx/generic/caret.h \
@@ -2801,6 +2802,7 @@ COND_TOOLKIT_X11_LOWLEVEL_HDR =  \
 	wx/x11/toplevel.h \
 	wx/x11/window.h
 @COND_TOOLKIT_X11@LOWLEVEL_HDR = $(COND_TOOLKIT_X11_LOWLEVEL_HDR)
+@COND_TOOLKIT_ANDROID@GUI_HDR = wx/android/app.h
 COND_TOOLKIT_COCOA_GUI_HDR =  \
 	wx/cocoa/NSApplication.h \
 	wx/cocoa/NSBox.h \
@@ -5027,6 +5029,7 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS =  \
 	monodll_vscroll.o \
 	monodll_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS = \
 @COND_TOOLKIT_COCOA@	monodll_hid.o monodll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS =  \
@@ -5346,6 +5349,7 @@ COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS =  \
 	monodll_utilsx.o \
 	monodll_x11_window.o
 @COND_TOOLKIT_X11@__LOWLEVEL_SRC_OBJECTS = $(COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS)
+@COND_TOOLKIT_ANDROID@__GUI_SRC_OBJECTS = monodll_android_app.o
 COND_TOOLKIT_COCOA___GUI_SRC_OBJECTS =  \
 	monodll_NSBox.o \
 	monodll_NSButton.o \
@@ -5889,6 +5893,7 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS =  \
 	monodll_tbarwce.o \
 	monodll_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_1 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_1 = \
 @COND_TOOLKIT_COCOA@	monodll_hid.o monodll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_1 =  \
@@ -7169,6 +7174,7 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_1 =  \
 	monolib_vscroll.o \
 	monolib_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_1 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_1)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_2 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_2 = \
 @COND_TOOLKIT_COCOA@	monolib_hid.o monolib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_2 =  \
@@ -7488,6 +7494,7 @@ COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_2 =  \
 	monolib_utilsx.o \
 	monolib_x11_window.o
 @COND_TOOLKIT_X11@__LOWLEVEL_SRC_OBJECTS_2 = $(COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_2)
+@COND_TOOLKIT_ANDROID@__GUI_SRC_OBJECTS_1 = monolib_android_app.o
 COND_TOOLKIT_COCOA___GUI_SRC_OBJECTS_1 =  \
 	monolib_NSBox.o \
 	monolib_NSButton.o \
@@ -8031,6 +8038,7 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_1 =  \
 	monolib_tbarwce.o \
 	monolib_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_1 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_1)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_3 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_3 = \
 @COND_TOOLKIT_COCOA@	monolib_hid.o monolib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_3 =  \
@@ -9469,6 +9477,7 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_2 =  \
 	coredll_vscroll.o \
 	coredll_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_2 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_2)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_4 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_4 = \
 @COND_TOOLKIT_COCOA@	coredll_hid.o coredll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_4 =  \
@@ -9788,6 +9797,7 @@ COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_4 =  \
 	coredll_utilsx.o \
 	coredll_x11_window.o
 @COND_TOOLKIT_X11@__LOWLEVEL_SRC_OBJECTS_4 = $(COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_4)
+@COND_TOOLKIT_ANDROID@__GUI_SRC_OBJECTS_2 = coredll_android_app.o
 COND_TOOLKIT_COCOA___GUI_SRC_OBJECTS_2 =  \
 	coredll_NSBox.o \
 	coredll_NSButton.o \
@@ -10331,6 +10341,7 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_2 =  \
 	coredll_tbarwce.o \
 	coredll_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_2 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_2)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_5 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_5 = \
 @COND_TOOLKIT_COCOA@	coredll_hid.o coredll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_5 =  \
@@ -11061,6 +11072,7 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_3 =  \
 	corelib_vscroll.o \
 	corelib_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_3 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_3)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_6 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_6 = \
 @COND_TOOLKIT_COCOA@	corelib_hid.o corelib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_6 =  \
@@ -11380,6 +11392,7 @@ COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_6 =  \
 	corelib_utilsx.o \
 	corelib_x11_window.o
 @COND_TOOLKIT_X11@__LOWLEVEL_SRC_OBJECTS_6 = $(COND_TOOLKIT_X11___LOWLEVEL_SRC_OBJECTS_6)
+@COND_TOOLKIT_ANDROID@__GUI_SRC_OBJECTS_3 = corelib_android_app.o
 COND_TOOLKIT_COCOA___GUI_SRC_OBJECTS_3 =  \
 	corelib_NSBox.o \
 	corelib_NSButton.o \
@@ -11923,6 +11936,7 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_3 =  \
 	corelib_tbarwce.o \
 	corelib_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_3 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_3)
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_7 = 
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_7 = \
 @COND_TOOLKIT_COCOA@	corelib_hid.o corelib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_7 =  \
@@ -17570,6 +17584,9 @@ monodll_cocoa_utilsexc.o: $(srcdir)/src/cocoa/utilsexc.mm $(MONODLL_ODEP)
 monodll_src_cocoa_window.o: $(srcdir)/src/cocoa/window.mm $(MONODLL_ODEP)
 	$(CXXC) -c -o $@ $(MONODLL_OBJCXXFLAGS) $(srcdir)/src/cocoa/window.mm
 
+monodll_android_app.o: $(srcdir)/src/android/app.cpp $(MONODLL_ODEP)
+	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/app.cpp
+
 monodll_univ_bmpbuttn.o: $(srcdir)/src/univ/bmpbuttn.cpp $(MONODLL_ODEP)
 	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/univ/bmpbuttn.cpp
 
@@ -23140,6 +23157,9 @@ monolib_cocoa_utilsexc.o: $(srcdir)/src/cocoa/utilsexc.mm $(MONOLIB_ODEP)
 
 monolib_src_cocoa_window.o: $(srcdir)/src/cocoa/window.mm $(MONOLIB_ODEP)
 	$(CXXC) -c -o $@ $(MONOLIB_OBJCXXFLAGS) $(srcdir)/src/cocoa/window.mm
+
+monolib_android_app.o: $(srcdir)/src/android/app.cpp $(MONOLIB_ODEP)
+	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/app.cpp
 
 monolib_univ_bmpbuttn.o: $(srcdir)/src/univ/bmpbuttn.cpp $(MONOLIB_ODEP)
 	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/univ/bmpbuttn.cpp
@@ -29384,6 +29404,9 @@ coredll_utilsexc.o: $(srcdir)/src/cocoa/utilsexc.mm $(COREDLL_ODEP)
 coredll_src_cocoa_window.o: $(srcdir)/src/cocoa/window.mm $(COREDLL_ODEP)
 	$(CXXC) -c -o $@ $(COREDLL_OBJCXXFLAGS) $(srcdir)/src/cocoa/window.mm
 
+coredll_android_app.o: $(srcdir)/src/android/app.cpp $(COREDLL_ODEP)
+	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/app.cpp
+
 coredll_univ_bmpbuttn.o: $(srcdir)/src/univ/bmpbuttn.cpp $(COREDLL_ODEP)
 	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/univ/bmpbuttn.cpp
 
@@ -33508,6 +33531,9 @@ corelib_utilsexc.o: $(srcdir)/src/cocoa/utilsexc.mm $(CORELIB_ODEP)
 
 corelib_src_cocoa_window.o: $(srcdir)/src/cocoa/window.mm $(CORELIB_ODEP)
 	$(CXXC) -c -o $@ $(CORELIB_OBJCXXFLAGS) $(srcdir)/src/cocoa/window.mm
+
+corelib_android_app.o: $(srcdir)/src/android/app.cpp $(CORELIB_ODEP)
+	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/app.cpp
 
 corelib_univ_bmpbuttn.o: $(srcdir)/src/univ/bmpbuttn.cpp $(CORELIB_ODEP)
 	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/univ/bmpbuttn.cpp
