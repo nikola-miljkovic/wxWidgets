@@ -2,7 +2,7 @@
 #define _WX_APP_H_
 
 // android specific
-#include <jni.h>
+#include "jni.h"
 
 #include "wx/event.h"
 #include "wx/icon.h"
