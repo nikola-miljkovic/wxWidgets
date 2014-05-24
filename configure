@@ -744,6 +744,8 @@ COND_TOOLKIT_DFB
 COND_TOOLKIT_COCOA_USE_GUI_1_WXUNIV_0
 COND_TOOLKIT_COCOA_USE_GUI_1
 COND_TOOLKIT_COCOA
+COND_TOOLKIT_ANDROID_USE_GUI_1
+COND_TOOLKIT_ANDROID
 COND_TOOLKIT_
 COND_SHARED_1_USE_GUI_1_USE_OPENGL_1
 COND_SHARED_1_USE_GUI_1
@@ -4037,6 +4039,10 @@ case "${host}" in
     $as_echo "#define __DARWIN__ 1" >>confdefs.h
 
     DEFAULT_DEFAULT_wxUSE_OSX_IPHONE=1
+  ;;
+
+  arm-linux-androideabi*)
+        DEFAULT_DEFAULT_wxUSE_ANDROID=1
   ;;
 
   *-*-darwin* )
@@ -39659,6 +39665,16 @@ EOF
     COND_TOOLKIT_="#"
     if test "x$TOOLKIT" = "x" ; then
         COND_TOOLKIT_=""
+    fi
+
+    COND_TOOLKIT_ANDROID="#"
+    if test "x$TOOLKIT" = "xANDROID" ; then
+        COND_TOOLKIT_ANDROID=""
+    fi
+
+    COND_TOOLKIT_ANDROID_USE_GUI_1="#"
+    if test "x$TOOLKIT" = "xANDROID" -a "x$USE_GUI" = "x1" ; then
+        COND_TOOLKIT_ANDROID_USE_GUI_1=""
     fi
 
     COND_TOOLKIT_COCOA="#"

@@ -1652,17 +1652,21 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
 <!-- ====================================================================== -->
 
 <set var="ANDROID_SRC" hints="files">
-    src/android/app.cpp
 </set>
 
 <set var="ANDROID_HDR" hints="files">
-    wx/android/app.h
-</set>
-
-<set var="ANDROID_LOWLEVEL_HDR" hints="files">
 </set>
 
 <set var="ANDROID_LOWLEVEL_SRC" hints="files">
+    src/android/jni/app.cpp
+    src/android/jni/wxjni.cpp
+</set>
+
+<set var="ANDROID_LOWLEVEL_HDR" hints="files">
+    wx/android/android_def.h
+    wx/android/app.h
+    wx/android/chkconf.h
+    wx/android/wxjni.h
 </set>
 <!-- ====================================================================== -->
 <!--                                wxMSW                                   -->

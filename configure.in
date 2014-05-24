@@ -291,6 +291,11 @@ case "${host}" in
     DEFAULT_DEFAULT_wxUSE_OSX_IPHONE=1
   ;;
 
+  arm-linux-androideabi*)
+    dnl Android arm
+    DEFAULT_DEFAULT_wxUSE_ANDROID=1
+  ;;
+
   *-*-darwin* )
     dnl Darwin based distributions (including Mac OS X)
     USE_BSD=1
@@ -3017,7 +3022,7 @@ libraries returned by 'pkg-config gtk+-2.0 --libs' or 'gtk-config
     
     if test "$wxUSE_ANDROID" = 1 ; then
         TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS}"
-
+        
         TOOLKIT=ANDROID
         GUIDIST=ANDROID_DIR
     fi
@@ -3431,7 +3436,7 @@ if test "$wxUSE_DETECT_SM" = "yes"; then
         else
             AC_MSG_WARN([libSM not found; disabling session management detection])
             wxUSE_DETECT_SM="no"
-        fi
+        fis
     else
         wxUSE_DETECT_SM="no"
     fi
