@@ -3436,7 +3436,7 @@ if test "$wxUSE_DETECT_SM" = "yes"; then
         else
             AC_MSG_WARN([libSM not found; disabling session management detection])
             wxUSE_DETECT_SM="no"
-        fis
+        fi
     else
         wxUSE_DETECT_SM="no"
     fi
