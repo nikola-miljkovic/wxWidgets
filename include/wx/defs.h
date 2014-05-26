@@ -3220,6 +3220,7 @@ typedef void*           WXRendition;
 typedef void*           WXRenderTable;
 typedef void*           WXFontType; 
 typedef void*           WXString;
+typedef void*           WXStyle;
 typedef long            WXPixel; 
 
 #endif /*  Android */
