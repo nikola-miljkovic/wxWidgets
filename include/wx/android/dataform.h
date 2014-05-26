@@ -21,8 +21,10 @@ class WXDLLIMPEXP_CORE wxDataFormat
 public:
     // this could be wrong
     typedef jint NativeFormat;
-
-    wxDataFormat(NativeFormat format = wxDF_INVALID);
+    
+    wxDataFormat();
+    wxDataFormat( wxDataFormatId type );
+    wxDataFormat( NativeFormat format );
     wxDataFormat(const wxString& format);
 
     wxDataFormat& operator=(NativeFormat format);
@@ -30,6 +32,8 @@ public:
 
     bool operator==(NativeFormat format) const;
     bool operator!=(NativeFormat format) const;
+    
+    operator NativeFormat() const;
 
     void SetType(NativeFormat format);
     NativeFormat GetType() const;
