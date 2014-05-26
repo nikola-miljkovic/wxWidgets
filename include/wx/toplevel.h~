@@ -375,9 +375,6 @@ protected:
 #elif defined(__WXMOTIF__)
     #include "wx/motif/toplevel.h"
     #define wxTopLevelWindowNative wxTopLevelWindowMotif
-#elif defined(__WXANDROID__)
-    #include "wx/android/toplevel.h"
-    #define wxTopLevelWindowNative wxTopLevelWindowAndroid
 #endif
 
 #ifdef __WXUNIVERSAL__

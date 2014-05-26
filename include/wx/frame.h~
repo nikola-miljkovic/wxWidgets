@@ -266,8 +266,6 @@ protected:
         #include "wx/osx/frame.h"
     #elif defined(__WXCOCOA__)
         #include "wx/cocoa/frame.h"
-    #elif defined(__WXANDROID__)
-        #include "wx/android/frame.h"
     #endif
 #endif
 

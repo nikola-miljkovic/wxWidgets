@@ -1924,7 +1924,7 @@ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
     #include "wx/cocoa/window.h"
 #elif defined(__WXANDROID__)
     #define wxWindowAndroid wxWindow
-    #include "wx/android/window.h"
+    #innclude "wx/android/window.h"
 #endif
 
 // for wxUniversal, we now derive the real wxWindow from wxWindow<platform>,

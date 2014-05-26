@@ -173,8 +173,6 @@ public:
     #include "wx/osx/dataobj.h"
 #elif defined(__WXCOCOA__)
     #include "wx/cocoa/dataobj.h"
-#elif defined(__WXANDROID__)
-    #include "wx/android/dataobj.h"
 #endif
 
 // ----------------------------------------------------------------------------
