@@ -1659,13 +1659,33 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
 
 <set var="ANDROID_LOWLEVEL_SRC" hints="files">
     src/android/jni/app.cpp
+    src/android/jni/bitmap.cpp
+    src/android/jni/dialog.cpp
     src/android/jni/wxjni.cpp
 </set>
 
 <set var="ANDROID_LOWLEVEL_HDR" hints="files">
     wx/android/android_def.h
     wx/android/app.h
+    wx/android/bitmap.h
+    wx/android/brush.h
+    wx/android/button.h
     wx/android/chkconf.h
+    wx/android/colour.h
+    wx/android/control.h
+    wx/android/cursor.h
+    wx/android/dataform.h
+    wx/android/dataobj.h
+    wx/android/dialog.h
+    wx/android/font.h
+    wx/android/frame.h
+    wx/android/menu.h
+    wx/android/menuitem.h
+    wx/android/pen.h
+    wx/android/region.h
+    wx/android/textctrl.h
+    wx/android/toplevel.h
+    wx/android/window.h
     wx/android/wxjni.h
 </set>
 <!-- ====================================================================== -->

@@ -2621,7 +2621,25 @@ COND_PLATFORM_WIN32_1_BASE_PLATFORM_HDR =  \
 COND_TOOLKIT_ANDROID_LOWLEVEL_HDR =  \
 	wx/android/android_def.h \
 	wx/android/app.h \
+	wx/android/bitmap.h \
+	wx/android/brush.h \
+	wx/android/button.h \
 	wx/android/chkconf.h \
+	wx/android/colour.h \
+	wx/android/control.h \
+	wx/android/cursor.h \
+	wx/android/dataform.h \
+	wx/android/dataobj.h \
+	wx/android/dialog.h \
+	wx/android/font.h \
+	wx/android/frame.h \
+	wx/android/menu.h \
+	wx/android/menuitem.h \
+	wx/android/pen.h \
+	wx/android/region.h \
+	wx/android/textctrl.h \
+	wx/android/toplevel.h \
+	wx/android/window.h \
 	wx/android/wxjni.h
 @COND_TOOLKIT_ANDROID@LOWLEVEL_HDR = $(COND_TOOLKIT_ANDROID_LOWLEVEL_HDR)
 @COND_TOOLKIT_COCOA@LOWLEVEL_HDR = 
@@ -5034,8 +5052,12 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS =  \
 	monodll_vscroll.o \
 	monodll_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS = \
-@COND_TOOLKIT_ANDROID@	monodll_jni_app.o monodll_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS =  \
+	monodll_jni_app.o \
+	monodll_jni_bitmap.o \
+	monodll_jni_dialog.o \
+	monodll_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS = \
 @COND_TOOLKIT_COCOA@	monodll_hid.o monodll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS =  \
@@ -5899,8 +5921,12 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS =  \
 	monodll_tbarwce.o \
 	monodll_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_1 = \
-@COND_TOOLKIT_ANDROID@	monodll_jni_app.o monodll_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_1 =  \
+	monodll_jni_app.o \
+	monodll_jni_bitmap.o \
+	monodll_jni_dialog.o \
+	monodll_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_1 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_1)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_1 = \
 @COND_TOOLKIT_COCOA@	monodll_hid.o monodll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_1 =  \
@@ -7181,8 +7207,12 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_1 =  \
 	monolib_vscroll.o \
 	monolib_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_1 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_1)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_2 = \
-@COND_TOOLKIT_ANDROID@	monolib_jni_app.o monolib_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_2 =  \
+	monolib_jni_app.o \
+	monolib_jni_bitmap.o \
+	monolib_jni_dialog.o \
+	monolib_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_2 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_2)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_2 = \
 @COND_TOOLKIT_COCOA@	monolib_hid.o monolib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_2 =  \
@@ -8046,8 +8076,12 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_1 =  \
 	monolib_tbarwce.o \
 	monolib_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_1 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_1)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_3 = \
-@COND_TOOLKIT_ANDROID@	monolib_jni_app.o monolib_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_3 =  \
+	monolib_jni_app.o \
+	monolib_jni_bitmap.o \
+	monolib_jni_dialog.o \
+	monolib_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_3 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_3)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_3 = \
 @COND_TOOLKIT_COCOA@	monolib_hid.o monolib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_3 =  \
@@ -9486,8 +9520,12 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_2 =  \
 	coredll_vscroll.o \
 	coredll_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_2 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_2)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_4 = \
-@COND_TOOLKIT_ANDROID@	coredll_jni_app.o coredll_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_4 =  \
+	coredll_jni_app.o \
+	coredll_jni_bitmap.o \
+	coredll_jni_dialog.o \
+	coredll_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_4 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_4)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_4 = \
 @COND_TOOLKIT_COCOA@	coredll_hid.o coredll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_4 =  \
@@ -10351,8 +10389,12 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_2 =  \
 	coredll_tbarwce.o \
 	coredll_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_2 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_2)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_5 = \
-@COND_TOOLKIT_ANDROID@	coredll_jni_app.o coredll_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_5 =  \
+	coredll_jni_app.o \
+	coredll_jni_bitmap.o \
+	coredll_jni_dialog.o \
+	coredll_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_5 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_5)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_5 = \
 @COND_TOOLKIT_COCOA@	coredll_hid.o coredll_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_5 =  \
@@ -11083,8 +11125,12 @@ COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_3 =  \
 	corelib_vscroll.o \
 	corelib_xmlreshandler.o
 @COND_USE_GUI_1_WXUNIV_1@__CORE_SRC_OBJECTS_3 = $(COND_USE_GUI_1_WXUNIV_1___CORE_SRC_OBJECTS_3)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_6 = \
-@COND_TOOLKIT_ANDROID@	corelib_jni_app.o corelib_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_6 =  \
+	corelib_jni_app.o \
+	corelib_jni_bitmap.o \
+	corelib_jni_dialog.o \
+	corelib_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_6 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_6)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_6 = \
 @COND_TOOLKIT_COCOA@	corelib_hid.o corelib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_6 =  \
@@ -11948,8 +11994,12 @@ COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_3 =  \
 	corelib_tbarwce.o \
 	corelib_textctrlce.o
 @COND_TOOLKIT_WINCE@__GUI_SRC_OBJECTS_3 = $(COND_TOOLKIT_WINCE___GUI_SRC_OBJECTS_3)
-@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_7 = \
-@COND_TOOLKIT_ANDROID@	corelib_jni_app.o corelib_wxjni.o
+COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_7 =  \
+	corelib_jni_app.o \
+	corelib_jni_bitmap.o \
+	corelib_jni_dialog.o \
+	corelib_wxjni.o
+@COND_TOOLKIT_ANDROID@__LOWLEVEL_SRC_OBJECTS_7 = $(COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_7)
 @COND_TOOLKIT_COCOA@__LOWLEVEL_SRC_OBJECTS_7 = \
 @COND_TOOLKIT_COCOA@	corelib_hid.o corelib_utilsexc_cf.o
 COND_TOOLKIT_DFB___LOWLEVEL_SRC_OBJECTS_7 =  \
@@ -19559,6 +19609,12 @@ monodll_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_app.o: $(srcdir)/src/android/jni/app.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/app.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_bitmap.o: $(srcdir)/src/android/jni/bitmap.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/bitmap.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_dialog.o: $(srcdir)/src/android/jni/dialog.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/dialog.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_wxjni.o: $(srcdir)/src/android/jni/wxjni.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/wxjni.cpp
 
@@ -25135,6 +25191,12 @@ monolib_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONOLIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_app.o: $(srcdir)/src/android/jni/app.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/app.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_bitmap.o: $(srcdir)/src/android/jni/bitmap.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/bitmap.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_dialog.o: $(srcdir)/src/android/jni/dialog.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/dialog.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_wxjni.o: $(srcdir)/src/android/jni/wxjni.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/wxjni.cpp
@@ -30830,6 +30892,12 @@ coredll_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_app.o: $(srcdir)/src/android/jni/app.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/app.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_bitmap.o: $(srcdir)/src/android/jni/bitmap.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/bitmap.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_dialog.o: $(srcdir)/src/android/jni/dialog.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/dialog.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_wxjni.o: $(srcdir)/src/android/jni/wxjni.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/wxjni.cpp
 
@@ -34960,6 +35028,12 @@ corelib_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(CORELIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_app.o: $(srcdir)/src/android/jni/app.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/app.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_bitmap.o: $(srcdir)/src/android/jni/bitmap.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/bitmap.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_dialog.o: $(srcdir)/src/android/jni/dialog.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/dialog.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_wxjni.o: $(srcdir)/src/android/jni/wxjni.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/wxjni.cpp
