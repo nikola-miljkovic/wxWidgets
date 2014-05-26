@@ -3198,6 +3198,32 @@ typedef long            WXPixel; /* safety catch in src/motif/colour.cpp */
 
 #endif /*  Motif */
 
+#if defined(__WXANDROID__) 
+/* Stand-ins for Android types */
+typedef void*           WXWindow;
+typedef void*           WXWidget;
+typedef void*           WXAppContext;
+typedef void*           WXColormap;
+typedef void*           WXColor;
+typedef void            WXDisplay;
+typedef void            WXEvent;
+typedef void*           WXCursor;
+typedef void*           WXPixmap;
+typedef void*           WXFontStructPtr;
+typedef void*           WXGC;
+typedef void*           WXRegion;
+typedef void*           WXFont;
+typedef void*           WXImage;
+typedef void*           WXFontList;
+typedef void*           WXFontSet;
+typedef void*           WXRendition;
+typedef void*           WXRenderTable;
+typedef void*           WXFontType; 
+typedef void*           WXString;
+typedef long            WXPixel; 
+
+#endif /*  Android */
+
 #ifdef __WXGTK__
 
 /* Stand-ins for GLIB types */
