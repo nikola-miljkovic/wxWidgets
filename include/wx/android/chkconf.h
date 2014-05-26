@@ -65,8 +65,12 @@
 //  libstdc++ do provide then if you're using C++."
 #undef wxUSE_INTL
 #define wxUSE_INTL 0
+
 #undef wxUSE_XLOCALE
 #define wxUSE_XLOCALE 0
+
+#undef  wxUSE_ACCEL
+#define  wxUSE_ACCEL 0
 
 #undef wxUSE_IPC
 #define wxUSE_IPC 0
@@ -107,19 +111,168 @@
 #undef wxUSE_XRC
 #define wxUSE_XRC 0
 
+#undef wxUSE_GRAPHICS_CONTEXT
+#define wxUSE_GRAPHICS_CONTEXT 0 
+
+#undef wxUSE_FILEDLG
+#define wxUSE_FILEDLG 0
+
+#undef wxUSE_DOC_VIEW_ARCHITECTURE
+#define wxUSE_DOC_VIEW_ARCHITECTURE 0
+
+#undef wxUSE_MENUS
+#define wxUSE_MENUS 0
+
+#undef wxUSE_TASKBARICON
+#define wxUSE_TASKBARICON 0
+
+#undef wxUSE_MSGDLG
+#define wxUSE_MSGDLG 0
+
+#undef wxUSE_RICHMSGDLG 
+#define wxUSE_RICHMSGDLG 0
+
+#undef wxUSE_TEXTDLG
+#define wxUSE_TEXTDLG 0
+
+#undef wxUSE_BMPBUTTON
+#define wxUSE_BMPBUTTON 0
+
+#undef wxUSE_CHOICE
+#define wxUSE_CHOICE 0
+
+#undef wxUSE_CLIPBOARD
+#define wxUSE_CLIPBOARD 0
+
+#undef wxUSE_BUTTON
+#define wxUSE_BUTTON 0
+ 
+#undef wxUSE_CARET 
+#define wxUSE_CARET 0
+
+#undef wxUSE_GAUGE 
+#define wxUSE_GAUGE 0
+
+#undef wxUSE_GRID 
+#define wxUSE_GRID 0
+
+#undef wxUSE_HEADERCTRL 
+#define wxUSE_HEADERCTRL 0 
+
+#undef wxUSE_LISTBOX 
+#define wxUSE_LISTBOX 0
+
+#undef wxUSE_LISTCTRL 
+#define wxUSE_LISTCTRL 0
+
+#undef wxUSE_RADIOBOX
+#define wxUSE_RADIOBOX 0
+
+#undef wxUSE_RADIOBTN 
+#define wxUSE_RADIOBTN 0
+
+#undef wxUSE_SCROLLBAR 
+#define wxUSE_SCROLLBAR 0 
+
+#undef wxUSE_SLIDER 
+#define wxUSE_SLIDER 0
+
+#undef wxUSE_SPINBTN 
+#define wxUSE_SPINBTN 0
+
+#undef wxUSE_SPINCTRL 
+#define wxUSE_SPINCTRL 0
+
+#undef wxUSE_STATBMP 
+#define wxUSE_STATBMP 0
+
+#undef wxUSE_STATBOX 
+#define wxUSE_STATBOX 0
+
+#undef wxUSE_STATLINE 
+#define wxUSE_STATLINE 0
+
+#undef wxUSE_STATTEXT 
+#define wxUSE_STATTEXT 0
+
+#undef wxUSE_TREECTRL 
+#define wxUSE_TREECTRL 0
+
+#undef wxUSE_TREELISTCTRL
+#define wxUSE_TREELISTCTRL 0
+
+#undef wxUSE_COMMANDLINKBUTTON
+#define wxUSE_COMMANDLINKBUTTON 0
+
+#undef wxUSE_COLLPANE
+#define wxUSE_COLLPANE 0
+
+#undef wxUSE_DATAVIEWCTRL
+#define wxUSE_DATAVIEWCTRL 0
+
+#undef wxUSE_CHOICEDLG
+#define wxUSE_CHOICEDLG 0
+
+#undef wxUSE_PROGRESSDLG
+#define wxUSE_PROGRESSDLG 0
+
+#undef wxUSE_FONTDLG
+#define wxUSE_FONTDLG 0
+
+#undef wxUSE_NUMBERDLG
+#define wxUSE_NUMBERDLG 0
+
+#undef wxUSE_DIRDLG
+#define wxUSE_DIRDLG 0
+
+#undef wxUSE_STARTUP_TIPS
+#define wxUSE_STARTUP_TIPS 0
+
+#undef wxUSE_WIZARDDLG
+#define wxUSE_WIZARDDLG 0
+
+#undef wxUSE_LOG_DIALOG
+#define wxUSE_LOG_DIALOG 0
+
+#undef wxUSE_TREEBOOK
+#define wxUSE_TREEBOOK 0
+
+#undef wxUSE_COMBOCTRL
+#define wxUSE_COMBOCTRL 0
+
+#undef wxUSE_ODCOMBOBOX
+#define wxUSE_ODCOMBOBOX 0
+
+#undef wxUSE_BITMAPCOMBOBOX
+#define wxUSE_BITMAPCOMBOBOX 0
 
 // ----------------------------------------------------------------------------
 // GUI is completely TODO.
 // ----------------------------------------------------------------------------
 
+#undef wxUSE_CONTROLS
+#define wxUSE_CONTROLS 0 
+
 #undef wxUSE_DRAGIMAGE
 #define wxUSE_DRAGIMAGE 0
+
+#undef wxUSE_COMBOBOX
+#define wxUSE_COMBOBOX 0
+
+#undef wxUSE_CALENDARCTRL
+#define wxUSE_CALENDARCTRL 0
 
 #undef wxUSE_TOOLBAR
 #define wxUSE_TOOLBAR 0
 
 #undef wxUSE_TOOLBOOK
 #define wxUSE_TOOLBOOK 0
+
+#undef wxUSE_TEXTCTRL
+#define wxUSE_TEXTCTRL 0
+
+#undef wxUSE_LOGWINDOW
+#define wxUSE_LOGWINDOW 0
 
 #undef wxUSE_ARTPROVIDER_TANGO
 #define wxUSE_ARTPROVIDER_TANGO 0
@@ -175,6 +328,17 @@
 #undef wxUSE_WXHTML_HELP
 #define wxUSE_WXHTML_HELP 0
 
+#undef wxUSE_CHECKLISTBOX
+#define wxUSE_CHECKLISTBOX 0
+
+#undef wxUSE_REARRANGECTRL
+#define wxUSE_REARRANGECTRL 0
+
+#undef wxUSE_CHOICEBOOK
+#define wxUSE_CHOICEBOOK 0
+
+#undef wxUSE_CHECKBOX
+#define wxUSE_CHECKBOX 0
 
 // ----------------------------------------------------------------------------
 // All image classes are TODO.
@@ -215,7 +379,6 @@
 
 #undef wxUSE_PALETTE
 #define wxUSE_PALETTE       0
-
 
 
 // ----------------------------------------------------------------------------

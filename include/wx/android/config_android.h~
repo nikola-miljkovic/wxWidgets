@@ -15,7 +15,6 @@
 
 #define wxUSE_UNIX 1
 #define __UNIX__ 1
-#define __SMARTPHONE__
 
 #define HAVE_NANOSLEEP
 #define HAVE_FCNTL 1

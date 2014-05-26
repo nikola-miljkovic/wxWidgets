@@ -1,5 +1,14 @@
-#ifndef _WX_APP_H_
-#define _WX_APP_H_
+/////////////////////////////////////////////////////////////////////////////
+// Name:        wx/android/app.h
+// Purpose:
+// Author:      Nikola Miljkovic
+// Created:
+// Copyright:   (c) 2014 wxWidgets
+// Licence:     wxWindows licence
+/////////////////////////////////////////////////////////////////////////////
+
+#ifndef _WX_ANDROID_APP_H_
+#define _WX_ANDROID_APP_H_
 
 // android specific
 #include <jni.h>
@@ -21,20 +30,15 @@ public:
 
     virtual void WakeUpIdle();
 
-    virtual void SetPrintMode(int mode) { m_printMode = mode; }
-    virtual int GetPrintMode() const { return m_printMode; }
-
     // implementation only
     void OnIdle(wxIdleEvent& event);
     void OnEndSession(wxCloseEvent& event);
     void OnQueryEndSession(wxCloseEvent& event);
 
-    static int m_nCmdShow;
 protected:
-    DECLARE_EVENT_TABLE()
     wxDECLARE_NO_COPY_CLASS(wxApp);
     DECLARE_DYNAMIC_CLASS(wxApp)
 };
 
 
-#endif // _WX_APP_H_
+#endif // _WX_ANDROID_APP_H_
