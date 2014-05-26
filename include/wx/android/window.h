@@ -96,6 +96,9 @@ public:
     
     virtual WXWidget GetHandle() const wxOVERRIDE { return m_widget; }
     
+    virtual void SetLabel(const wxString&);
+    virtual wxString GetLabel() const;
+
     WXWidget           *m_widget; 
 protected:
     // implement the base class pure virtuals
