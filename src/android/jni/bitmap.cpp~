@@ -1,0 +1,9 @@
+#include "wx/bitmap.h"
+
+wxDialog::wxDialog()
+{
+}
+
+wxDialog::~wxDialog()
+{
+}
