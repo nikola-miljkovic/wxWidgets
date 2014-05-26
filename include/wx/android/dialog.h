@@ -32,13 +32,11 @@ public:
     virtual int ShowModal() wxOVERRIDE;
     virtual void EndModal( int retCode ) wxOVERRIDE;
     virtual bool IsModal() const wxOVERRIDE;
-
+    
+    virtual void SetLabel(const wxString&);
+    virtual wxString GetLabel() const;
 private:
-    // common part of all ctors
-    //void Init();
-
-    //bool m_modalShowing;
-    //wxGUIEventLoop *m_modalLoop;
+    void Init();
 
     DECLARE_DYNAMIC_CLASS(wxDialog)
 };
