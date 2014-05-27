@@ -87,6 +87,12 @@
     #include "wx/dfb/dcscreen.h"
 #endif
 
+#ifdef __WXANDROID__
+   #include "wx/android/dcclient.h"
+   #include "wx/android/dcmemory.h"
+   #include "wx/android/dcscreen.h"
+#endif 
+
 //----------------------------------------------------------------------------
 // wxDCFactory
 //----------------------------------------------------------------------------
