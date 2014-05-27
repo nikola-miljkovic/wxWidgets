@@ -25,10 +25,10 @@ public:
     virtual ~wxApp();
 
     // override base class (pure) virtuals
-    virtual bool Initialize(int& argc, wxChar **argv);
-    virtual void CleanUp();
+    virtual bool Initialize(int& argc, wxChar **argv) wxOVERRIDE;
+    virtual void CleanUp() wxOVERRIDE;
 
-    virtual void WakeUpIdle();
+    virtual void WakeUpIdle() wxOVERRIDE;
 
     // implementation only
     void OnIdle(wxIdleEvent& event);
@@ -36,7 +36,7 @@ public:
     void OnQueryEndSession(wxCloseEvent& event);
 
 protected:
-    wxDECLARE_NO_COPY_CLASS(wxApp);
+
     DECLARE_DYNAMIC_CLASS(wxApp)
 };
 
