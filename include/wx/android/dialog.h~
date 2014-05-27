@@ -25,7 +25,7 @@ public:
             const wxPoint &pos = wxDefaultPosition,
             const wxSize &size = wxDefaultSize,
             long style = wxDEFAULT_DIALOG_STYLE,
-            const wxString &name = wxDialogNameStr ) { return false; };
+            const wxString &name = wxDialogNameStr );
     virtual ~wxDialog();
 
     virtual bool Show( bool show = true ) wxOVERRIDE;
@@ -34,11 +34,7 @@ public:
     virtual bool IsModal() const wxOVERRIDE;
 
 private:
-    // common part of all ctors
-    //void Init();
-
-    //bool m_modalShowing;
-    //wxGUIEventLoop *m_modalLoop;
+    void Init();
 
     DECLARE_DYNAMIC_CLASS(wxDialog)
 };

@@ -19,11 +19,12 @@
 class WXDLLIMPEXP_CORE wxDataFormat
 {
 public:
-    // this could be wrong, but looks like
-    // android returns object of type ClipData
-    typedef jobject NativeFormat;
-
-    wxDataFormat(NativeFormat format = wxDF_INVALID);
+    // this could be wrong
+    typedef unsigned long NativeFormat;
+    
+    wxDataFormat();
+    wxDataFormat( wxDataFormatId type );
+    wxDataFormat( NativeFormat format );
     wxDataFormat(const wxString& format);
 
     wxDataFormat& operator=(NativeFormat format);
@@ -31,6 +32,8 @@ public:
 
     bool operator==(NativeFormat format) const;
     bool operator!=(NativeFormat format) const;
+    
+    operator NativeFormat() const;
 
     void SetType(NativeFormat format);
     NativeFormat GetType() const;

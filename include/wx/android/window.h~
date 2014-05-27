@@ -121,6 +121,8 @@ protected:
     virtual bool DoPopupMenu( wxMenu *menu, int x, int y ) wxOVERRIDE;
 #endif // wxUSE_MENUS_NATIVE
     
+    virtual void DoCaptureMouse() wxOVERRIDE;
+    virtual void DoReleaseMouse() wxOVERRIDE;
 private:
     DECLARE_DYNAMIC_CLASS(wxWindowAndroid)
 };
