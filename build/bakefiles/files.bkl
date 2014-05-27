@@ -1676,6 +1676,10 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     wx/android/cursor.h
     wx/android/dataform.h
     wx/android/dataobj.h
+    wx/android/dc.h
+    wx/android/dcclient.h
+    wx/android/dcmemory.h
+    wx/android/dcscreen.h
     wx/android/dialog.h
     wx/android/font.h
     wx/android/frame.h
