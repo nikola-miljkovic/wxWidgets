@@ -25,7 +25,7 @@ public:
     wxBrush( const wxBitmap &stippleBitmap );
     virtual ~wxBrush();
 
-    bool operator==(const wxBrush& brush) const;
+    bool operator==(const wxBrush& brush) const { return (*this == brush); };
     bool operator!=(const wxBrush& brush) const { return !(*this == brush); }
 
     wxBrushStyle GetStyle() const wxOVERRIDE;
@@ -37,10 +37,7 @@ public:
     void SetStyle( wxBrushStyle style ) wxOVERRIDE;
     void SetStipple( const wxBitmap& stipple ) wxOVERRIDE;
 
-    wxDEPRECATED_MSG("use wxBRUSHSTYLE_XXX constants")
     wxBrush(const wxColour& col, int style);
-
-    wxDEPRECATED_MSG("use wxBRUSHSTYLE_XXX constants")
     void SetStyle(int style) { SetStyle((wxBrushStyle)style); }
 
 protected:

@@ -12,7 +12,7 @@
 #define _WX_ANDROID_DCSCREEN_H_
 
 #include "wx/dcscreen.h"
-#include "wx/msw/dc.h"
+#include "wx/android/dc.h"
 
 class WXDLLIMPEXP_CORE wxScreenDCImpl : public wxAndroidDCImpl
 {

@@ -13,7 +13,7 @@
 #include "wx/dcmemory.h"
 #include "wx/android/dc.h"
 
-class WXDLLIMPEXP_CORE wxMemoryDCImpl: public wxMSWDCImpl
+class WXDLLIMPEXP_CORE wxMemoryDCImpl: public wxAndroidDCImpl
 {
 public:
     wxMemoryDCImpl( wxMemoryDC *owner );

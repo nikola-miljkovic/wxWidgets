@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        wx/android/dataform.h
+// Name:        wx/android/colour.h
 // Purpose:
 // Author:      Nikola Miljkovic
 // Created:
@@ -25,7 +25,7 @@ public:
     
     virtual ~wxColour();
     
-    bool operator==(const wxColour& col) const;
+    bool operator==(const wxColour& col) const { return (*this == col); };
     bool operator!=(const wxColour& col) const { return !(*this == col); }
 
     unsigned char Red() const wxOVERRIDE;

@@ -1,5 +1,5 @@
-#ifndef __ANDROID_DEF
-#define __ANDROID_DEF
+#ifndef _WX_ANDROID_DEFINES_
+#define _WX_ANDROID_DEFINES_
 
 // Android class binds
 
@@ -33,4 +33,4 @@
 //binding to the MotionEvent class for unpacking Motion Events and aiding in handling of Touch Events
 #define BIND_MOTION_EVENT "android/view/MotionEvent"
 
-#endif // __ANDROID_DEF
+#endif // _WX_ANDROID_DEFINES_

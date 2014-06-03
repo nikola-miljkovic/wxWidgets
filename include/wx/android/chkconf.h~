@@ -141,6 +141,9 @@
 #undef wxUSE_STC
 #define wxUSE_STC 0
 
+#undef wxUSE_XML
+#define wxUSE_XML 0
+
 #undef wxUSE_TIMEPICKCTRL
 #define wxUSE_TIMEPICKCTRL 0
 

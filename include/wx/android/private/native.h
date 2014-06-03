@@ -1,0 +1,55 @@
+/////////////////////////////////////////////////////////////////////////////
+// Name:        wx/android/private/native.h
+// Purpose:	java/android native function declarations
+// Author:      Nikola Miljkovic
+// Created:
+// Copyright:   (c) 2014 wxWidgets
+// Licence:     wxWindows licence
+/////////////////////////////////////////////////////////////////////////////
+
+#ifndef _WX_ANDROID_NATIVE_H_
+#define _WX_ANDROID_NATIVE_H_
+
+#include <jni.h>
+#include <android/log.h>
+
+#include <stack>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if defined(__arm__)
+	#if defined(__ARM_ARCH_7A__)
+		#if defined(__ARM_NEON__)
+			#define ABI "armeabi-v7a/NEON"
+		#else
+		  	  #define ABI "armeabi-v7a"
+		#endif
+	#else
+	   	#define ABI "armeabi"
+	#endif
+#elif defined(__i386__)
+	#define ABI "x86"
+#elif defined(__mips__)
+	#define ABI "mips"
+#else
+	#define ABI "unknown"
+#endif
+
+#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "wxWidgets", __VA_ARGS__))
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "wxWidgets", __VA_ARGS__))
+
+// JNI_OnLoad(...) returns this, needed for JAVA's LoadLibrary()
+JNIEXPORT jint JNICALL
+load(JavaVM* vm, void* reserved);
+
+// public native int org.wxwidgets.MainActivity.wxStart()
+JNIEXPORT jint JNICALL
+Java_org_wxwidgets_MainActivity_wxStart( JNIEnv* env, jobject thiz);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
+
+#endif // _WX_ANDROID_NATIVE_H_
