@@ -1,36 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wx/jni/app.cpp
+// Name:        wx/jni/dc.cpp
 // Purpose:     
 // Author:      Nikola Miljkovic
 // Copyright:   (c) 2014 wxWidgets
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wx/app.h>
+#include "wx/android/dc.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxApp,wxEvtHandler)
+IMPLEMENT_ABSTRACT_CLASS(wxAndroidDCImpl, wxDCImpl)
 
-wxApp::wxApp() 
-{
-
-}
-
-wxApp::~wxApp()
-{
-
-}
-
-bool wxApp::Initialize(int& argc, wxChar **argv) 
-{
-    return true;
-}
-
-void wxApp::CleanUp()
+wxAndroidDCImpl::~wxAndroidDCImpl()
 {
 }
 
-void wxApp::WakeUpIdle()
+void wxAndroidDCImpl::Init()
 {
 }
+
 
 

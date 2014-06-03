@@ -1,36 +1,21 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wx/jni/app.cpp
+// Name:        wx/jni/dcscreen.cpp
 // Purpose:     
 // Author:      Nikola Miljkovic
 // Copyright:   (c) 2014 wxWidgets
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wx/app.h>
+#include "wx/android/dcscreen.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxApp,wxEvtHandler)
+IMPLEMENT_ABSTRACT_CLASS(wxScreenDCImpl, wxAndroidDCImpl)
 
-wxApp::wxApp() 
-{
-
-}
-
-wxApp::~wxApp()
-{
-
-}
-
-bool wxApp::Initialize(int& argc, wxChar **argv) 
-{
-    return true;
-}
-
-void wxApp::CleanUp()
-{
-}
-
-void wxApp::WakeUpIdle()
+wxScreenDCImpl::wxScreenDCImpl( wxScreenDC *owner )
+  : wxAndroidDCImpl( owner )
 {
 }
 
 
+void wxScreenDCImpl::DoGetSize(int *width, int *height) const
+{
+}

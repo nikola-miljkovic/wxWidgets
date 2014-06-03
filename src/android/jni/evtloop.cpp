@@ -1,36 +1,33 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Name:        wx/jni/app.cpp
+// Name:        wx/jni/evtloop.cpp
 // Purpose:     
 // Author:      Nikola Miljkovic
 // Copyright:   (c) 2014 wxWidgets
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wx/app.h>
+#include "wx/evtloop.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxApp,wxEvtHandler)
-
-wxApp::wxApp() 
-{
-
-}
-
-wxApp::~wxApp()
-{
-
-}
-
-bool wxApp::Initialize(int& argc, wxChar **argv) 
-{
-    return true;
-}
-
-void wxApp::CleanUp()
+wxGUIEventLoop::~wxGUIEventLoop()
 {
 }
 
-void wxApp::WakeUpIdle()
+int wxGUIEventLoop::DoRun()
 {
 }
 
+void wxGUIEventLoop::ScheduleExit(int rc)
+{
+}
 
+bool wxGUIEventLoop::Pending() const
+{
+}
+
+bool wxGUIEventLoop::Dispatch()
+{
+}
+
+void wxGUIEventLoop::DoYieldFor(long eventsToProcess)
+{
+}
