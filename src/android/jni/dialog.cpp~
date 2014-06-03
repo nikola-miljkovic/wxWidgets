@@ -1,5 +1,0 @@
-#include "wx/dialog.h"
-
-wxDialog::wxDialog()
-{
-}
