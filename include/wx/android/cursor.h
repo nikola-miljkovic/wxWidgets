@@ -27,7 +27,7 @@ class WXDLLIMPEXP_FWD_CORE wxImage;
 class WXDLLIMPEXP_CORE wxCursor : public wxGDIObject
 {
 public:
-    wxCursor();
+    wxCursor() { };
 
 #if wxUSE_IMAGE
     wxCursor(const wxImage & image);
@@ -39,12 +39,12 @@ public:
     wxCursor( const char bits[], int width, int height,
         int hotSpotX = -1, int hotSpotY = -1,
         const char maskBits[] = NULL,
-        const wxColour* fg = NULL, const wxColour* bg = NULL);
+        const wxColour* fg = NULL, const wxColour* bg = NULL) { };
 
     virtual ~wxCursor();
 
 protected:
-    void InitFromStock(wxStockCursor);
+    void InitFromStock(wxStockCursor) { };
 #if wxUSE_IMAGE
     void InitFromImage(const wxImage& image);
 #endif

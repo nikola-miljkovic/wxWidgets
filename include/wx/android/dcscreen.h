@@ -18,7 +18,7 @@ class WXDLLIMPEXP_CORE wxScreenDCImpl : public wxAndroidDCImpl
 {
 public:
     wxScreenDCImpl( wxScreenDC *owner );
-
+    
     virtual void DoGetSize(int *w, int *h) const;
 
     DECLARE_CLASS(wxScreenDCImpl)

@@ -25,7 +25,7 @@ public:
     wxBrush( const wxBitmap &stippleBitmap );
     virtual ~wxBrush();
 
-    bool operator==(const wxBrush& brush) const;
+    bool operator==(const wxBrush& brush) const { return *this == brush; };
     bool operator!=(const wxBrush& brush) const { return !(*this == brush); }
 
     wxBrushStyle GetStyle() const wxOVERRIDE;

@@ -10,9 +10,6 @@
 #ifndef _WX_ANDROID_APP_H_
 #define _WX_ANDROID_APP_H_
 
-// android specific
-#include <jni.h>
-
 #include "wx/event.h"
 #include "wx/icon.h"
 
@@ -39,6 +36,5 @@ protected:
 
     DECLARE_DYNAMIC_CLASS(wxApp)
 };
-
 
 #endif // _WX_ANDROID_APP_H_

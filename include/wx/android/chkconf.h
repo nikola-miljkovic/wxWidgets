@@ -270,6 +270,9 @@
 #undef wxUSE_COLLPANE
 #define wxUSE_COLLPANE 0
 
+#undef wxUSE_DATAOBJ
+#define wxUSE_DATAOBJ 0
+
 #undef wxUSE_DATAVIEWCTRL
 #define wxUSE_DATAVIEWCTRL 0
 
