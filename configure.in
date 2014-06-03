@@ -3023,6 +3023,7 @@ libraries returned by 'pkg-config gtk+-2.0 --libs' or 'gtk-config
     if test "$wxUSE_ANDROID" = 1 ; then
         TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS}"
         CXXWARNINGS="${CXXWARNINGS}"
+        LIBS="$LIBS -llog"        
 
         TOOLKIT=ANDROID
         GUIDIST=ANDROID_DIR
@@ -7255,6 +7256,9 @@ if test "$USE_WIN32" = 1 ; then
 fi
 dnl USE_WIN32 = 1
 
+if test "$wxUSE_ANDROID" = 1 ; then
+    wxUSE_XRC="no"
+fi
 dnl ---------------------------------------------------------------------------
 dnl wxGraphicsContext
 dnl ---------------------------------------------------------------------------

@@ -1658,14 +1658,34 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
 </set>
 
 <set var="ANDROID_LOWLEVEL_SRC" hints="files">
+    src/generic/textmeasure.cpp
     src/android/jni/app.cpp
+    src/android/jni/apptraits.cpp
     src/android/jni/bitmap.cpp
+    src/android/jni/brush.cpp
+    src/android/jni/colour.cpp
+    src/android/jni/cursor.cpp
+    src/android/jni/dc.cpp
+    src/android/jni/dcclient.cpp
+    src/android/jni/dcmemory.cpp
+    src/android/jni/dcscreen.cpp
     src/android/jni/dialog.cpp
-    src/android/jni/wxjni.cpp
+    src/android/jni/evtloop.cpp
+    src/android/jni/font.cpp
+    src/android/jni/frame.cpp
+    src/android/jni/globals.cpp
+    src/android/jni/icon.cpp
+    src/android/jni/native.cpp
+    src/android/jni/pen.cpp
+    src/android/jni/region.cpp
+    src/android/jni/settings.cpp
+    src/android/jni/toplevel.cpp
+    src/android/jni/uiaction.cpp
+    src/android/jni/utils.cpp
+    src/android/jni/window.cpp
 </set>
 
 <set var="ANDROID_LOWLEVEL_HDR" hints="files">
-    wx/android/android_def.h
     wx/android/app.h
     wx/android/bitmap.h
     wx/android/brush.h
@@ -1690,7 +1710,10 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     wx/android/textctrl.h
     wx/android/toplevel.h
     wx/android/window.h
-    wx/android/wxjni.h
+    wx/android/private/definitions.h
+    wx/android/private/globals.h
+    wx/android/private/native.h
+    wx/android/private/wrappers.h
 </set>
 <!-- ====================================================================== -->
 <!--                                wxMSW                                   -->
