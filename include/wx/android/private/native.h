@@ -41,8 +41,8 @@ extern "C" {
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "wxWidgets", __VA_ARGS__))
 
 // JNI_OnLoad(...) returns this, needed for JAVA's LoadLibrary()
-JNIEXPORT jint JNICALL
-load(JavaVM* vm, void* reserved);
+extern WXDLLIMPEXP_CORE jint
+wxAndroidEntryStart(JavaVM* vm, void* reserved);
 
 // public native int org.wxwidgets.MainActivity.wxStart()
 JNIEXPORT jint JNICALL

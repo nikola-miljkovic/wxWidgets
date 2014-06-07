@@ -6,7 +6,8 @@
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wx/app.h>
+#include "wx/app.h"
+#include "wx/android/private/globals.h"
 
 IMPLEMENT_DYNAMIC_CLASS(wxApp,wxEvtHandler)
 
@@ -22,6 +23,8 @@ wxApp::~wxApp()
 
 bool wxApp::Initialize(int& argc, wxChar **argv) 
 {
+	wxAndroid::Application = this;
+
     return true;
 }
 
@@ -32,5 +35,3 @@ void wxApp::CleanUp()
 void wxApp::WakeUpIdle()
 {
 }
-
-

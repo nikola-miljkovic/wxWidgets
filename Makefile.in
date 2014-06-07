@@ -2636,6 +2636,7 @@ COND_TOOLKIT_ANDROID_LOWLEVEL_HDR =  \
 	wx/android/dialog.h \
 	wx/android/font.h \
 	wx/android/frame.h \
+	wx/android/init.h \
 	wx/android/menu.h \
 	wx/android/menuitem.h \
 	wx/android/pen.h \

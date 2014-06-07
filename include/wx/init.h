@@ -56,6 +56,8 @@ extern int WXDLLIMPEXP_BASE wxEntry(int& argc, char **argv);
 // compatible with WinMain() and not the traditional main().
 #if wxUSE_GUI && defined(__WINDOWS__)
     #include "wx/msw/init.h"
+#elif defined(__ANDROID__)
+    #include "wx/android/init.h"
 #endif
 
 // ----------------------------------------------------------------------------

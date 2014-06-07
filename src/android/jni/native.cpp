@@ -7,16 +7,20 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
-#include <wx/app.h>
+#include "wx/app.h"
+#include "wx/init.h"
 
-#include <wx/android/private/definitions.h>
-#include <wx/android/private/native.h>
-#include <wx/android/private/wrappers.h>
-#include <wx/android/private/globals.h>
+#include "wx/android/private/definitions.h"
+#include "wx/android/private/native.h"
+#include "wx/android/private/wrappers.h"
+#include "wx/android/private/globals.h"
 
 jint
-load(JavaVM* vm, void* reserved)
+wxAndroidEntryStart(JavaVM* vm, void* reserved)
 {
+	int a = 0;
+	wxEntryStart(a, (wxChar**)NULL);
+
 	JNIEnv* env;
 	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
 		return -1;
@@ -32,7 +36,8 @@ Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
 
 	if(wxAndroid::ActivityStack.size() == 0) 
 	{
-		wxAndroid::Application->OnInit();	
+		wxAndroid::Application->CallOnInit();	
+		LOGW("wxWidgets22!");
 	}
 
 	wxAndroid::ActivityStack.push(&thiz);

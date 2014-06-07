@@ -1703,6 +1703,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     wx/android/dialog.h
     wx/android/font.h
     wx/android/frame.h
+    wx/android/init.h
     wx/android/menu.h
     wx/android/menuitem.h
     wx/android/pen.h

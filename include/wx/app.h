@@ -788,6 +788,14 @@ public:
                                                                               \
             return wxEntry(argc, argv);                                       \
         }
+#elif defined(__ANDROID__)
+    #define wxIMPLEMENT_WXWIN_MAIN_CONSOLE				      \
+	jint JNI_OnLoad(JavaVM* vm, void* reserved) 			      \
+	{								      \
+		wxDISABLE_DEBUG_SUPPORT();                                    \
+                                                                              \
+		return wxAndroidEntryStart(vm, reserved);                                    \
+	}
 #else // Use standard main()
     #define wxIMPLEMENT_WXWIN_MAIN_CONSOLE                                    \
         int main(int argc, char **argv)                                       \
