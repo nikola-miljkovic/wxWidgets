@@ -495,8 +495,6 @@ int wxEntryReal(int& argc, wxChar **argv)
         return wxTheApp->OnRun();
     }
     wxCATCH_ALL( wxTheApp->OnUnhandledException(); return -1; )
-
-    return -1;
 }
 
 #if wxUSE_UNICODE
