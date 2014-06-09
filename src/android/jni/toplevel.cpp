@@ -43,13 +43,9 @@ void wxTopLevelWindowAndroid::SetTitle( const wxString& title)
 {
     m_title = title;
 
-    LOGW("DaSIDOBAR?");
-
     if(m_hasRefs)
     	CALL_VOID(m_jclass, m_jobject, BIND_SET_TITLE_METHOD, BIND_SET_TITLE_ARGS,
     		wxAndroid::Env->NewStringUTF((const char*)m_title.mb_str(wxConvUTF8)));
-
-    LOGW("DaSIDOBAR?123");
 }
 
 wxString wxTopLevelWindowAndroid::GetTitle() const
