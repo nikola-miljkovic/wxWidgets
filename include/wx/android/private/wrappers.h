@@ -10,49 +10,54 @@
 #ifndef _WX_ANDROID_WRAPPERS_H_
 #define _WX_ANDROID_WRAPPERS_H_
 
+#define INIT_ACTIVITY()
+
 #define INIT_OBJ(_class, _args, ...) \
-	m_class = env->FindClass(_class); \
-	m_object = env->NewGlobalRef(env->NewObject(m_class, \
-		env->GetMethodID(m_class, "<init>", _args), __VA_ARGS__));
+	m_jclass = wxAndroid::Env->FindClass(_class); \
+	m_jobject = wxAndroid::Env->NewGlobalRef(wxAndroid::Env->NewObject(m_class, \
+		wxAndroid::Env->GetMethodID(m_class, "<init>", _args), __VA_ARGS__));
+
+#define FIND_CLASS(_class) \
+	m_jclass = wxAndroid::Env->FindClass(_class);
 
 #define CALL_VOID(_class, _obj, _method, _args, ...) \
-	env->CallVoidMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallVoidMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_INT(_class, _obj, _method, _args, ...) \
-	env->CallIntMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallIntMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_OBJ(_class, _obj, _method, _args, ...) \
-	env->CallObjectMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallObjectMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_BOOL(_class, _obj, _method, _args, ...) \
-	env->CallBooleanMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallBooleanMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_BYTE(_class, _obj, _method, _args, ...) \
-	env->CallByteMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallByteMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_CHAR(_class, _obj, _method, _args, ...) \
-	env->CallCharMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallCharMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_SHORT(_class, _obj, _method, _args, ...) \
-	env->CallShortMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallShortMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_LONG(_class, _obj, _method, _args, ...) \
-	env->CallLongMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallLongMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_FLOAT(_class, _obj, _method, _args, ...) \
-	env->CallFloatMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallFloatMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #define CALL_DOUBLE(_class, _obj, _method, _args, ...) \
-	env->CallDoubleMethod(_obj, env->GetMethodID(_class, \
-		_method, _method, __VA_ARGS__));
+	wxAndroid::Env->CallDoubleMethod(_obj, wxAndroid::Env->GetMethodID(_class, \
+		_method, _args), __VA_ARGS__);
 
 #endif // _WX_ANDROID_WRAPPERS_H_
