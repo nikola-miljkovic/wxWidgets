@@ -11,19 +11,20 @@
 #define _WX_ANDROID_H_
 
 #include "wx/app.h"
+#include "wx/toplevel.h"
 #include "wx/android/private/native.h"
 
 namespace wxAndroid
 {
 // needed for some native functions
 extern JNIEnv* Env;
-extern jobject Activity;
+extern jobject MainActivity;
+extern jclass  MainActivityClass;
 
-// application
-extern wxApp* Application;
-
+// window for binding jclass/jobject
+extern wxTopLevelWindowAndroid* NewWindow;
 // stack that helps manage/reference windows and main activity
-extern std::stack<jobject*> ActivityStack;   
+extern std::stack<jobject*> ActivityStack;
 } // namespace wxAndroid
 
 #endif // _WX_ANDROID_H_

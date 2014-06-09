@@ -11,8 +11,9 @@
 
 namespace wxAndroid
 {
-	JNIEnv* Env;
-	jobject Activity;
-	wxApp* Application;
-	std::stack<jobject*> ActivityStack;   
+    JNIEnv* Env;
+    jobject MainActivity;
+    jclass  MainActivityClass;
+    wxTopLevelWindowAndroid* NewWindow;
+    std::stack<jobject*> ActivityStack;
 } 
