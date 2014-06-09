@@ -45,7 +45,6 @@
 
 #define BIND_TEXTCTRL_CONSTRUCTOR_ARGS "(Landroid/content/Context;)V"
 
-
 #define BIND_TOAST "android/widget/Toast"
 
 //Not being used currently but has been defined for uniformity
