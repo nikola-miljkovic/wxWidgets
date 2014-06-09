@@ -23,7 +23,7 @@ bool wxFrame::Create( wxWindow *parent,
                       long style,
                       const wxString &name )
 {
-    return wxFrameBase::Create(parent, id, title, pos, sizeOrig, style, name);
+    return wxTopLevelWindow::Create(parent, id, title, pos, sizeOrig, style, name);
 }
 
 wxFrame::~wxFrame()

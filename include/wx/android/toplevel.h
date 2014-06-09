@@ -10,6 +10,8 @@
 #ifndef _WX_ANDROID_TOPLEVEL_H_
 #define _WX_ANDROID_TOPLEVEL_H_
 
+#include <jni.h>
+
 // ----------------------------------------------------------------------------
 // wxTopLevelWindowAndroid
 // ----------------------------------------------------------------------------
@@ -62,9 +64,19 @@ public:
     virtual void ShowWithoutActivating();
     virtual bool ShowFullScreen(bool show, long style = wxFULLSCREEN_ALL);
     virtual bool IsFullScreen() const;
+	
+    // set jobject/jclass
+    void SetJavaObject(jobject jjobject, jclass jjclass);
 
 protected:
     void Init();
+	
+    wxString	m_title;
+
+    jobject	m_jobject;
+    jclass	m_jclass;
+    // set to true when we get response from activity
+    bool	m_hasRefs; 
 
     DECLARE_EVENT_TABLE()
     wxDECLARE_NO_COPY_CLASS(wxTopLevelWindowAndroid);

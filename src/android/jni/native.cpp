@@ -15,8 +15,7 @@
 #include "wx/android/private/wrappers.h"
 #include "wx/android/private/globals.h"
 
-jint
-wxAndroidEntryStart(JavaVM* vm, void* reserved)
+jint wxAndroidEntryStart(JavaVM* vm, void* reserved)
 {
 	int a = 0;
 	wxEntryStart(a, (wxChar**)NULL);
@@ -28,18 +27,23 @@ wxAndroidEntryStart(JavaVM* vm, void* reserved)
 	return JNI_VERSION_1_6;
 }
 
-jint
-Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
+jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
 {
 	wxAndroid::Env = env;
-	wxAndroid::Activity = env->NewGlobalRef(thiz);
+	wxAndroid::MainActivity = env->NewGlobalRef(thiz);
+    wxAndroid::MainActivityClass = env->GetObjectClass(thiz);
 
-	if(wxAndroid::ActivityStack.size() == 0) 
-	{
-		wxAndroid::Application->CallOnInit();	
-		LOGW("wxWidgets22!");
-	}
+	wxTheApp->CallOnInit();
 
 	wxAndroid::ActivityStack.push(&thiz);
 	return wxAndroid::ActivityStack.size();
+}
+
+jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
+{
+	if(!wxAndroid::NewWindow)
+		return 0;
+
+	wxAndroid::NewWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
+	return 1;
 }

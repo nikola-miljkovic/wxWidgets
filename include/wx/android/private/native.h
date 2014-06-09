@@ -15,9 +15,7 @@
 
 #include <stack>
 
-#ifdef __cplusplus
 extern "C" {
-#endif
 
 #if defined(__arm__)
 	#if defined(__ARM_ARCH_7A__)
@@ -48,8 +46,10 @@ wxAndroidEntryStart(JavaVM* vm, void* reserved);
 JNIEXPORT jint JNICALL
 Java_org_wxwidgets_MainActivity_wxStart( JNIEnv* env, jobject thiz);
 
-#ifdef __cplusplus
+// private native int org.wxwidgets.FrameActivity.wxRegisterFrame()
+JNIEXPORT jint JNICALL
+Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz);
+
 }
-#endif // __cplusplus
 
 #endif // _WX_ANDROID_NATIVE_H_
