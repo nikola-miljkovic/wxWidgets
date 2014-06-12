@@ -41,7 +41,4 @@ void wxClientDisplayRect(int *x,int *y,int *width,int *height)
 {
 }
 
-wxString wxGetOsDescription()
-{
-    return wxT("AndroidOS");
-}
+
