@@ -2348,6 +2348,11 @@ if test "$wxUSE_ZLIB" != "no" ; then
     fi
 fi
 
+dnl disable libtiff on androi platform
+if test "$wxUSE_ANDROID" = 1 ; then
+    wxUSE_LIBTIFF="no"
+fi
+
 dnl ------------------------------------------------------------------------
 dnl Check for png library
 dnl ------------------------------------------------------------------------
@@ -7256,9 +7261,6 @@ if test "$USE_WIN32" = 1 ; then
 fi
 dnl USE_WIN32 = 1
 
-if test "$wxUSE_ANDROID" = 1 ; then
-    wxUSE_XRC="no"
-fi
 dnl ---------------------------------------------------------------------------
 dnl wxGraphicsContext
 dnl ---------------------------------------------------------------------------

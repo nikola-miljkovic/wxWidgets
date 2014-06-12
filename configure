@@ -22264,6 +22264,10 @@ $as_echo "$as_me: WARNING: zlib library not found or too old, will use built-in 
     fi
 fi
 
+if test "$wxUSE_ANDROID" = 1 ; then
+    wxUSE_LIBTIFF="no"
+fi
+
 
 PNG_LINK=
 if test "$wxUSE_LIBPNG" != "no" ; then
@@ -36638,9 +36642,6 @@ if test "$USE_WIN32" = 1 ; then
     fi
 fi
 
-if test "$wxUSE_ANDROID" = 1 ; then
-    wxUSE_XRC="no"
-fi
 
 if test "$wxUSE_MAC" = 1; then
     wxUSE_GRAPHICS_CONTEXT="yes"
