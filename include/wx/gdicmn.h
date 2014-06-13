@@ -191,6 +191,9 @@ enum wxStockCursor
 #elif defined(__WXX11__)
     // Initialize from an included XPM
     #define wxICON(X) wxIcon( X##_xpm )
+#elif defined(__WXANDROID__)
+    // Initialize from an included XPM
+    #define wxICON(X) wxIcon( X##_xpm )
 #else
     // This will usually mean something on any platform
     #define wxICON(X) wxIcon(wxT(#X))
@@ -207,7 +210,8 @@ enum wxStockCursor
       defined(__WXX11__)   || \
       defined(__WXMAC__)   || \
       defined(__WXDFB__)   || \
-      defined(__WXCOCOA__)
+      defined(__WXCOCOA__) || \
+      defined(__WXANDROID__)  
     // Initialize from an included XPM
     #define wxBITMAP(name) wxBitmap(name##_xpm)
 #else // other platforms
