@@ -15,6 +15,11 @@ wxIcon::wxIcon()
 {
 }
 
+wxIcon::wxIcon(const char* const* bits) 
+:  wxBitmap( bits )
+{
+}
+
 void wxIcon::CopyFromBitmap(const wxBitmap& bmp)
 {
 }
