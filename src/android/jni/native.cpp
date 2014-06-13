@@ -35,7 +35,7 @@ jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
 
 	wxTheApp->CallOnInit();
 
-	wxAndroid::ActivityStack.push(&thiz);
+	wxAndroid::ActivityStack.push(&wxAndroid::MainActivity);
 	return wxAndroid::ActivityStack.size();
 }
 
@@ -43,7 +43,10 @@ jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
 {
 	if(!wxAndroid::NewWindow)
 		return 0;
+	
+	jobject globalThiz = env->NewGlobalRef(thiz);
 
-	wxAndroid::NewWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
+	wxAndroid::NewWindow->SetJavaObject(globalThiz, env->GetObjectClass(globalThiz));
+	wxAndroid::ActivityStack.push(&globalThiz);
 	return 1;
 }
