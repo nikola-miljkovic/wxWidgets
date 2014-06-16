@@ -185,6 +185,7 @@ void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
+#if wxUSE_MSGDLG
     wxMessageBox(wxString::Format
                  (
                     "Welcome to %s!\n"
@@ -197,4 +198,5 @@ void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
                  "About wxWidgets minimal sample",
                  wxOK | wxICON_INFORMATION,
                  this);
+#endif // wxUSE_MSGDLG
 }
