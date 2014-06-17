@@ -52,6 +52,10 @@ jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
 
 	wxAndroid::NewWindow->SetJavaObject(globalThiz, env->GetObjectClass(globalThiz));
 	wxAndroid::ActivityStack.push(&globalThiz);
+
+	// We want to know if there was some error, nullcheck at start of method
+	wxAndroid::NewWindow = NULL;
+
 	return 1;
 }
 
