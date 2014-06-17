@@ -9,7 +9,9 @@ import android.view.WindowManager;
 public class MainActivity extends Activity {
     // jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
     private native int wxStart();
-	
+	// jint Java_org_wxwidgets_MainActivity_wxEnd(JNIEnv* env, jobject thiz)
+    private native int wxEnd();
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +38,13 @@ public class MainActivity extends Activity {
         // While we controll our new Activity in separate 
         // thread.
     	startActivityForResult(intent, 0);
+    }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        wxEnd();
     }
     
     static {

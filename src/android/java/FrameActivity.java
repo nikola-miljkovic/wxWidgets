@@ -7,7 +7,10 @@ import android.view.WindowManager;
 public class FrameActivity extends Activity {
     // jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
 	private native int wxRegisterFrame();
-	
+	// jint Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz)
+    private native int wxUnregisterFrame();
+    
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -25,5 +28,12 @@ public class FrameActivity extends Activity {
         // wxRegisterFrame's purpose is to connect this object
         // with wxFrame/Dialog's base wxTopLevelWindow 
         wxRegisterFrame();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        wxUnregisterFrame();
     }
 }
