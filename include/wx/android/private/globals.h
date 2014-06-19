@@ -17,14 +17,13 @@
 namespace wxAndroid
 {
 // needed for some native functions
-extern JNIEnv* Env;
-extern jobject MainActivity;
-extern jclass  MainActivityClass;
+JNIEnv* Env;
+jobject MainActivity;
+jclass  MainActivityClass;
 
 // window for binding jclass/jobject
-extern wxTopLevelWindowAndroid* NewWindow;
-// stack that helps manage/reference windows and main activity
-extern std::stack<jobject*> ActivityStack;
+wxTopLevelWindowAndroid* NewWindow;
 } // namespace wxAndroid
 
 #endif // _WX_ANDROID_H_
+

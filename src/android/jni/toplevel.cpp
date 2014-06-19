@@ -44,8 +44,9 @@ void wxTopLevelWindowAndroid::SetTitle( const wxString& title)
     m_title = title;
 
     if(m_hasRefs)
-    	CALL_VOID(m_jclass, m_jobject, BIND_SET_TITLE_METHOD, BIND_SET_TITLE_ARGS,
-    		wxAndroid::Env->NewStringUTF((const char*)m_title.mb_str(wxConvUTF8)));
+    	CALL_VOID(wxAndroid::Env->FindClass(BIND_ACTIVITY), 
+    		m_jobject, BIND_SET_TITLE_METHOD, BIND_SET_TITLE_ARGS,
+    		wxAndroid::Env->NewStringUTF((const char*)m_title));
 }
 
 wxString wxTopLevelWindowAndroid::GetTitle() const
@@ -98,7 +99,8 @@ bool wxTopLevelWindowAndroid::Show(bool show)
 	// here we assign it to m_class/m_object
 	wxAndroid::NewWindow = this;
 	CALL_VOID(wxAndroid::MainActivityClass, wxAndroid::MainActivity, 
-		BIND_NEW_WINDOW_METHOD, BIND_NEW_WINDOW_ARGS, wxAndroid::Env->NewStringUTF((const char*)m_title.mb_str(wxConvUTF8)));
+		BIND_NEW_WINDOW_METHOD, BIND_NEW_WINDOW_ARGS, 
+		wxAndroid::Env->NewStringUTF((const char*)m_title), (size_t)wxAndroid::NewWindow);
 
 	return true;
 }

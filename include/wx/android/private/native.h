@@ -13,8 +13,6 @@
 #include <jni.h>
 #include <android/log.h>
 
-#include <stack>
-
 extern "C" {
 
 #if defined(__arm__)

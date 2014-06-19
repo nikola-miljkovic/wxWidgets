@@ -35,8 +35,7 @@ jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
 
 	wxTheApp->CallOnInit();
 
-	wxAndroid::ActivityStack.push(&wxAndroid::MainActivity);
-	return wxAndroid::ActivityStack.size();
+	return 1;
 }
 
 jint Java_org_wxwidgets_MainActivity_wxEnd(JNIEnv* env, jobject thiz)
@@ -47,13 +46,10 @@ jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
 {
 	if(!wxAndroid::NewWindow)
 		return 0;
-	
-	jobject globalThiz = env->NewGlobalRef(thiz);
 
-	wxAndroid::NewWindow->SetJavaObject(globalThiz, env->GetObjectClass(globalThiz));
-	wxAndroid::ActivityStack.push(&globalThiz);
+	wxAndroid::NewWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
 
-	// We want to know if there was some error, nullcheck at start of method
+	// We want to know if there was some error
 	wxAndroid::NewWindow = NULL;
 
 	return 1;
