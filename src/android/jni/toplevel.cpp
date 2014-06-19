@@ -97,10 +97,10 @@ bool wxTopLevelWindowAndroid::Show(bool show)
 
 	// we cannot get activity until we display it 
 	// here we assign it to m_class/m_object
-	wxAndroid::NewWindow = this;
+	wxAndroid::CurrentWindow = this;
 	CALL_VOID(wxAndroid::MainActivityClass, wxAndroid::MainActivity, 
 		BIND_NEW_WINDOW_METHOD, BIND_NEW_WINDOW_ARGS, 
-		wxAndroid::Env->NewStringUTF((const char*)m_title), (size_t)wxAndroid::NewWindow);
+		wxAndroid::Env->NewStringUTF((const char*)m_title), (size_t)wxAndroid::CurrentWindow);
 
 	return true;
 }
@@ -128,4 +128,12 @@ void wxTopLevelWindowAndroid::SetJavaObject(jobject jjobject, jclass jjclass)
 	m_jclass = jjclass;
 	m_jobject = jjobject;
 	m_hasRefs = true;
+}
+
+void wxTopLevelWindowAndroid::RemoveJavaObject() 
+{
+	// we need to delete global reference to our Java object
+	// rest is handled by VM
+	wxAndroid::Env->DeleteGlobalRef(m_jobject);
+	m_hasRefs = false;
 }

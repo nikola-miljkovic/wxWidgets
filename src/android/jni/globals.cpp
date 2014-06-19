@@ -8,3 +8,12 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "wx/android/private/globals.h"
+
+namespace wxAndroid
+{
+    JNIEnv* Env;
+    jobject MainActivity;
+    jclass  MainActivityClass;
+
+    wxTopLevelWindowAndroid* CurrentWindow;
+} 

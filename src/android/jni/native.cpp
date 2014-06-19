@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        wx/android/private/native.cpp
-// Purpose:	java/android native function definitions
+// Purpose:	    java/android native function definitions
 // Author:      Nikola Miljkovic
 // Created:
 // Copyright:   (c) 2014 wxWidgets
@@ -44,17 +44,24 @@ jint Java_org_wxwidgets_MainActivity_wxEnd(JNIEnv* env, jobject thiz)
 
 jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
 {
-	if(!wxAndroid::NewWindow)
+	if(!wxAndroid::CurrentWindow)
 		return 0;
 
-	wxAndroid::NewWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
+	wxAndroid::CurrentWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
 
 	// We want to know if there was some error
-	wxAndroid::NewWindow = NULL;
+	wxAndroid::CurrentWindow = NULL;
 
 	return 1;
 }
 
-jint Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz)
+jint Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz, jlong ptr)
 {
+    wxAndroid::CurrentWindow = (wxTopLevelWindow*)ptr;
+
+    if(wxAndroid::CurrentWindow)
+        wxAndroid::CurrentWindow->RemoveJavaObject();
+
+    wxAndroid::CurrentWindow = NULL;
+    return 1; 
 }

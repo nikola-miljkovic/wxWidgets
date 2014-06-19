@@ -67,7 +67,8 @@ public:
 	
     // set jobject/jclass
     void SetJavaObject(jobject jjobject, jclass jjclass);
-
+    void RemoveJavaObject();
+    
 protected:
     void Init();
 	

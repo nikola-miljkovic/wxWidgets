@@ -52,9 +52,9 @@ Java_org_wxwidgets_MainActivity_wxEnd( JNIEnv* env, jobject thiz);
 JNIEXPORT jint JNICALL
 Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz);
 
-// private native int org.wxwidgets.FrameActivity.wxUnregisterFrame()
+// private native int org.wxwidgets.FrameActivity.wxUnregisterFrame(long ptr)
 JNIEXPORT jint JNICALL
-Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz);
+Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz, jlong ptr);
 
 }
 
