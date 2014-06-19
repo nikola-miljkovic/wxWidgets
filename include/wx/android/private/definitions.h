@@ -16,13 +16,13 @@
 #define BIND_MAIN_ACTIVITY		"org/wxwidgets/MainActivity"
 
 #define BIND_NEW_WINDOW_METHOD          "newWindow"
-#define BIND_NEW_WINDOW_ARGS            "(Ljava/lang/String;)V"
+#define BIND_NEW_WINDOW_ARGS            "(Ljava/lang/String;J)V"
 
 // frame activity
 #define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
 
 #define BIND_SET_TITLE_METHOD		"setTitle"
-#define BIND_SET_TITLE_ARGS		"(Ljava/lang/CharSequence;)V"
+#define BIND_SET_TITLE_ARGS		"(Ljava/lang/CharSequence;J)V"
 
 // activity
 #define BIND_ACTIVITY			"android/app/Activity"
