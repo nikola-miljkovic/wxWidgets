@@ -5,46 +5,48 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+
 
 public class MainActivity extends Activity {
-    // jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
     private native int wxStart();
-	// jint Java_org_wxwidgets_MainActivity_wxEnd(JNIEnv* env, jobject thiz)
     private native int wxEnd();
-
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        WXApp.MAIN_ACTIVITY = this;
         
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // This can be change to have de-facto implemenation
-        //  of Get/SetFullscreen for wxWindow 
+        
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         		WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        // Start wxWidgets CPP part
         wxStart();
-    }
-    
-    // Start new FrameActivity that responds to wxFrame/wxDialog
-    public void newWindow(String title) {
-    	Intent intent = new Intent(this, FrameActivity.class);
-    	intent.putExtra("WX_TITLE", title);
-
-        // ForResult allows MainActivity to continue running
-        // While we controll our new Activity in separate 
-        // thread.
-    	startActivityForResult(intent, 0);
     }
     
     @Override
     public void onDestroy() {
-        super.onDestroy();
+    	super.onDestroy();
 
-        wxEnd();
+    	wxEnd();
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+    	if(WXApp.canQuit()) // we can quit application
+    		finish();
+    }
+    
+    
+    public RelativeLayout.LayoutParams makeParams(int width, int height, int x, int y) {
+    	RelativeLayout.LayoutParams params = new LayoutParams(width, height);
+    	params.leftMargin = x; 
+    	params.topMargin = y;
+    	return params;
     }
     
     static {
@@ -64,4 +66,18 @@ public class MainActivity extends Activity {
         //System.loadLibrary("wx_androidu");
         //System.loadLibrary("<app_name>");
     }   
+    
+    //
+    //    New wxFrame/wxDialog window
+    //
+    public void newWindow(int id, String title) {
+    	Intent intent = new Intent(this, FrameActivity.class);
+    	intent.putExtra("WX_TITLE", title);
+    	intent.putExtra("WX_ID", id);
+    	startActivityForResult(intent, 0);
+    }
+    
+    public void newWindow(int id) {
+    	newWindow(id, "");
+    }
 }
