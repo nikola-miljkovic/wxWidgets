@@ -27,8 +27,6 @@ bool wxTopLevelWindowAndroid::Create(wxWindow *parent,
         return false;
 
     m_title = title;
-
-    m_hasRefs = false;
 }
 
 void wxTopLevelWindowAndroid::Init() 
@@ -42,11 +40,6 @@ wxTopLevelWindowAndroid::~wxTopLevelWindowAndroid()
 void wxTopLevelWindowAndroid::SetTitle( const wxString& title)
 {
     m_title = title;
-
-    if(m_hasRefs)
-    	CALL_VOID(wxAndroid::Env->FindClass(BIND_ACTIVITY), 
-    		m_jobject, BIND_SET_TITLE_METHOD, BIND_SET_TITLE_ARGS,
-    		wxAndroid::Env->NewStringUTF((const char*)m_title));
 }
 
 wxString wxTopLevelWindowAndroid::GetTitle() const
@@ -95,14 +88,10 @@ bool wxTopLevelWindowAndroid::Show(bool show)
 	if(!show)
 		return false;
 
-	// we cannot get activity until we display it 
-	// here we assign it to m_class/m_object
-	wxAndroid::CurrentWindow = this;
-	CALL_VOID(wxAndroid::MainActivityClass, wxAndroid::MainActivity, 
-		BIND_NEW_WINDOW_METHOD, BIND_NEW_WINDOW_ARGS, 
-		wxAndroid::Env->NewStringUTF((const char*)m_title), (size_t)wxAndroid::CurrentWindow);
+	CALL_STATIC_VOID("createWindow", "(ILjava/lang/String;)V", 
+		GetId(), WXSTR(m_title));
 
-	return true;
+	return true;	
 }
 	
 void wxTopLevelWindowAndroid::Raise()
@@ -121,19 +110,4 @@ bool wxTopLevelWindowAndroid::ShowFullScreen(bool show, long style)
 bool wxTopLevelWindowAndroid::IsFullScreen() const
 {
 	return true;
-}
-
-void wxTopLevelWindowAndroid::SetJavaObject(jobject jjobject, jclass jjclass) 
-{
-	m_jclass = jjclass;
-	m_jobject = jjobject;
-	m_hasRefs = true;
-}
-
-void wxTopLevelWindowAndroid::RemoveJavaObject() 
-{
-	// we need to delete global reference to our Java object
-	// rest is handled by VM
-	wxAndroid::Env->DeleteGlobalRef(m_jobject);
-	m_hasRefs = false;
 }
