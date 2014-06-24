@@ -1,6 +1,8 @@
 package org.wxwidgets;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import android.app.Application;
@@ -9,6 +11,17 @@ import android.util.Pair;
 import android.view.View;
 
 public class WXApp extends Application {
+	
+	public static HashMap<Integer, ArrayList<WXView>> m_viewList = new HashMap<Integer, ArrayList<WXView>>();
+	
+	public static HashMap<Integer, List<Runnable>> m_frameActions  = new HashMap<Integer, List<Runnable>>();
+	private static int m_loadingCount = 0;
+	
+	public boolean load(boolean toLoad) {
+		m_loadingCount += toLoad ? 1 : -1;
+		return m_loadingCount > 0;
+	}
+	
 	// ONLY NON NATIVE
 	private static HashMap<Integer, View> m_refMap = new HashMap<Integer, View>();
 	private static HashMap<Integer, FrameActivity> m_frameMap = new HashMap<Integer, FrameActivity>();
@@ -36,6 +49,10 @@ public class WXApp extends Application {
 	
 	public static View getView(int id) {
 		return m_refMap.containsKey(id) ? m_refMap.get(id) : null;
+	}
+	
+	public static FrameActivity getFrame(int id) {
+		return m_frameMap.containsKey(id) ? m_frameMap.get(id) : null;
 	}
 	
 	public static boolean canQuit() {
