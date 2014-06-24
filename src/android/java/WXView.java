@@ -13,6 +13,7 @@ public class WXView {
 	public WXPair m_size;
 	public long m_style; // NYI
 	public String m_classStr;
+	public View m_view = null;
 	
 	public WXView(int id, int parentId, WXPair position, WXPair size, String classStr) {
 		m_id = id;
@@ -29,15 +30,24 @@ public class WXView {
 		m_classStr = classStr;
 	}
 	
-	public View createMe(Context context) {
+	public View createView(Context context) {
 		try {
-		Class viewClass = Class.forName(m_classStr);
-		Constructor constructor = viewClass.getConstructor(Context.class);
-
-		return (View)constructor.newInstance(context);
+			Class viewClass = Class.forName(m_classStr);
+			Constructor constructor = viewClass.getConstructor(Context.class);
+			m_view = (View)constructor.newInstance(context);
 		} catch(Exception e)  {
 			e.printStackTrace();
-			return null;
 		}
+		
+		return m_view;
+	}
+	
+	public boolean exists() {
+		return m_view != null;
+	}
+
+	public void destroy() { 
+        // TO-DO remove view from layout here
+		m_view = null;
 	}
 }
