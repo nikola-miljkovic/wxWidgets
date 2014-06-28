@@ -27,41 +27,27 @@ jint wxAndroidEntryStart(JavaVM* vm, void* reserved)
 	return JNI_VERSION_1_6;
 }
 
-jint Java_org_wxwidgets_MainActivity_wxStart(JNIEnv* env, jobject thiz)
+jint Java_org_wxwidgets_WXNative_wxStart(JNIEnv* env, jclass thiz)
 {
 	wxAndroid::Env = env;
-	wxAndroid::MainActivity = env->NewGlobalRef(thiz);
-    wxAndroid::MainActivityClass = env->GetObjectClass(thiz);
+	wxAndroid::wxCalls = reinterpret_cast<jclass>(env->NewGlobalRef(env->FindClass(WXCALLS))); 
+	
+	// find all method ID's for boxed objects
+	for(int i = 1; i < WXPARAM_END; i++) {
+		wxAndroid::objClassReferences[i] = 
+			reinterpret_cast<jclass>(env->NewGlobalRef(env->FindClass(jobjects[i])));
+		wxAndroid::objInitMethodID[i] = 
+			env->GetMethodID(wxAndroid::objClassReferences[i], "<init>", jparams[i]);
+	}
 
 	wxTheApp->CallOnInit();
 
 	return 1;
 }
 
-jint Java_org_wxwidgets_MainActivity_wxEnd(JNIEnv* env, jobject thiz)
+jint Java_org_wxwidgets_WXNative_wxEnd(JNIEnv* env, jclass thiz)
 {
-}
-
-jint Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz)
-{
-	if(!wxAndroid::CurrentWindow)
-		return 0;
-
-	wxAndroid::CurrentWindow->SetJavaObject(env->NewGlobalRef(thiz), env->GetObjectClass(thiz));
-
-	// We want to know if there was some error
-	wxAndroid::CurrentWindow = NULL;
+	wxAndroid::Env = env;
 
 	return 1;
-}
-
-jint Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz, jlong ptr)
-{
-    wxAndroid::CurrentWindow = (wxTopLevelWindow*)ptr;
-
-    if(wxAndroid::CurrentWindow)
-        wxAndroid::CurrentWindow->RemoveJavaObject();
-
-    wxAndroid::CurrentWindow = NULL;
-    return 1; 
-}
+}																																																	
