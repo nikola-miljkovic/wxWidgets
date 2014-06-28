@@ -3026,6 +3026,10 @@ libraries returned by 'pkg-config gtk+-2.0 --libs' or 'gtk-config
     fi
     
     if test "$wxUSE_ANDROID" = 1 ; then
+        if test "$wxUSE_SHARED" = "yes" ; then
+            LIBS="$LIBS"
+        fi
+
         TOOLCHAIN_DEFS="${TOOLCHAIN_DEFS}"
         CXXWARNINGS="${CXXWARNINGS}"
         LIBS="$LIBS -llog"        
@@ -3430,7 +3434,7 @@ dnl ---------------------------------------------------------------------------
 dnl X11 session management
 dnl ---------------------------------------------------------------------------
 if test "$wxUSE_DETECT_SM" = "yes"; then
-    if test "$wxUSE_UNIX" = "yes" -a "$wxUSE_MAC" != 1 -a "$wxUSE_OLD_COCOA" != 1; then
+    if test "$wxUSE_UNIX" = "yes" -a "$wxUSE_MAC" != 1 -a "$wxUSE_OLD_COCOA" != 1 -a "$wxUSE_ANDROID" != 1; then
         WX_FIND_LIB(SM, SmcOpenConnection)
         if test "$ac_find_libraries" != "" ; then
             if test "$ac_find_libraries" != "std" ; then
