@@ -117,6 +117,9 @@
 #undef wxUSE_GRAPHICS_CONTEXT
 #define wxUSE_GRAPHICS_CONTEXT 0 
 
+#undef wxUSE_MSGDLG
+#define wxUSE_MSGDLG 0
+
 #undef wxUSE_FILEDLG
 #define wxUSE_FILEDLG 0
 
@@ -171,9 +174,6 @@
 #undef wxUSE_TASKBARICON
 #define wxUSE_TASKBARICON 0
 
-#undef wxUSE_MSGDLG
-#define wxUSE_MSGDLG 0
-
 #undef wxUSE_RICHMSGDLG 
 #define wxUSE_RICHMSGDLG 0
 
@@ -189,9 +189,6 @@
 #undef wxUSE_CLIPBOARD
 #define wxUSE_CLIPBOARD 0
 
-#undef wxUSE_BUTTON
-#define wxUSE_BUTTON 0
- 
 #undef wxUSE_CARET 
 #define wxUSE_CARET 0
 
@@ -339,9 +336,6 @@
 // ----------------------------------------------------------------------------
 // GUI is completely TODO.
 // ----------------------------------------------------------------------------
-
-#undef wxUSE_CONTROLS
-#define wxUSE_CONTROLS 0 
 
 #undef wxUSE_DRAGIMAGE
 #define wxUSE_DRAGIMAGE 0
