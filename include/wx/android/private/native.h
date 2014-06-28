@@ -40,21 +40,21 @@ extern "C" {
 extern WXDLLIMPEXP_CORE jint
 wxAndroidEntryStart(JavaVM* vm, void* reserved);
 
-// private native int org.wxwidgets.MainActivity.wxStart()
-JNIEXPORT jint JNICALL
-Java_org_wxwidgets_MainActivity_wxStart( JNIEnv* env, jobject thiz);
+/*
+ * Class:     org_wxwidgets_WXNative
+ * Method:    wxStart
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_wxwidgets_WXNative_wxStart
+  (JNIEnv *, jclass);
 
-// private native int org.wxwidgets.MainActivity.wxEnd()
-JNIEXPORT jint JNICALL
-Java_org_wxwidgets_MainActivity_wxEnd( JNIEnv* env, jobject thiz);
-
-// private native int org.wxwidgets.FrameActivity.wxRegisterFrame()
-JNIEXPORT jint JNICALL
-Java_org_wxwidgets_FrameActivity_wxRegisterFrame(JNIEnv* env, jobject thiz);
-
-// private native int org.wxwidgets.FrameActivity.wxUnregisterFrame(long ptr)
-JNIEXPORT jint JNICALL
-Java_org_wxwidgets_FrameActivity_wxUnregisterFrame(JNIEnv* env, jobject thiz, jlong ptr);
+/*
+ * Class:     org_wxwidgets_WXNative
+ * Method:    wxEnd
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_org_wxwidgets_WXNative_wxEnd
+  (JNIEnv *, jclass);	
 
 }
 
