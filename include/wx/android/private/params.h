@@ -19,7 +19,7 @@
 // MethodParams params(2);
 // params.AddParam(JINT, 0); // unit -> px
 // params.AddParam(JFLOAT, 5.0f); // size of 5
-// INVOKE_VIEW_METHOD("setTextSize", params.GetTypes(), params.GetValues());
+// INVOKE_VIEW_METHOD("setTextSize", parentId, id, params.GetTypes(), params.GetValues());
 //
 // Maximum is 15
 // Programmer needs to ensure that size matches number of parameters.
