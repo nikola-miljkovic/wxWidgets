@@ -34,6 +34,8 @@ public:
            const wxValidator& validator = wxDefaultValidator,
            const wxString& name = wxButtonNameStr);
 
+    virtual ~wxButton();
+    
     virtual wxWindow *SetDefault() wxOVERRIDE;
     virtual void SetLabel( const wxString &label ) wxOVERRIDE;
 
@@ -44,8 +46,6 @@ public:
     GetClassDefaultAttributes(wxWindowVariant variant = wxWINDOW_VARIANT_NORMAL);
     void MoveWindow(int x, int y, int width, int height) { DoMoveWindow(x, y, width, height); }
 
-    // android events called by jni =>
-    //void JNIOnEvent();
 
 protected:
     virtual wxSize DoGetBestSize() const wxOVERRIDE;
@@ -56,6 +56,10 @@ protected:
 #endif // wxUSE_MARKUP
 
 private:
+    // this is temploraly, until wxWindow is implemented
+    wxWindowID		m_parentId;
+    wxWindowID		m_id;
+
     DECLARE_DYNAMIC_CLASS(wxButton)
 };
 
