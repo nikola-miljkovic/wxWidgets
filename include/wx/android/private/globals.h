@@ -18,11 +18,10 @@ namespace wxAndroid
 {
 // needed for some native functions
 extern JNIEnv* Env;
-extern jobject MainActivity;
-extern jclass  MainActivityClass;
+extern jclass  wxCalls;
 
-// Holds pointer to wxTLW currently being worked on
-extern wxTopLevelWindowAndroid* CurrentWindow;
+extern jclass		objClassReferences[];
+extern jmethodID 	objInitMethodID[];
 } // namespace wxAndroid
 
 #endif // _WX_ANDROID_H_

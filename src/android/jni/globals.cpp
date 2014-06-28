@@ -8,12 +8,13 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "wx/android/private/globals.h"
+#include "wx/android/private/definitions.h"
 
 namespace wxAndroid
 {
-    JNIEnv* Env;
-    jobject MainActivity;
-    jclass  MainActivityClass;
+    JNIEnv* 	Env;
+	jclass  	wxCalls;
 
-    wxTopLevelWindowAndroid* CurrentWindow;
-} 
+	jclass		objClassReferences[WXPARAM_END];
+	jmethodID 	objInitMethodID[WXPARAM_END];
+}
