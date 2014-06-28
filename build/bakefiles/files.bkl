@@ -1663,7 +1663,9 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     src/android/jni/apptraits.cpp
     src/android/jni/bitmap.cpp
     src/android/jni/brush.cpp
+    src/android/jni/button.cpp
     src/android/jni/colour.cpp
+    src/android/jni/control.cpp
     src/android/jni/cursor.cpp
     src/android/jni/dc.cpp
     src/android/jni/dcclient.cpp
@@ -1676,6 +1678,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     src/android/jni/globals.cpp
     src/android/jni/icon.cpp
     src/android/jni/native.cpp
+    src/android/jni/params.cpp
     src/android/jni/pen.cpp
     src/android/jni/region.cpp
     src/android/jni/settings.cpp
@@ -1714,6 +1717,7 @@ IMPORTANT: please read docs/tech/tn0016.txt before modifying this file!
     wx/android/private/definitions.h
     wx/android/private/globals.h
     wx/android/private/native.h
+    wx/android/private/params.h
     wx/android/private/wrappers.h
 </set>
 <!-- ====================================================================== -->

@@ -2647,6 +2647,7 @@ COND_TOOLKIT_ANDROID_LOWLEVEL_HDR =  \
 	wx/android/private/definitions.h \
 	wx/android/private/globals.h \
 	wx/android/private/native.h \
+	wx/android/private/params.h \
 	wx/android/private/wrappers.h
 @COND_TOOLKIT_ANDROID@LOWLEVEL_HDR = $(COND_TOOLKIT_ANDROID_LOWLEVEL_HDR)
 @COND_TOOLKIT_COCOA@LOWLEVEL_HDR = 
@@ -5065,7 +5066,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS =  \
 	monodll_jni_apptraits.o \
 	monodll_jni_bitmap.o \
 	monodll_jni_brush.o \
+	monodll_jni_button.o \
 	monodll_jni_colour.o \
+	monodll_jni_control.o \
 	monodll_jni_cursor.o \
 	monodll_jni_dc.o \
 	monodll_jni_dcclient.o \
@@ -5078,6 +5081,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS =  \
 	monodll_globals.o \
 	monodll_jni_icon.o \
 	monodll_native.o \
+	monodll_params.o \
 	monodll_jni_pen.o \
 	monodll_jni_region.o \
 	monodll_jni_settings.o \
@@ -5955,7 +5959,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_1 =  \
 	monodll_jni_apptraits.o \
 	monodll_jni_bitmap.o \
 	monodll_jni_brush.o \
+	monodll_jni_button.o \
 	monodll_jni_colour.o \
+	monodll_jni_control.o \
 	monodll_jni_cursor.o \
 	monodll_jni_dc.o \
 	monodll_jni_dcclient.o \
@@ -5968,6 +5974,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_1 =  \
 	monodll_globals.o \
 	monodll_jni_icon.o \
 	monodll_native.o \
+	monodll_params.o \
 	monodll_jni_pen.o \
 	monodll_jni_region.o \
 	monodll_jni_settings.o \
@@ -7262,7 +7269,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_2 =  \
 	monolib_jni_apptraits.o \
 	monolib_jni_bitmap.o \
 	monolib_jni_brush.o \
+	monolib_jni_button.o \
 	monolib_jni_colour.o \
+	monolib_jni_control.o \
 	monolib_jni_cursor.o \
 	monolib_jni_dc.o \
 	monolib_jni_dcclient.o \
@@ -7275,6 +7284,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_2 =  \
 	monolib_globals.o \
 	monolib_jni_icon.o \
 	monolib_native.o \
+	monolib_params.o \
 	monolib_jni_pen.o \
 	monolib_jni_region.o \
 	monolib_jni_settings.o \
@@ -8152,7 +8162,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_3 =  \
 	monolib_jni_apptraits.o \
 	monolib_jni_bitmap.o \
 	monolib_jni_brush.o \
+	monolib_jni_button.o \
 	monolib_jni_colour.o \
+	monolib_jni_control.o \
 	monolib_jni_cursor.o \
 	monolib_jni_dc.o \
 	monolib_jni_dcclient.o \
@@ -8165,6 +8177,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_3 =  \
 	monolib_globals.o \
 	monolib_jni_icon.o \
 	monolib_native.o \
+	monolib_params.o \
 	monolib_jni_pen.o \
 	monolib_jni_region.o \
 	monolib_jni_settings.o \
@@ -9617,7 +9630,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_4 =  \
 	coredll_jni_apptraits.o \
 	coredll_jni_bitmap.o \
 	coredll_jni_brush.o \
+	coredll_jni_button.o \
 	coredll_jni_colour.o \
+	coredll_jni_control.o \
 	coredll_jni_cursor.o \
 	coredll_jni_dc.o \
 	coredll_jni_dcclient.o \
@@ -9630,6 +9645,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_4 =  \
 	coredll_globals.o \
 	coredll_jni_icon.o \
 	coredll_native.o \
+	coredll_params.o \
 	coredll_jni_pen.o \
 	coredll_jni_region.o \
 	coredll_jni_settings.o \
@@ -10507,7 +10523,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_5 =  \
 	coredll_jni_apptraits.o \
 	coredll_jni_bitmap.o \
 	coredll_jni_brush.o \
+	coredll_jni_button.o \
 	coredll_jni_colour.o \
+	coredll_jni_control.o \
 	coredll_jni_cursor.o \
 	coredll_jni_dc.o \
 	coredll_jni_dcclient.o \
@@ -10520,6 +10538,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_5 =  \
 	coredll_globals.o \
 	coredll_jni_icon.o \
 	coredll_native.o \
+	coredll_params.o \
 	coredll_jni_pen.o \
 	coredll_jni_region.o \
 	coredll_jni_settings.o \
@@ -11264,7 +11283,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_6 =  \
 	corelib_jni_apptraits.o \
 	corelib_jni_bitmap.o \
 	corelib_jni_brush.o \
+	corelib_jni_button.o \
 	corelib_jni_colour.o \
+	corelib_jni_control.o \
 	corelib_jni_cursor.o \
 	corelib_jni_dc.o \
 	corelib_jni_dcclient.o \
@@ -11277,6 +11298,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_6 =  \
 	corelib_globals.o \
 	corelib_jni_icon.o \
 	corelib_native.o \
+	corelib_params.o \
 	corelib_jni_pen.o \
 	corelib_jni_region.o \
 	corelib_jni_settings.o \
@@ -12154,7 +12176,9 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_7 =  \
 	corelib_jni_apptraits.o \
 	corelib_jni_bitmap.o \
 	corelib_jni_brush.o \
+	corelib_jni_button.o \
 	corelib_jni_colour.o \
+	corelib_jni_control.o \
 	corelib_jni_cursor.o \
 	corelib_jni_dc.o \
 	corelib_jni_dcclient.o \
@@ -12167,6 +12191,7 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_7 =  \
 	corelib_globals.o \
 	corelib_jni_icon.o \
 	corelib_native.o \
+	corelib_params.o \
 	corelib_jni_pen.o \
 	corelib_jni_region.o \
 	corelib_jni_settings.o \
@@ -19796,8 +19821,14 @@ monodll_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_brush.o: $(srcdir)/src/android/jni/brush.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/brush.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_button.o: $(srcdir)/src/android/jni/button.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/button.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_colour.o: $(srcdir)/src/android/jni/colour.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/colour.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_control.o: $(srcdir)/src/android/jni/control.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/control.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_cursor.o: $(srcdir)/src/android/jni/cursor.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/cursor.cpp
@@ -19834,6 +19865,9 @@ monodll_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONODLL_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_native.o: $(srcdir)/src/android/jni/native.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_params.o: $(srcdir)/src/android/jni/params.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_pen.o: $(srcdir)/src/android/jni/pen.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/pen.cpp
@@ -25442,8 +25476,14 @@ monolib_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_brush.o: $(srcdir)/src/android/jni/brush.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/brush.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_button.o: $(srcdir)/src/android/jni/button.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/button.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_colour.o: $(srcdir)/src/android/jni/colour.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/colour.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_control.o: $(srcdir)/src/android/jni/control.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/control.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_cursor.o: $(srcdir)/src/android/jni/cursor.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/cursor.cpp
@@ -25480,6 +25520,9 @@ monolib_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONOLIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_native.o: $(srcdir)/src/android/jni/native.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_params.o: $(srcdir)/src/android/jni/params.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_pen.o: $(srcdir)/src/android/jni/pen.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/pen.cpp
@@ -31205,8 +31248,14 @@ coredll_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_brush.o: $(srcdir)/src/android/jni/brush.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/brush.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_button.o: $(srcdir)/src/android/jni/button.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/button.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_colour.o: $(srcdir)/src/android/jni/colour.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/colour.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_control.o: $(srcdir)/src/android/jni/control.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/control.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_cursor.o: $(srcdir)/src/android/jni/cursor.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/cursor.cpp
@@ -31243,6 +31292,9 @@ coredll_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(COREDLL_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_native.o: $(srcdir)/src/android/jni/native.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_params.o: $(srcdir)/src/android/jni/params.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_pen.o: $(srcdir)/src/android/jni/pen.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/pen.cpp
@@ -35405,8 +35457,14 @@ corelib_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_brush.o: $(srcdir)/src/android/jni/brush.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/brush.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_button.o: $(srcdir)/src/android/jni/button.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/button.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_colour.o: $(srcdir)/src/android/jni/colour.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/colour.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_control.o: $(srcdir)/src/android/jni/control.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/control.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_cursor.o: $(srcdir)/src/android/jni/cursor.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/cursor.cpp
@@ -35443,6 +35501,9 @@ corelib_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(CORELIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_native.o: $(srcdir)/src/android/jni/native.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_params.o: $(srcdir)/src/android/jni/params.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_pen.o: $(srcdir)/src/android/jni/pen.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/pen.cpp
