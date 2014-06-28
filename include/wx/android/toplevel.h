@@ -65,19 +65,12 @@ public:
     virtual bool ShowFullScreen(bool show, long style = wxFULLSCREEN_ALL);
     virtual bool IsFullScreen() const;
 	
-    // set jobject/jclass
-    void SetJavaObject(jobject jjobject, jclass jjclass);
-    void RemoveJavaObject();
-    
 protected:
     void Init();
-	
-    wxString	m_title;
 
-    jobject	m_jobject;
-    jclass	m_jclass;
+    // temploraly until wxWindow implementation
+    wxString	m_title;
     // set to true when we get response from activity
-    bool	m_hasRefs; 
 
     DECLARE_EVENT_TABLE()
     wxDECLARE_NO_COPY_CLASS(wxTopLevelWindowAndroid);
