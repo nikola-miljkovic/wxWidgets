@@ -7,16 +7,64 @@
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _WX_ANDROID_DEFINES_H_
-#define _WX_ANDROID_DEFINES_H_
+#ifndef _WX_ANDROID_DEFINITIONS_H_
+#define _WX_ANDROID_DEFINITIONS_H_
 
 // Android class binds
+
+// Enum to represent cooresponding types
+enum WXParam {
+	SKIP,  
+	JBOOLEAN,
+	JBYTE,
+	JCHAR,
+	JSHORT,
+	JINT,
+	JLONG,
+	JFLOAT,
+        JDOUBLE,
+	JCHSEQ,
+	JSTRING,
+	JOBJ
+};
+
+#define WXPARAM_END 8
+
+// String, Object and CharSeq are all jobject
+// there is no need for additional code
+static const char * const jobjects[] = {
+	"",
+	"java/lang/Boolean",
+	"java/lang/Byte",
+	"java/lang/Character",
+	"java/lang/Short",
+	"java/lang/Integer",
+	"java/lang/Long",
+	"java/lang/Float",
+	"java/lang/Double",
+}; 
+
+static const char * const jparams[] = {
+	"",
+ 	"(Z)V",
+	"(B)V",
+	"(C)V",
+	"(S)V",
+	"(I)V",
+	"(J)V",
+	"(F)V",
+	"(D)V",
+};
 
 // main activity
 #define BIND_MAIN_ACTIVITY		"org/wxwidgets/MainActivity"
 
 #define BIND_NEW_WINDOW_METHOD          "newWindow"
-#define BIND_NEW_WINDOW_ARGS            "(Ljava/lang/String;J)V"
+#define BIND_NEW_WINDOW_ARGS            "(ILjava/lang/String;)V"
+
+#define WXCALLS 			"org/wxwidgets/WXCalls"
+
+#define WXBUTTON_C			"android.widget.Button"
 
 // frame activity
 #define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
@@ -36,6 +84,7 @@
 
 #define BIND_OPTIONS_MENU_CLICK "org/wxwidgets/OptionsMenuClick"
 #define BIND_MENU_ONCLICKLISTENER_ARGS "(Landroid/view/MenuItem$OnMenuItemClickListener;)Landroid/view/MenuItem;"
+
 // child components
 #define BIND_BUTTON 			"android/widget/Button"
 
@@ -53,4 +102,4 @@
 //binding to the MotionEvent class for unpacking Motion Events and aiding in handling of Touch Events
 #define BIND_MOTION_EVENT "android/view/MotionEvent"
 
-#endif // _WX_ANDROID_DEFINES_H_
+#endif // _WX_ANDROID_DEFINITIONS_H_
