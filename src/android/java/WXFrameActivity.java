@@ -1,22 +1,15 @@
 package org.wxwidgets;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Queue;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 
 public class WXFrameActivity extends Activity {
 
-	private RelativeLayout m_layout = null;
+	private WXLayout m_layout = null;
 	private int m_wxId = -1;
 	
     @Override
@@ -25,7 +18,7 @@ public class WXFrameActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         // common init for both cases 
-        m_layout = new RelativeLayout(this);
+        m_layout = new WXLayout(this);
 		setContentView(m_layout);
 		
         if(WXApp.MAIN_ACTIVITY_INITIATED) {// this is not MainActivity ~ TopLevel
@@ -86,20 +79,20 @@ public class WXFrameActivity extends Activity {
     }
     
     static {
-    	// Java uses following format:
-    	// lib<app_name>.so
-    	// Static wxWidgets library: 
-    	// Call following to connect compiled wxWidgets app to Java
-    	//System.loadLibrary("<app_name>");
-
-    	// Shared wxWidgets library:
-    	// First you need to load each wxWidgets library
-    	// application depends on. In case of single file version
-    	// where name of compiled and used wxWidgets library is
-    	// "libwx_androidu.so" it would look like this:
-
-    	//System.loadLibrary("wx_androidu");
-    	//System.loadLibrary("<app_name>");
+        // Java uses following format:
+        // lib<app_name>.so
+        // Static wxWidgets library: 
+        // Call following to connect compiled wxWidgets app to Java
+        //System.loadLibrary("<app_name>");
+ 
+        // Shared wxWidgets library:
+        // First you need to load each wxWidgets library
+        // application depends on. In case of single file version
+        // where name of compiled and used wxWidgets library is
+        // "libwx_androidu.so" it would look like this:
+ 
+        //System.loadLibrary("wx_androidu");
+        //System.loadLibrary("<app_name>");
     }
 
 }

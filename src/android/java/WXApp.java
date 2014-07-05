@@ -29,10 +29,7 @@ public class WXApp extends Application {
 		return m_frameMap.isEmpty();
 	}
 	  
-	public static RelativeLayout.LayoutParams makeParams(int width, int height, int x, int y) {
-    	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
-    	params.leftMargin = x; 
-    	params.topMargin = y;
-    	return params;
+	public static WXLayout.LayoutParams makeParams(int width, int height, int x, int y) {
+    	return new WXLayout.LayoutParams(width, height, x, y);
     }
 }
