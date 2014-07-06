@@ -68,8 +68,6 @@ public:
 protected:
     void Init();
 
-    // temploraly until wxWindow implementation
-    wxString	m_title;
     // set to true when we get response from activity
 
     DECLARE_EVENT_TABLE()

@@ -56,9 +56,6 @@ protected:
 #endif // wxUSE_MARKUP
 
 private:
-    // this is temploraly, until wxWindow is implemented
-    wxWindowID		m_parentId;
-    wxWindowID		m_id;
 
     DECLARE_DYNAMIC_CLASS(wxButton)
 };
