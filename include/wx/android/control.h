@@ -48,8 +48,6 @@ protected:
     virtual wxSize DoGetBestSize() const;
 
 private:
-    wxString m_label;
-
     DECLARE_DYNAMIC_CLASS(wxControl)
 };
 
