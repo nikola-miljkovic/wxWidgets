@@ -22,7 +22,23 @@ wxWindow::~wxWindow()
 
 bool wxWindow::Create(wxWindow *parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
+	if (!CreateBase( parent, id, pos, size, style, wxDefaultValidator, name ))
+		return false;
+
+    m_id = id;
+
+    if (parent)
+    {
+        m_parentId = parent->GetId();
+        parent->AddChild(this);
+    }
+
 	return true;
+}
+
+bool wxWindowAndroid::PreCreation( wxWindowAndroid *parent, const wxPoint &pos,  const wxSize &size )
+{
+    return true;
 }
 
 void wxWindow::RemoveChild( wxWindowBase *child )
@@ -251,15 +267,6 @@ wxCoord wxWindow::AdjustForLayoutDirection(wxCoord x,
                                              wxCoord widthTotal) const  
 {
 	return wxCoord();
-}
-
-void wxWindow::SetLabel(const wxString& label)
-{
-}
-
-wxString wxWindow::GetLabel() const
-{
-	return wxString();
 }
 
 void wxWindow::DoCaptureMouse() 
