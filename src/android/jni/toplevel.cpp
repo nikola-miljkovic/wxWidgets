@@ -25,8 +25,10 @@ bool wxTopLevelWindowAndroid::Create(wxWindow *parent,
 {
 	if (!CreateBase( parent, id, pos, size, style, wxDefaultValidator, name ))
         return false;
+    
+    m_id = id;
 
-    m_title = title;
+    SetTitle(title);
 }
 
 void wxTopLevelWindowAndroid::Init() 
@@ -37,16 +39,14 @@ wxTopLevelWindowAndroid::~wxTopLevelWindowAndroid()
 {
 }
 
-void wxTopLevelWindowAndroid::SetTitle( const wxString& title)
+void wxTopLevelWindowAndroid::SetTitle( const wxString& title )
 {
-    m_title = title;
-
-    // To-Do update view
+    m_label = title;
 }
 
 wxString wxTopLevelWindowAndroid::GetTitle() const
 {
-	return m_title;
+	return m_label;
 }
 
 void wxTopLevelWindowAndroid::Maximize(bool maximize)
@@ -91,7 +91,7 @@ bool wxTopLevelWindowAndroid::Show(bool show)
 		return false;
 
 	CALL_STATIC_VOID("createWindow", "(ILjava/lang/String;)V", 
-		GetId(), WXSTR(m_title));
+		m_id, WXSTR(m_label));
 
 	return true;	
 }

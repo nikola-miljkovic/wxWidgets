@@ -25,11 +25,13 @@ bool wxButton::Create(wxWindow *parent, wxWindowID id,
            const wxValidator& validator,
            const wxString& name) 
 {
+  if(!CreateBase(parent, id, pos, size, style, wxDefaultValidator, name ))
+        return false;
+
+  wxControl::Create(parent, id, pos, size, style, wxDefaultValidator, name);
+
   CALL_STATIC_VOID("addView", "(IIIIIILjava/lang/String;)V", 
     id, parent->GetId(), size.GetWidth(), size.GetHeight(), pos.x, pos.y, wxAndroid::Env->NewStringUTF(WXBUTTON_C));
-  
-  m_id = id;
-  m_parentId = parent->GetId();
 
   SetLabel(label);
 }
@@ -46,6 +48,8 @@ void wxButton::DoApplyWidgetStyle(WXStyle *style)
 
 void wxButton::SetLabel(const wxString &label)
 {
+  wxControl::SetLabel(label);
+
   MethodParams params(1);
   params.AddParam(JCHSEQ, WXSTR(label)); 
   INVOKE_VIEW_METHOD("setText", m_parentId, m_id, params.GetTypes(), params.GetValues());

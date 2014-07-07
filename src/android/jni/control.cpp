@@ -35,7 +35,7 @@ bool wxControl::Create( wxWindow *parent,
                       const wxValidator& validator,
                       const wxString &name )
 {
-    return true;
+    return wxWindow::Create(parent, id, pos, size, style, name);
 }
 
 void wxControl::Command(wxCommandEvent& event) 
