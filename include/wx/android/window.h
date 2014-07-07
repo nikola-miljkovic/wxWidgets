@@ -26,16 +26,19 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
                 const wxString& name = wxPanelNameStr);
+
     bool Create(wxWindow *parent,
                 wxWindowID id,
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
                 const wxString& name = wxPanelNameStr);
+
+    bool PreCreation( wxWindowAndroid *parent, const wxPoint &pos, const wxSize &size );
+
     virtual ~wxWindowAndroid();
     
     // implement pure virtual method's
-
     virtual void Raise() wxOVERRIDE;
     virtual void Lower() wxOVERRIDE;
 
@@ -94,12 +97,11 @@ public:
     virtual bool DoIsExposed( int x, int y ) const wxOVERRIDE;
     virtual bool DoIsExposed( int x, int y, int w, int h ) const wxOVERRIDE;
     
-    virtual WXWidget GetHandle() const wxOVERRIDE { return m_widget; }
+    virtual WXWidget GetHandle() const wxOVERRIDE { return NULL; }
     
-    virtual void SetLabel(const wxString&);
-    virtual wxString GetLabel() const;
+    virtual void SetLabel(const wxString& WXUNUSED(label)) { };
+    virtual wxString GetLabel() const { return wxEmptyString; }
 
-    WXWidget           *m_widget; 
 protected:
     // implement the base class pure virtuals
     virtual void DoGetTextExtent(const wxString& string,
@@ -126,7 +128,14 @@ protected:
     
     virtual void DoCaptureMouse() wxOVERRIDE;
     virtual void DoReleaseMouse() wxOVERRIDE;
+
+    wxString	m_label;
+
+    wxWindowID  m_parentId;
+    wxWindowID  m_id;
+
 private:
+   
     DECLARE_DYNAMIC_CLASS(wxWindowAndroid)
 };
 
