@@ -9,6 +9,7 @@
 
 #include "wx/app.h"
 #include "wx/init.h"
+#include "wx/control.h"
 
 #include "wx/android/private/definitions.h"
 #include "wx/android/private/native.h"
@@ -22,7 +23,7 @@ jint wxAndroidEntryStart(JavaVM* vm, void* reserved)
 
 	JNIEnv* env;
 	if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
-		return -1;
+			return -1;
 	}
 	return JNI_VERSION_1_6;
 }
@@ -50,4 +51,12 @@ jint Java_org_wxwidgets_WXNative_wxEnd(JNIEnv* env, jclass thiz)
 	wxAndroid::Env = env;
 
 	return 1;
-}																																																	
+}	
+
+void Java_org_wxwidgets_WXNative_wxOnClickView(JNIEnv * env, jclass thiz, jlong ptr) 
+{
+    wxControl* control = reinterpret_cast<wxControl*>(ptr);
+    wxCommandEvent event(wxEVT_BUTTON, control->GetId());
+    event.SetEventObject(control);
+    control->HandleWindowEvent(event);
+}																																																

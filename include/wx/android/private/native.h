@@ -56,6 +56,13 @@ JNIEXPORT jint JNICALL Java_org_wxwidgets_WXNative_wxStart
 JNIEXPORT jint JNICALL Java_org_wxwidgets_WXNative_wxEnd
   (JNIEnv *, jclass);	
 
+/*
+ * Class:     org_wxwidgets_WXNative
+ * Method:    wxOnClick
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_wxwidgets_WXNative_wxOnClickView
+  (JNIEnv *, jclass, jlong);
 }
 
 #endif // _WX_ANDROID_NATIVE_H_
