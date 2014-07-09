@@ -11,15 +11,15 @@ import android.view.View;
 
 public class WXCalls {
 	
-	public static void addView(int id, int parentId, int width, int height, int x, int y, String classStr) {
+	public static void addView(int id, int parentId, int width, int height, int x, int y, String classStr, long ptr) {
 		WXFrameActivity frame = WXApp.m_frameMap.get(parentId);
 		
 		if(frame == null) {
-			WXApp.m_viewList.get(parentId).add(new WXView(id, parentId, new WXPair(x, y), 
+			WXApp.m_viewList.get(parentId).add(new WXView(id, ptr, parentId, new WXPair(x, y), 
 				new WXPair(width, height), classStr));
 		}
 		else {
-			WXView view = new WXView(id, parentId, new WXPair(x, y), new WXPair(width, height), classStr);
+			WXView view = new WXView(id, ptr, parentId, new WXPair(x, y), new WXPair(width, height), classStr);
 			WXApp.m_viewList.get(parentId).add(view);
 			
 			synchronized(frame) {
