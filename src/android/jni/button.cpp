@@ -30,8 +30,9 @@ bool wxButton::Create(wxWindow *parent, wxWindowID id,
 
   wxControl::Create(parent, id, pos, size, style, wxDefaultValidator, name);
 
-  CALL_STATIC_VOID("addView", "(IIIIIILjava/lang/String;)V", 
-    id, parent->GetId(), size.GetWidth(), size.GetHeight(), pos.x, pos.y, wxAndroid::Env->NewStringUTF(WXBUTTON_C));
+  CALL_STATIC_VOID("addView", "(IIIIIILjava/lang/String;J)V", 
+    id, m_parentId, size.GetWidth(), size.GetHeight(), pos.x, pos.y, 
+    wxAndroid::Env->NewStringUTF(WXBUTTON_C), reinterpret_cast<jlong>(this));
 
   SetLabel(label);
 }
