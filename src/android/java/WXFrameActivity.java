@@ -38,18 +38,20 @@ public class WXFrameActivity extends Activity {
     	WXApp.m_viewList.remove(m_wxId);
     	WXApp.m_frameMap.remove(m_wxId);
     	
-    	if(WXApp.MAIN_ACTIVITY == this)
-    		WXNative.wxEnd();
-    	
+    	if(WXApp.MAIN_ACTIVITY == this) {
+		    WXApp.MAIN_ACTIVITY_INITIATED = false;    		
+		    WXNative.wxEnd();
+        }
+        
     	super.onDestroy();
     }
    
     public void create(int id, String title) {
-    	m_wxId = id;
+        m_wxId = id;
 
         ArrayList<WXView> view_list = WXApp.m_viewList.get(m_wxId);
         for(WXView view : view_list) {
-        	this.putView(view.createView(this), 
+            this.putView(view.createView(this), 
         			view.m_id, view.m_size.m_x, view.m_size.m_y, 
         			view.m_position.m_x, view.m_position.m_y);
         }
