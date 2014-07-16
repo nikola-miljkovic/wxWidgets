@@ -352,9 +352,6 @@
 #undef wxUSE_TOOLBOOK
 #define wxUSE_TOOLBOOK 0
 
-#undef wxUSE_TEXTCTRL
-#define wxUSE_TEXTCTRL 0
-
 #undef wxUSE_LOGWINDOW
 #define wxUSE_LOGWINDOW 0
 
