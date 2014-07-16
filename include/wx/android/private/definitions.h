@@ -65,6 +65,7 @@ static const char * const jparams[] = {
 #define WXCALLS 			"org/wxwidgets/WXCalls"
 
 #define WXBUTTON_C			"android.widget.Button"
+#define WXTEXTCTRL_C                    "android.widget.EditText"
 
 // frame activity
 #define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
