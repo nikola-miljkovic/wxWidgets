@@ -15,7 +15,7 @@
   #pragma hdrstop
 #endif
 
-#if wxUSE_VALIDATORS && (wxUSE_TEXTCTRL || wxUSE_COMBOBOX)
+#if wxUSE_VALIDATORS && (wxUSE_TEXTCTRL || wxUSE_COMBOBOX) && !defined(__WXANDROID__)
 
 #include "wx/valtext.h"
 
