@@ -24,7 +24,10 @@ public:
                const wxSize &size = wxDefaultSize,
                long style = 0,
                const wxValidator& validator = wxDefaultValidator,
-               const wxString &name = wxTextCtrlNameStr);
+               const wxString &name = wxTextCtrlNameStr)
+    {
+        Create(parent, id, value, pos, size, style, validator, name);
+    }
 
     virtual ~wxTextCtrl();
 
@@ -61,11 +64,37 @@ public:
     virtual bool SetStyle(long start, long end, const wxTextAttr& style) wxOVERRIDE;
     virtual bool GetStyle(long position, wxTextAttr& style) wxOVERRIDE;
 
+    void OnDropFiles( wxDropFilesEvent &event );
+    void OnChar( wxKeyEvent &event );
+
+    void OnCut(wxCommandEvent& event);
+    void OnCopy(wxCommandEvent& event);
+    void OnPaste(wxCommandEvent& event);
+    void OnUndo(wxCommandEvent& event);
+    void OnRedo(wxCommandEvent& event);
+
+    void OnUpdateCut(wxUpdateUIEvent& event);
+    void OnUpdateCopy(wxUpdateUIEvent& event);
+    void OnUpdatePaste(wxUpdateUIEvent& event);
+    void OnUpdateUndo(wxUpdateUIEvent& event);
+    void OnUpdateRedo(wxUpdateUIEvent& event);
+
+    bool SetFont(const wxFont& font);
+    bool SetForegroundColour(const wxColour& colour);
+    bool SetBackgroundColour(const wxColour& colour);
+    
+    virtual long XYToPosition(long x, long y) const;
+    virtual bool PositionToXY(long pos, long *x, long *y) const;
+
+    virtual void ShowPosition(long pos);
+
 protected:
    
 
 private:
     void Init();
+    wxString m_value;
+    
     DECLARE_EVENT_TABLE()
     DECLARE_DYNAMIC_CLASS(wxTextCtrl)
 };
