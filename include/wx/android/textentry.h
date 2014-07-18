@@ -27,7 +27,7 @@ public:
     virtual void Paste();
 
     virtual void Undo();
-    virtual void Redo();;
+    virtual void Redo();
     virtual bool CanUndo() const;
     virtual bool CanRedo() const;
 
@@ -45,7 +45,7 @@ public:
     virtual void SetMaxLength(unsigned long len);
 
 protected:
-    virtual wxString DoGetValue() const { };
+    virtual wxString DoGetValue() const
 
     enum
     {
