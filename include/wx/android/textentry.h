@@ -19,33 +19,34 @@ public:
     wxTextEntry() { };
     virtual ~wxTextEntry() { };
 
-    virtual void WriteText(const wxString& text);
-    virtual void Remove(long from, long to);
+    virtual void WriteText(const wxString& text) {};
+    virtual void Remove(long from, long to) {};
 
-    virtual void Copy();
-    virtual void Cut();
-    virtual void Paste();
+    virtual void Copy() {};
+    virtual void Cut() {};
+    virtual void Paste() {};
 
-    virtual void Undo();
-    virtual void Redo();
-    virtual bool CanUndo() const;
-    virtual bool CanRedo() const;
+    virtual void Undo() {};
+    virtual void Redo() {};
+    virtual bool CanUndo() const { };
+    virtual bool CanRedo() const { };
 
-    virtual void SetInsertionPoint(long pos);
-    virtual long GetInsertionPoint() const;
-    virtual long GetLastPosition() const;
+    virtual void SetInsertionPoint(long pos) {};
+    virtual long GetInsertionPoint() const { };
+    virtual long GetLastPosition() const { };
 
     virtual void SetSelection(long from, long to)
         { DoSetSelection(from, to); }
-    virtual void GetSelection(long *from, long *to) const;
+    virtual void GetSelection(long *from, long *to) const { };
 
-    virtual bool IsEditable() const;
-    virtual void SetEditable(bool editable);
+    virtual bool IsEditable() const { };
+    virtual void SetEditable(bool editable) {};
 
-    virtual void SetMaxLength(unsigned long len);
-
+    virtual void SetMaxLength(unsigned long len) {};
+     
+    virtual wxWindow *GetEditableWindow() {};
 protected:
-    virtual wxString DoGetValue() const
+    virtual wxString DoGetValue() const { };
 
     enum
     {
@@ -53,10 +54,10 @@ protected:
         SetSel_Scroll = 1    
     };
 
-    virtual void DoSetSelection(long from, long to, int flags = SetSel_Scroll);
+    virtual void DoSetSelection(long from, long to, int flags = SetSel_Scroll) {};
 
-    virtual bool DoSetMargins(const wxPoint& pt);
-    virtual wxPoint DoGetMargins() const;
+    virtual bool DoSetMargins(const wxPoint& pt) {};
+    virtual wxPoint DoGetMargins() const { };
 };
 
 
