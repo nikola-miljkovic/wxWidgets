@@ -30,7 +30,7 @@
     #define wxUSE_LIBHILDON2 0
 #endif
 
-#if wxUSE_NOTIFICATION_MESSAGE && (!wxUSE_LIBHILDON || !wxUSE_LIBHILDON2)
+#if wxUSE_NOTIFICATION_MESSAGE && (!wxUSE_LIBHILDON || !wxUSE_LIBHILDON2) && !defined(__WXANDROID__)
 
 #ifndef WX_PRECOMP
     #include "wx/dialog.h"
