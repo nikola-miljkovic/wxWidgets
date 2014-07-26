@@ -136,6 +136,8 @@ private:
     #include "wx/gtk/hildon/notifmsg.h"
 #elif defined(__WXMSW__) && wxUSE_TASKBARICON && wxUSE_TASKBARICON_BALLOONS
     #include "wx/msw/notifmsg.h"
+#elif defined(__WXANDROID__)
+    #include "wx/android/notifmsg.h"
 #else
     #include "wx/generic/notifmsg.h"
 
