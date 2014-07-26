@@ -56,30 +56,24 @@ static const char * const jparams[] = {
 	"(D)V",
 };
 
-// main activity
-#define BIND_MAIN_ACTIVITY		"org/wxwidgets/MainActivity"
 
 #define BIND_NEW_WINDOW_METHOD          "newWindow"
 #define BIND_NEW_WINDOW_ARGS            "(ILjava/lang/String;)V"
 
 #define WXCALLS 			"org/wxwidgets/WXCalls"
 
+#define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
 #define WXBUTTON_C			"android.widget.Button"
 #define WXTEXTCTRL_C                    "android.widget.EditText"
 
 // frame activity
-#define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
-
 #define BIND_SET_TITLE_METHOD		"setTitle"
 #define BIND_SET_TITLE_ARGS		"(Ljava/lang/CharSequence;J)V"
 
-// activity
-#define BIND_ACTIVITY			"android/app/Activity"
+#define BIND_TOAST_METHOD 		"Notify"
+#define BIND_TOAST_ARGS 		"(ILjava/lang/String;)V"
 
-#define FILL_PARENT			0xffffffff
-// parents
-#define BIND_LINEAR_LAYOUT 	"android/widget/LinearLayout"
-
+// to-do
 #define BIND_MENU_VIEW			"android/view/Menu"
 #define BIND_MENU_ADD_ARGS     "(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;"
 
@@ -95,12 +89,6 @@ static const char * const jparams[] = {
 
 #define BIND_TEXTCTRL_CONSTRUCTOR_ARGS "(Landroid/content/Context;)V"
 
-#define BIND_TOAST "android/widget/Toast"
-
-//Not being used currently but has been defined for uniformity
-#define BIND_TOAST_CONSTRUCTOR_ARGS "(Landroid/content/Context;)V"
-
-//binding to the MotionEvent class for unpacking Motion Events and aiding in handling of Touch Events
-#define BIND_MOTION_EVENT "android/view/MotionEvent"
+																						
 
 #endif // _WX_ANDROID_DEFINITIONS_H_
