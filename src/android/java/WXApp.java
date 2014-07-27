@@ -16,6 +16,7 @@ public class WXApp extends Application {
 	public static HashMap<Integer, WXFrameActivity> m_frameMap = new HashMap<Integer, WXFrameActivity>();
 	
 	public static WXFrameActivity MAIN_ACTIVITY = null;
+        public static WXFrameActivity TOP_ACTIVITY = null;
 	public static boolean MAIN_ACTIVITY_INITIATED = false;
 	
 	
