@@ -30,22 +30,7 @@ public class WXFrameActivity extends Activity {
         	WXNative.wxStart();
         }
     }
-
-	@Override
-    public void onDestroy() {
-		// since this is onDestroy, we can remove us from viewMap
-    	WXApp.wipeViews(m_wxId);
-    	WXApp.m_viewList.remove(m_wxId);
-    	WXApp.m_frameMap.remove(m_wxId);
-    	
-    	if(WXApp.MAIN_ACTIVITY == this) {
-		    WXApp.MAIN_ACTIVITY_INITIATED = false;    		
-		    WXNative.wxEnd();
-        }
-        
-    	super.onDestroy();
-    }
-   
+ 
     public void create(int id, String title) {
         m_wxId = id;
 
@@ -69,6 +54,27 @@ public class WXFrameActivity extends Activity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         	//WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	}  
+	@Override
+    public void onResume() {
+        WXApp.TOP_ACTIVITY = this;
+		
+        super.onResume();
+    }
+
+	@Override
+    public void onDestroy() {
+		// since this is onDestroy, we can remove us from viewMap
+    	WXApp.wipeViews(m_wxId);
+    	WXApp.m_viewList.remove(m_wxId);
+    	WXApp.m_frameMap.remove(m_wxId);
+    	
+    	if(WXApp.MAIN_ACTIVITY == this) {
+		    WXApp.MAIN_ACTIVITY_INITIATED = false;    		
+		    WXNative.wxEnd();
+        }
+        
+    	super.onDestroy();
+    }
     
     public void putView(final View view,final int id,final int width,final int height,final int x,final int y) {    	
     	runOnUiThread(new Runnable() {
