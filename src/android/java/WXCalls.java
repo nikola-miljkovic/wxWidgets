@@ -150,7 +150,7 @@ public class WXCalls {
     	}
     }
 
-    public static void Notify(int duration, String text) {
+    public static void notify(int duration, String text) {
     	Toast toast = Toast.makeText(WXApp.TOP_ACTIVITY, text, duration);
     	toast.show();
     }
