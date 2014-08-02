@@ -17,7 +17,7 @@ public class WXApp extends Application {
 	
 	public static WXFrameActivity MAIN_ACTIVITY = null;
         public static WXFrameActivity TOP_ACTIVITY = null;
-	public static boolean MAIN_ACTIVITY_INITIATED = false;
+	public static boolean MAIN_ACTIVITY_CREATED = false;
 	
 	
 	public static void wipeViews(int wxId) {

@@ -21,7 +21,7 @@ public class WXFrameActivity extends Activity {
         m_layout = new WXLayout(this);
 		setContentView(m_layout);
 		
-        if(WXApp.MAIN_ACTIVITY_INITIATED) {// this is not MainActivity ~ TopLevel
+        if(WXApp.MAIN_ACTIVITY_CREATED) {// this is not MainActivity ~ TopLevel
         	Bundle extras = getIntent().getExtras();
 	        this.create(extras.getInt("WX_ID"), extras.getString("WX_TITLE"));
         }

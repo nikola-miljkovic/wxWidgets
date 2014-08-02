@@ -35,7 +35,7 @@ public class WXCalls {
 			WXApp.m_actionQueue.put(id, new LinkedList<Runnable>());
 			
 			
-			if(WXApp.MAIN_ACTIVITY_INITIATED) {
+			if(WXApp.MAIN_ACTIVITY_CREATED) {
 				Intent intent = new Intent(WXApp.MAIN_ACTIVITY, WXFrameActivity.class);
 				intent.putExtra("WX_TITLE", title);
 				intent.putExtra("WX_ID", id);
@@ -48,7 +48,7 @@ public class WXCalls {
 					WXApp.MAIN_ACTIVITY.create(id, title);
 				}
 				
-				WXApp.MAIN_ACTIVITY_INITIATED = true;
+				WXApp.MAIN_ACTIVITY_CREATED = true;
 			}
 	    } catch (Exception e) {
 	    	e.printStackTrace();
