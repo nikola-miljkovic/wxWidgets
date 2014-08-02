@@ -60,35 +60,19 @@ static const char * const jparams[] = {
 #define BIND_NEW_WINDOW_METHOD          "newWindow"
 #define BIND_NEW_WINDOW_ARGS            "(ILjava/lang/String;)V"
 
+// WXCalls related definitions
 #define WXCALLS 			"org/wxwidgets/WXCalls"
 
 #define BIND_FRAME_ACTIVITY 		"org/wxwidgets/FrameActivity"
 #define WXBUTTON_C			"android.widget.Button"
 #define WXTEXTCTRL_C                    "android.widget.EditText"
 
-// frame activity
+// frame activity 
 #define BIND_SET_TITLE_METHOD		"setTitle"
 #define BIND_SET_TITLE_ARGS		"(Ljava/lang/CharSequence;J)V"
 
+// notify for wxNotificationMessage
 #define BIND_TOAST_METHOD 		"notify"
-#define BIND_TOAST_ARGS 		"(ILjava/lang/String;)V"
-
-// to-do
-#define BIND_MENU_VIEW			"android/view/Menu"
-#define BIND_MENU_ADD_ARGS     "(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;"
-
-#define BIND_OPTIONS_MENU_CLICK "org/wxwidgets/OptionsMenuClick"
-#define BIND_MENU_ONCLICKLISTENER_ARGS "(Landroid/view/MenuItem$OnMenuItemClickListener;)Landroid/view/MenuItem;"
-
-// child components
-#define BIND_BUTTON 			"android/widget/Button"
-
-#define BIND_BUTTON_CONSTRUCTOR_ARGS "(Landroid/content/Context;)V"
-
-#define BIND_TEXTCTRL "android/widget/TextView"
-
-#define BIND_TEXTCTRL_CONSTRUCTOR_ARGS "(Landroid/content/Context;)V"
-
-																						
+#define BIND_TOAST_ARGS 		"(ILjava/lang/String;)V"																				
 
 #endif // _WX_ANDROID_DEFINITIONS_H_
