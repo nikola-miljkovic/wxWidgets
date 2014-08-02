@@ -28,13 +28,18 @@ public class WXCalls {
 		}
 	}
 	
-	// create new wxTLW
-    public static void createWindow(final int id, final String title) {
+	// register new wxTLW before displaying it
+	public static void registerWindow(final int id) {
+		WXApp.m_viewList.put(id, new ArrayList<WXView>());
+		WXApp.m_actionQueue.put(id, new LinkedList<Runnable>());
+	}
+	
+	// display new wxTLW
+    public static void showWindow(final int id, final String title) {
 		try {
-			WXApp.m_viewList.put(id, new ArrayList<WXView>());
-			WXApp.m_actionQueue.put(id, new LinkedList<Runnable>());
 			
-			
+			// Check if window for showing is first/main 
+			// wxTLW being assigned 
 			if(WXApp.MAIN_ACTIVITY_CREATED) {
 				Intent intent = new Intent(WXApp.MAIN_ACTIVITY, WXFrameActivity.class);
 				intent.putExtra("WX_TITLE", title);
@@ -44,6 +49,7 @@ public class WXCalls {
 					WXApp.MAIN_ACTIVITY.startActivityForResult(intent, 0);
 				}
 			} else {
+				// process wxFrame arguments 
 				synchronized(WXApp.MAIN_ACTIVITY) {
 					WXApp.MAIN_ACTIVITY.create(id, title);
 				}

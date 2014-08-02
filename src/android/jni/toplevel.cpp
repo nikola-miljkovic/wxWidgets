@@ -28,6 +28,9 @@ bool wxTopLevelWindowAndroid::Create(wxWindow *parent,
     
     m_id = id;
 
+    CALL_STATIC_VOID("registerWindow", "(I)V", 
+		m_id);
+
     SetTitle(title);
 }
 
@@ -90,7 +93,7 @@ bool wxTopLevelWindowAndroid::Show(bool show)
 	if(!show)
 		return false;
 
-	CALL_STATIC_VOID("createWindow", "(ILjava/lang/String;)V", 
+	CALL_STATIC_VOID("showWindow", "(ILjava/lang/String;)V", 
 		m_id, WXSTR(m_label));
 
 	return true;	
