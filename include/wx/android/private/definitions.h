@@ -70,7 +70,7 @@ static const char * const jparams[] = {
 #define BIND_SET_TITLE_METHOD		"setTitle"
 #define BIND_SET_TITLE_ARGS		"(Ljava/lang/CharSequence;J)V"
 
-#define BIND_TOAST_METHOD 		"Notify"
+#define BIND_TOAST_METHOD 		"notify"
 #define BIND_TOAST_ARGS 		"(ILjava/lang/String;)V"
 
 // to-do
