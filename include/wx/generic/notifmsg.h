@@ -19,15 +19,13 @@ class wxNotificationMessageDialog;
 class WXDLLIMPEXP_ADV wxGenericNotificationMessage : public wxNotificationMessageBase
 {
 public:
-    wxGenericNotificationMessage() { Init(); }
+    wxGenericNotificationMessage() {};
     wxGenericNotificationMessage(const wxString& title,
                                  const wxString& message = wxString(),
                                  wxWindow *parent = NULL,
                                  int flags = wxICON_INFORMATION)
         : wxNotificationMessageBase(title, message, parent, flags)
-    {
-        Init();
-    }
+    {};
 
     virtual ~wxGenericNotificationMessage();
 
@@ -42,7 +40,6 @@ public:
     static void SetDefaultTimeout(int timeout);
 
 private:
-    void Init();
 
 
     // default timeout
