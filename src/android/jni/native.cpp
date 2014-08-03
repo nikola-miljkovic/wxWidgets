@@ -59,4 +59,16 @@ void Java_org_wxwidgets_WXNative_wxOnClickView(JNIEnv * env, jclass thiz, jlong 
     wxCommandEvent event(wxEVT_BUTTON, control->GetId());
     event.SetEventObject(control);
     control->HandleWindowEvent(event);
-}																																																
+}					
+
+void Java_org_wxwidgets_WXNative_wxOnTextChanged(JNIEnv * env, jclass thiz, jlong ptr, jstring value)		
+{
+	wxControl * control = reinterpret_cast<wxControl*>(ptr);
+	if(control) 
+	{
+	    const char * str = env->GetStringUTFChars(value, 0);
+        control->SetLabel(wxString::FromUTF8(str));
+
+        env->ReleaseStringUTFChars(value, str);
+	}	
+}																																								

@@ -63,6 +63,14 @@ JNIEXPORT jint JNICALL Java_org_wxwidgets_WXNative_wxEnd
  */
 JNIEXPORT void JNICALL Java_org_wxwidgets_WXNative_wxOnClickView
   (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     org_wxwidgets_WXNative
+ * Method:    wxOnTextChanged
+ * Signature: (JLjava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_org_wxwidgets_WXNative_wxOnTextChanged
+  (JNIEnv *, jclass, jlong, jstring);
 }
 
 #endif // _WX_ANDROID_NATIVE_H_
