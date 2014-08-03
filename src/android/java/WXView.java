@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 
 public class WXView implements OnClickListener {
 	// id
@@ -41,6 +42,13 @@ public class WXView implements OnClickListener {
 			m_view = (View)constructor.newInstance(context);
 			synchronized(m_view) {
 				m_view.setOnClickListener(this);
+				
+				if(viewClass == EditText.class) {
+					EditText textCtrl = (EditText)m_view;
+					synchronized(textCtrl) {
+						textCtrl.addTextChangedListener(new WXTextWatcher(this));
+					}
+				}
 			}
 		} catch(Exception e)  {
 			e.printStackTrace();
