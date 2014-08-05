@@ -13,8 +13,7 @@ public class WXFrameActivity extends Activity {
 	private int m_wxId = -1;
 	
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         // common init for both cases 
@@ -30,13 +29,13 @@ public class WXFrameActivity extends Activity {
         	WXNative.wxStart();
         }
     }
- 
+    
     public void create(int id, String title) {
-        m_wxId = id;
+    	m_wxId = id;
 
         ArrayList<WXView> view_list = WXApp.m_viewList.get(m_wxId);
         for(WXView view : view_list) {
-            this.putView(view.createView(this), 
+        	this.putView(view.createView(this), 
         			view.m_id, view.m_size.m_x, view.m_size.m_y, 
         			view.m_position.m_x, view.m_position.m_y);
         }
@@ -54,25 +53,24 @@ public class WXFrameActivity extends Activity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         	//WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	}  
-	@Override
-    public void onResume() {
-        WXApp.TOP_ACTIVITY = this;
-		
-        super.onResume();
-    }
-
+    
+    @Override
+	public void onResume() {
+		WXApp.TOP_ACTIVITY = this;
+		super.onResume();
+	}
+    
 	@Override
     public void onDestroy() {
 		// since this is onDestroy, we can remove us from viewMap
     	WXApp.wipeViews(m_wxId);
-    	WXApp.m_viewList.remove(m_wxId);
     	WXApp.m_frameMap.remove(m_wxId);
     	
     	if(WXApp.MAIN_ACTIVITY == this) {
-		    WXApp.MAIN_ACTIVITY_INITIATED = false;    		
-		    WXNative.wxEnd();
-        }
-        
+    	    WXApp.MAIN_ACTIVITY_CREATED = false;
+    		WXNative.wxEnd();
+    	}
+    	
     	super.onDestroy();
     }
     
@@ -102,5 +100,4 @@ public class WXFrameActivity extends Activity {
         //System.loadLibrary("wx_androidu");
         //System.loadLibrary("<app_name>");
     }
-
 }
