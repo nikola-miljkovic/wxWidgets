@@ -65,7 +65,11 @@ public class WXView implements OnClickListener {
 		// TO-DO remove view from layout here
 		m_view = null;
 	}
-
+    
+    public long getWXPtr() {
+    	return m_ptr;
+    }
+    
 	@Override
 	public void onClick(View v) {
 		WXNative.wxOnClickView(m_ptr);

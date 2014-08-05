@@ -25,6 +25,7 @@ public class WXTextWatcher implements TextWatcher {
 
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		// TODO Auto-generated method stub
 		WXNative.wxOnTextChanged(m_view.getWXPtr(), s.toString());
 	}
 

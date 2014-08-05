@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import android.content.Intent;
-import android.util.Log;
-import android.view.View;
+import android.widget.Toast;
 
 public class WXCalls {
 	
@@ -37,7 +36,6 @@ public class WXCalls {
 	// display new wxTLW
     public static void showWindow(final int id, final String title) {
 		try {
-			
 			// Check if window for showing is first/main 
 			// wxTLW being assigned 
 			if(WXApp.MAIN_ACTIVITY_CREATED) {
@@ -149,7 +147,7 @@ public class WXCalls {
     		}
     	}
     }
-
+    
     public static void notify(int duration, String text) {
     	Toast toast = Toast.makeText(WXApp.TOP_ACTIVITY, text, duration);
     	toast.show();
