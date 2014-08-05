@@ -53,7 +53,7 @@ public class WXLayout extends ViewGroup {
         
         
         setMeasuredDimension(resolveSize(maxWidth, widthMeasureSpec),
-        		resolveSize(maxHeight, heightMeasureSpec));
+                resolveSize(maxHeight, heightMeasureSpec));
     }
 
     /**
@@ -76,7 +76,7 @@ public class WXLayout extends ViewGroup {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
 
-            	WXLayout.LayoutParams lp =
+                WXLayout.LayoutParams lp =
                         (WXLayout.LayoutParams) child.getLayoutParams();
 
                 int childLeft = lp.x;
