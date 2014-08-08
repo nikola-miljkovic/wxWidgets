@@ -2639,9 +2639,11 @@ COND_TOOLKIT_ANDROID_LOWLEVEL_HDR =  \
 	wx/android/init.h \
 	wx/android/menu.h \
 	wx/android/menuitem.h \
+	wx/android/notifmsg.h \
 	wx/android/pen.h \
 	wx/android/region.h \
 	wx/android/textctrl.h \
+	wx/android/textentry.h \
 	wx/android/toplevel.h \
 	wx/android/window.h \
 	wx/android/private/definitions.h \
@@ -5081,10 +5083,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS =  \
 	monodll_globals.o \
 	monodll_jni_icon.o \
 	monodll_native.o \
+	monodll_jni_notifmsg.o \
 	monodll_params.o \
 	monodll_jni_pen.o \
 	monodll_jni_region.o \
 	monodll_jni_settings.o \
+	monodll_jni_textctrl.o \
+	monodll_jni_textentry.o \
 	monodll_jni_toplevel.o \
 	monodll_jni_uiaction.o \
 	monodll_jni_utils.o \
@@ -5974,10 +5979,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_1 =  \
 	monodll_globals.o \
 	monodll_jni_icon.o \
 	monodll_native.o \
+	monodll_jni_notifmsg.o \
 	monodll_params.o \
 	monodll_jni_pen.o \
 	monodll_jni_region.o \
 	monodll_jni_settings.o \
+	monodll_jni_textctrl.o \
+	monodll_jni_textentry.o \
 	monodll_jni_toplevel.o \
 	monodll_jni_uiaction.o \
 	monodll_jni_utils.o \
@@ -7284,10 +7292,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_2 =  \
 	monolib_globals.o \
 	monolib_jni_icon.o \
 	monolib_native.o \
+	monolib_jni_notifmsg.o \
 	monolib_params.o \
 	monolib_jni_pen.o \
 	monolib_jni_region.o \
 	monolib_jni_settings.o \
+	monolib_jni_textctrl.o \
+	monolib_jni_textentry.o \
 	monolib_jni_toplevel.o \
 	monolib_jni_uiaction.o \
 	monolib_jni_utils.o \
@@ -8177,10 +8188,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_3 =  \
 	monolib_globals.o \
 	monolib_jni_icon.o \
 	monolib_native.o \
+	monolib_jni_notifmsg.o \
 	monolib_params.o \
 	monolib_jni_pen.o \
 	monolib_jni_region.o \
 	monolib_jni_settings.o \
+	monolib_jni_textctrl.o \
+	monolib_jni_textentry.o \
 	monolib_jni_toplevel.o \
 	monolib_jni_uiaction.o \
 	monolib_jni_utils.o \
@@ -9645,10 +9659,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_4 =  \
 	coredll_globals.o \
 	coredll_jni_icon.o \
 	coredll_native.o \
+	coredll_notifmsg.o \
 	coredll_params.o \
 	coredll_jni_pen.o \
 	coredll_jni_region.o \
 	coredll_jni_settings.o \
+	coredll_jni_textctrl.o \
+	coredll_jni_textentry.o \
 	coredll_jni_toplevel.o \
 	coredll_jni_uiaction.o \
 	coredll_jni_utils.o \
@@ -10538,10 +10555,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_5 =  \
 	coredll_globals.o \
 	coredll_jni_icon.o \
 	coredll_native.o \
+	coredll_notifmsg.o \
 	coredll_params.o \
 	coredll_jni_pen.o \
 	coredll_jni_region.o \
 	coredll_jni_settings.o \
+	coredll_jni_textctrl.o \
+	coredll_jni_textentry.o \
 	coredll_jni_toplevel.o \
 	coredll_jni_uiaction.o \
 	coredll_jni_utils.o \
@@ -11298,10 +11318,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_6 =  \
 	corelib_globals.o \
 	corelib_jni_icon.o \
 	corelib_native.o \
+	corelib_notifmsg.o \
 	corelib_params.o \
 	corelib_jni_pen.o \
 	corelib_jni_region.o \
 	corelib_jni_settings.o \
+	corelib_jni_textctrl.o \
+	corelib_jni_textentry.o \
 	corelib_jni_toplevel.o \
 	corelib_jni_uiaction.o \
 	corelib_jni_utils.o \
@@ -12191,10 +12214,13 @@ COND_TOOLKIT_ANDROID___LOWLEVEL_SRC_OBJECTS_7 =  \
 	corelib_globals.o \
 	corelib_jni_icon.o \
 	corelib_native.o \
+	corelib_notifmsg.o \
 	corelib_params.o \
 	corelib_jni_pen.o \
 	corelib_jni_region.o \
 	corelib_jni_settings.o \
+	corelib_jni_textctrl.o \
+	corelib_jni_textentry.o \
 	corelib_jni_toplevel.o \
 	corelib_jni_uiaction.o \
 	corelib_jni_utils.o \
@@ -19866,6 +19892,9 @@ monodll_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_native.o: $(srcdir)/src/android/jni/native.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_notifmsg.o: $(srcdir)/src/android/jni/notifmsg.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/notifmsg.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_params.o: $(srcdir)/src/android/jni/params.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
@@ -19877,6 +19906,12 @@ monodll_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONODLL_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_settings.o: $(srcdir)/src/android/jni/settings.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/settings.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_textctrl.o: $(srcdir)/src/android/jni/textctrl.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/textctrl.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_textentry.o: $(srcdir)/src/android/jni/textentry.cpp $(MONODLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/textentry.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monodll_jni_toplevel.o: $(srcdir)/src/android/jni/toplevel.cpp $(MONODLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONODLL_CXXFLAGS) $(srcdir)/src/android/jni/toplevel.cpp
@@ -25521,6 +25556,9 @@ monolib_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_native.o: $(srcdir)/src/android/jni/native.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_notifmsg.o: $(srcdir)/src/android/jni/notifmsg.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/notifmsg.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_params.o: $(srcdir)/src/android/jni/params.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
@@ -25532,6 +25570,12 @@ monolib_sound_sdl.o: $(srcdir)/src/unix/sound_sdl.cpp $(MONOLIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_settings.o: $(srcdir)/src/android/jni/settings.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/settings.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_textctrl.o: $(srcdir)/src/android/jni/textctrl.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/textctrl.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_textentry.o: $(srcdir)/src/android/jni/textentry.cpp $(MONOLIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/textentry.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@monolib_jni_toplevel.o: $(srcdir)/src/android/jni/toplevel.cpp $(MONOLIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(MONOLIB_CXXFLAGS) $(srcdir)/src/android/jni/toplevel.cpp
@@ -31293,6 +31337,9 @@ coredll_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_native.o: $(srcdir)/src/android/jni/native.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_notifmsg.o: $(srcdir)/src/android/jni/notifmsg.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/notifmsg.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_params.o: $(srcdir)/src/android/jni/params.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
@@ -31304,6 +31351,12 @@ coredll_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(COREDLL_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_settings.o: $(srcdir)/src/android/jni/settings.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/settings.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_textctrl.o: $(srcdir)/src/android/jni/textctrl.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/textctrl.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_textentry.o: $(srcdir)/src/android/jni/textentry.cpp $(COREDLL_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/textentry.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@coredll_jni_toplevel.o: $(srcdir)/src/android/jni/toplevel.cpp $(COREDLL_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(COREDLL_CXXFLAGS) $(srcdir)/src/android/jni/toplevel.cpp
@@ -35502,6 +35555,9 @@ corelib_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_native.o: $(srcdir)/src/android/jni/native.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/native.cpp
 
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_notifmsg.o: $(srcdir)/src/android/jni/notifmsg.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/notifmsg.cpp
+
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_params.o: $(srcdir)/src/android/jni/params.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/params.cpp
 
@@ -35513,6 +35569,12 @@ corelib_win32.o: $(srcdir)/src/univ/themes/win32.cpp $(CORELIB_ODEP)
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_settings.o: $(srcdir)/src/android/jni/settings.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/settings.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_textctrl.o: $(srcdir)/src/android/jni/textctrl.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/textctrl.cpp
+
+@COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_textentry.o: $(srcdir)/src/android/jni/textentry.cpp $(CORELIB_ODEP)
+@COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/textentry.cpp
 
 @COND_TOOLKIT_ANDROID_USE_GUI_1@corelib_jni_toplevel.o: $(srcdir)/src/android/jni/toplevel.cpp $(CORELIB_ODEP)
 @COND_TOOLKIT_ANDROID_USE_GUI_1@	$(CXXC) -c -o $@ $(CORELIB_CXXFLAGS) $(srcdir)/src/android/jni/toplevel.cpp
