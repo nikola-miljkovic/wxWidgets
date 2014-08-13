@@ -71,7 +71,7 @@ void wxTextCtrl::WriteText(const wxString& text)
 
 wxString wxTextCtrl::GetValue() const 
 {
-  return m_value;
+  return wxControl::GetLabel();
 }
 
 bool wxTextCtrl::IsEmpty() const 
