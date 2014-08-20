@@ -52,6 +52,7 @@
 #include "wx/mimetype.h"
 #include "wx/config.h"
 #include "wx/versioninfo.h"
+#include "wx/math.h"
 
 #if defined(__WXWINCE__) && wxUSE_DATETIME
     #include "wx/datetime.h"
@@ -380,10 +381,6 @@ bool wxPlatform::Is(int platform)
 #endif
 #ifdef __UNIX__
     if (platform == wxOS_UNIX)
-        return true;
-#endif
-#ifdef __WXCOCOA__
-    if (platform == wxPORT_MAC)
         return true;
 #endif
 
@@ -761,8 +758,8 @@ Thanks,
 #define SWAP(a, b, size)                                                      \
   do                                                                          \
     {                                                                         \
-      register size_t __size = (size);                                        \
-      register char *__a = (a), *__b = (b);                                   \
+      size_t __size = (size);                                                 \
+      char *__a = (a), *__b = (b);                                            \
       do                                                                      \
         {                                                                     \
           char __tmp = *__a;                                                  \
@@ -815,7 +812,7 @@ typedef struct
 void wxQsort(void* pbase, size_t total_elems,
              size_t size, wxSortCallback cmp, const void* user_data)
 {
-  register char *base_ptr = (char *) pbase;
+  char *base_ptr = (char *) pbase;
   const size_t max_thresh = MAX_THRESH * size;
 
   if (total_elems == 0)
@@ -929,7 +926,7 @@ void wxQsort(void* pbase, size_t total_elems,
     char *thresh = base_ptr + max_thresh;
     if ( thresh > end_ptr )
         thresh = end_ptr;
-    register char *run_ptr;
+    char *run_ptr;
 
     /* Find smallest element in first threshold and place it at the
        array's beginning.  This is the smallest array element,
@@ -971,9 +968,57 @@ void wxQsort(void* pbase, size_t total_elems,
   }
 }
 
+// ----------------------------------------------------------------------------
+// wxGCD
+// Compute the greatest common divisor of two positive integers
+// using binary GCD algorithm.
+// See:
+//     http://en.wikipedia.org/wiki/Binary_GCD_algorithm#Iterative_version_in_C
+// ----------------------------------------------------------------------------
+
+unsigned int wxGCD(unsigned int u, unsigned int v)
+{
+    // GCD(0,v) == v; GCD(u,0) == u, GCD(0,0) == 0
+    if (u == 0)
+        return v;
+    if (v == 0)
+        return u;
+
+    int shift;
+
+    // Let shift := lg K, where K is the greatest power of 2
+    // dividing both u and v.
+    for (shift = 0; ((u | v) & 1) == 0; ++shift)
+    {
+        u >>= 1;
+        v >>= 1;
+    }
+
+    while ((u & 1) == 0)
+        u >>= 1;
+
+    // From here on, u is always odd.
+    do
+    {
+        // remove all factors of 2 in v -- they are not common
+        // note: v is not zero, so while will terminate
+        while ((v & 1) == 0)
+            v >>= 1;
+
+        // Now u and v are both odd. Swap if necessary so u <= v,
+        // then set v = v - u (which is even)
+        if (u > v)
+        {
+            wxSwap(u, v);
+        }
+        v -= u;  // Here v >= u
+    } while (v != 0);
+
+    // restore common factors of 2
+    return u << shift;
+}
+
 #endif // wxUSE_BASE
-
-
 
 // ============================================================================
 // GUI-only functions from now on
@@ -1000,8 +1045,7 @@ bool wxSetDetectableAutoRepeat( bool WXUNUSED(flag) )
 // implemented in a port-specific utils source file:
 bool wxDoLaunchDefaultBrowser(const wxString& url, const wxString& scheme, int flags);
 
-#elif defined(__WXX11__) || defined(__WXGTK__) || defined(__WXMOTIF__) || defined(__WXCOCOA__) || \
-      (defined(__WXOSX__) )
+#elif defined(__WXX11__) || defined(__WXGTK__) || defined(__WXMOTIF__) || defined(__WXOSX__)
 
 // implemented in a port-specific utils source file:
 bool wxDoLaunchDefaultBrowser(const wxString& url, int flags);

@@ -115,6 +115,8 @@ public:
                                              wxCoord width,
                                              wxCoord widthTotal) const;
 
+    virtual void SetId(wxWindowID winid);
+
 #if wxUSE_DRAG_AND_DROP
     virtual void SetDropTarget( wxDropTarget *dropTarget );
 #endif // wxUSE_DRAG_AND_DROP
@@ -533,6 +535,19 @@ public:
     // behaviour
     virtual void OnInternalIdle();
 
+#if wxUSE_MENUS && !defined(__WXUNIVERSAL__)
+    virtual bool HandleMenuSelect(WXWORD nItem, WXWORD nFlags, WXHMENU hMenu);
+
+    // handle WM_(UN)INITMENUPOPUP message to generate wxEVT_MENU_OPEN/CLOSE
+    bool HandleMenuPopup(wxEventType evtType, WXHMENU hMenu);
+
+    // Command part of HandleMenuPopup() and HandleExitMenuLoop().
+    virtual bool DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu, bool popup);
+
+    // Find the menu corresponding to the given handle.
+    virtual wxMenu* MSWFindMenuFromHMENU(WXHMENU hMenu);
+#endif // wxUSE_MENUS && !__WXUNIVERSAL__
+
 protected:
     // this allows you to implement standard control borders without
     // repeating the code in different classes that are not derived from
@@ -678,6 +693,13 @@ private:
     bool HandleMoving(wxRect& rect);
     bool HandleJoystickEvent(WXUINT msg, int x, int y, WXUINT flags);
     bool HandleNotify(int idCtrl, WXLPARAM lParam, WXLPARAM *result);
+
+#ifndef __WXUNIVERSAL__
+    // Call ::IsDialogMessage() if it is safe to do it (i.e. if it's not going
+    // to hang or do something else stupid) with the given message, return true
+    // if the message was handled by it.
+    bool MSWSafeIsDialogMessage(WXMSG* msg);
+#endif // __WXUNIVERSAL__
 
 #if wxUSE_DEFERRED_SIZING
 protected:

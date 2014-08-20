@@ -55,13 +55,6 @@ bool wxFrame::Create(wxWindow *parent,
     return true;
 }
 
-wxFrame::~wxFrame()
-{
-    SendDestroyEvent();
-
-    DeleteAllBars();
-}
-
 // get the origin of the client area in the client coordinates
 wxPoint wxFrame::GetClientAreaOrigin() const
 {
@@ -356,12 +349,12 @@ void wxFrame::PositionToolBar()
 
     wxTopLevelWindow::DoGetClientSize( &cw , &ch );
 
-    int statusX = 0 ;
-    int statusY = 0 ;
-
 #if wxUSE_STATUSBAR
     if (GetStatusBar() && GetStatusBar()->IsShown())
     {
+        int statusX = 0 ;
+        int statusY = 0 ;
+
         GetStatusBar()->GetSize(&statusX, &statusY);
         ch -= statusY;
     }

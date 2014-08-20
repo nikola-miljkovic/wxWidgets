@@ -185,18 +185,41 @@ extern LONG APIENTRY _EXPORT
 #endif
 
 // close the handle in the class dtor
+template <wxUIntPtr INVALID_VALUE = (wxUIntPtr)INVALID_HANDLE_VALUE>
 class AutoHANDLE
 {
 public:
-    wxEXPLICIT AutoHANDLE(HANDLE handle) : m_handle(handle) { }
+    wxEXPLICIT AutoHANDLE(HANDLE handle = InvalidHandle()) : m_handle(handle) { }
 
-    bool IsOk() const { return m_handle != INVALID_HANDLE_VALUE; }
+    bool IsOk() const { return m_handle != InvalidHandle(); }
     operator HANDLE() const { return m_handle; }
 
-    ~AutoHANDLE() { if ( IsOk() ) ::CloseHandle(m_handle); }
+    ~AutoHANDLE() { if ( IsOk() ) DoClose(); }
+
+    void Close()
+    {
+        wxCHECK_RET(IsOk(), wxT("Handle must be valid"));
+
+        DoClose();
+
+        m_handle = InvalidHandle();
+    }
 
 protected:
-    HANDLE m_handle;
+    // We need this helper function because integer INVALID_VALUE is not
+    // implicitly convertible to HANDLE, which is a pointer.
+    static HANDLE InvalidHandle()
+    {
+        return static_cast<HANDLE>(INVALID_VALUE);
+    }
+
+    void DoClose()
+    {
+        if ( !::CloseHandle(m_handle) )
+            wxLogLastError(wxT("CloseHandle"));
+    }
+
+    WXHANDLE m_handle;
 };
 
 // a template to make initializing Windows styructs less painful: it zeroes all
@@ -897,6 +920,8 @@ inline wxString wxGetFullModuleName()
 //      0x0502      Windows XP SP2, 2003 SP1
 //      0x0600      Windows Vista, 2008
 //      0x0601      Windows 7
+//      0x0602      Windows 8 (currently also returned for 8.1 if program does not have a manifest indicating 8.1 support)
+//      0x0603      Windows 8.1 (currently only returned for 8.1 if program has a manifest indicating 8.1 support)
 //
 // for the other Windows versions 0 is currently returned
 enum wxWinVersion
@@ -924,7 +949,10 @@ enum wxWinVersion
     wxWinVersion_Vista = wxWinVersion_6,
     wxWinVersion_NT6 = wxWinVersion_6,
 
-    wxWinVersion_7 = 0x601
+    wxWinVersion_7 = 0x601,
+
+    wxWinVersion_8 = 0x602,
+    wxWinVersion_8_1 = 0x603
 };
 
 WXDLLIMPEXP_BASE wxWinVersion wxGetWinVersion();

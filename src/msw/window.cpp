@@ -552,6 +552,20 @@ bool wxWindowMSW::Create(wxWindow *parent,
     return true;
 }
 
+void wxWindowMSW::SetId(wxWindowID winid)
+{
+    wxWindowBase::SetId(winid);
+
+    // Also update the ID used at the Windows level to avoid nasty surprises
+    // when we can't find the control when handling messages for it after
+    // changing its ID because Windows still uses the old one.
+    if ( GetHwnd() )
+    {
+        if ( !::SetWindowLong(GetHwnd(), GWL_ID, winid) )
+            wxLogLastError(wxT("SetWindowLong(GWL_ID)"));
+    }
+}
+
 // ---------------------------------------------------------------------------
 // basic operations
 // ---------------------------------------------------------------------------
@@ -1145,6 +1159,11 @@ void wxWindowMSW::SetLayoutDirection(wxLayoutDirection dir)
     if ( styleNew != styleOld )
     {
         wxSetWindowExStyle(this, styleNew);
+
+        // Update layout: whether we have children or are drawing something, we
+        // need to redo it with the new layout.
+        SendSizeEvent();
+        Refresh();
     }
 #endif
 }
@@ -1837,31 +1856,18 @@ void wxWindowMSW::DoGetPosition(int *x, int *y) const
     {
         RECT rect = wxGetWindowRect(GetHwnd());
 
-        POINT point;
-        point.x = rect.left;
-        point.y = rect.top;
-
         // we do the adjustments with respect to the parent only for the "real"
         // children, not for the dialogs/frames
         if ( !IsTopLevel() )
         {
-            if ( wxTheApp->GetLayoutDirection() == wxLayout_RightToLeft )
-            {
-                // In RTL mode, we want the logical left x-coordinate,
-                // which would be the physical right x-coordinate.
-                point.x = rect.right;
-            }
-
-            // Since we now have the absolute screen coords, if there's a
-            // parent we must subtract its top left corner
-            if ( parent )
-            {
-                ::ScreenToClient(GetHwndOf(parent), &point);
-            }
+            // In RTL mode, we want the logical left x-coordinate,
+            // which would be the physical right x-coordinate.
+            ::MapWindowPoints(NULL, parent ? GetHwndOf(parent) : HWND_DESKTOP,
+                              (LPPOINT)&rect, 2);
         }
 
-        pos.x = point.x;
-        pos.y = point.y;
+        pos.x = rect.left;
+        pos.y = rect.top;
     }
 
     // we also must adjust by the client area offset: a control which is just
@@ -2259,6 +2265,86 @@ bool wxWindowMSW::DoPopupMenu(wxMenu *menu, int x, int y)
 
 #endif // wxUSE_MENUS_NATIVE
 
+// ---------------------------------------------------------------------------
+// menu events
+// ---------------------------------------------------------------------------
+
+#if wxUSE_MENUS && !defined(__WXUNIVERSAL__)
+
+bool
+wxWindowMSW::HandleMenuSelect(WXWORD nItem, WXWORD flags, WXHMENU hMenu)
+{
+    // Ignore the special messages generated when the menu is closed (this is
+    // the only case when the flags are set to -1), in particular don't clear
+    // the help string in the status bar when this happens as it had just been
+    // restored by the base class code.
+    if ( !hMenu && flags == 0xffff )
+        return false;
+
+    // sign extend to int from unsigned short we get from Windows
+    int item = (signed short)nItem;
+
+    // WM_MENUSELECT is generated for both normal items and menus, including
+    // the top level menus of the menu bar, which can't be represented using
+    // any valid identifier in wxMenuEvent so use an otherwise unused value for
+    // them
+    if ( flags & (MF_POPUP | MF_SEPARATOR) )
+        item = wxID_NONE;
+
+    wxMenuEvent event(wxEVT_MENU_HIGHLIGHT, item);
+    event.SetEventObject(this);
+
+    if ( HandleWindowEvent(event) )
+        return true;
+
+    // by default, i.e. if the event wasn't handled above, clear the status bar
+    // text when an item which can't have any associated help string in wx API
+    // is selected
+    if ( item == wxID_NONE )
+    {
+        wxFrame *frame = wxDynamicCast(wxGetTopLevelParent(this), wxFrame);
+        if ( frame )
+            frame->DoGiveHelp(wxEmptyString, true);
+    }
+
+    return false;
+}
+
+bool
+wxWindowMSW::DoSendMenuOpenCloseEvent(wxEventType evtType, wxMenu* menu, bool popup)
+{
+    wxMenuEvent event(evtType, popup ? wxID_ANY : 0, menu);
+    event.SetEventObject(menu);
+
+    return HandleWindowEvent(event);
+}
+
+bool wxWindowMSW::HandleMenuPopup(wxEventType evtType, WXHMENU hMenu)
+{
+    bool isPopup = false;
+    wxMenu* menu = NULL;
+    if ( wxCurrentPopupMenu && wxCurrentPopupMenu->GetHMenu() == hMenu )
+    {
+        menu = wxCurrentPopupMenu;
+        isPopup = true;
+    }
+    else
+    {
+        menu = MSWFindMenuFromHMENU(hMenu);
+    }
+
+
+    return DoSendMenuOpenCloseEvent(evtType, menu, isPopup);
+}
+
+wxMenu* wxWindowMSW::MSWFindMenuFromHMENU(WXHMENU WXUNUSED(hMenu))
+{
+    // We don't have any menus at this level.
+    return NULL;
+}
+
+#endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
+
 // ===========================================================================
 // pre/post message processing
 // ===========================================================================
@@ -2442,7 +2528,7 @@ bool wxWindowMSW::MSWProcessMessage(WXMSG* pMsg)
                             }
                         }
 
-                        if ( btn && btn->IsEnabled() )
+                        if ( btn && btn->IsEnabled() && btn->IsShownOnScreen() )
                         {
                             btn->MSWCommand(BN_CLICKED, 0 /* unused */);
                             return true;
@@ -2491,7 +2577,7 @@ bool wxWindowMSW::MSWProcessMessage(WXMSG* pMsg)
             }
         }
 
-        if ( ::IsDialogMessage(GetHwnd(), msg) )
+        if ( MSWSafeIsDialogMessage(msg) )
         {
             // IsDialogMessage() did something...
             return true;
@@ -2522,12 +2608,16 @@ bool wxWindowMSW::MSWTranslateMessage(WXMSG* pMsg)
 #endif // wxUSE_ACCEL
 }
 
-bool wxWindowMSW::MSWShouldPreProcessMessage(WXMSG* msg)
+bool wxWindowMSW::MSWShouldPreProcessMessage(WXMSG* WXUNUSED(msg))
 {
-    // all tests below have to deal with various bugs/misfeatures of
-    // IsDialogMessage(): we have to prevent it from being called from our
-    // MSWProcessMessage() in some situations
+    // We don't have any reason to not preprocess messages at this level.
+    return true;
+}
 
+#ifndef __WXUNIVERSAL__
+
+bool wxWindowMSW::MSWSafeIsDialogMessage(WXMSG* msg)
+{
     // don't let IsDialogMessage() get VK_ESCAPE as it _always_ eats the
     // message even when there is no cancel button and when the message is
     // needed by the control itself: in particular, it prevents the tree in
@@ -2541,48 +2631,45 @@ bool wxWindowMSW::MSWShouldPreProcessMessage(WXMSG* msg)
     // going into an infinite loop when it tries to find the control to give
     // focus to when Alt-<key> is pressed, so we try to detect [some of] the
     // situations when this may happen and not call it then
-    if ( msg->message != WM_SYSCHAR )
-        return true;
-
-    // assume we can call it by default
-    bool canSafelyCallIsDlgMsg = true;
-
-    HWND hwndFocus = ::GetFocus();
-
-    // if the currently focused window itself has WS_EX_CONTROLPARENT style,
-    // ::IsDialogMessage() will also enter an infinite loop, because it will
-    // recursively check the child windows but not the window itself and so if
-    // none of the children accepts focus it loops forever (as it only stops
-    // when it gets back to the window it started from)
-    //
-    // while it is very unusual that a window with WS_EX_CONTROLPARENT
-    // style has the focus, it can happen. One such possibility is if
-    // all windows are either toplevel, wxDialog, wxPanel or static
-    // controls and no window can actually accept keyboard input.
-#if !defined(__WXWINCE__)
-    if ( ::GetWindowLong(hwndFocus, GWL_EXSTYLE) & WS_EX_CONTROLPARENT )
+    if ( msg->message == WM_SYSCHAR )
     {
-        // pessimistic by default
-        canSafelyCallIsDlgMsg = false;
-        for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
-              node;
-              node = node->GetNext() )
-        {
-            wxWindow * const win = node->GetData();
-            if ( win->CanAcceptFocus() &&
-                    !wxHasWindowExStyle(win, WS_EX_CONTROLPARENT) )
-            {
-                // it shouldn't hang...
-                canSafelyCallIsDlgMsg = true;
+        HWND hwndFocus = ::GetFocus();
 
-                break;
+        // if the currently focused window itself has WS_EX_CONTROLPARENT style,
+        // ::IsDialogMessage() will also enter an infinite loop, because it will
+        // recursively check the child windows but not the window itself and so if
+        // none of the children accepts focus it loops forever (as it only stops
+        // when it gets back to the window it started from)
+        //
+        // while it is very unusual that a window with WS_EX_CONTROLPARENT
+        // style has the focus, it can happen. One such possibility is if
+        // all windows are either toplevel, wxDialog, wxPanel or static
+        // controls and no window can actually accept keyboard input.
+#if !defined(__WXWINCE__)
+        if ( ::GetWindowLong(hwndFocus, GWL_EXSTYLE) & WS_EX_CONTROLPARENT )
+        {
+            // pessimistic by default
+            bool canSafelyCallIsDlgMsg = false;
+            for ( wxWindowList::compatibility_iterator node = GetChildren().GetFirst();
+                  node;
+                  node = node->GetNext() )
+            {
+                wxWindow * const win = node->GetData();
+                if ( win->CanAcceptFocus() &&
+                        !wxHasWindowExStyle(win, WS_EX_CONTROLPARENT) )
+                {
+                    // it shouldn't hang...
+                    canSafelyCallIsDlgMsg = true;
+
+                    break;
+                }
             }
+
+            if ( !canSafelyCallIsDlgMsg )
+                return false;
         }
-    }
 #endif // !__WXWINCE__
 
-    if ( canSafelyCallIsDlgMsg )
-    {
         // ::IsDialogMessage() can enter in an infinite loop when the
         // currently focused window is disabled or hidden and its
         // parent has WS_EX_CONTROLPARENT style, so don't call it in
@@ -2593,9 +2680,7 @@ bool wxWindowMSW::MSWShouldPreProcessMessage(WXMSG* msg)
                     !::IsWindowVisible(hwndFocus) )
             {
                 // it would enter an infinite loop if we do this!
-                canSafelyCallIsDlgMsg = false;
-
-                break;
+                return false;
             }
 
             if ( !(::GetWindowLong(hwndFocus, GWL_STYLE) & WS_CHILD) )
@@ -2610,8 +2695,10 @@ bool wxWindowMSW::MSWShouldPreProcessMessage(WXMSG* msg)
         }
     }
 
-    return canSafelyCallIsDlgMsg;
+    return ::IsDialogMessage(GetHwnd(), msg) != 0;
 }
+
+#endif // __WXUNIVERSAL__
 
 // ---------------------------------------------------------------------------
 // message params unpackers
@@ -3456,7 +3543,7 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
             break;
 #endif
 
-#if wxUSE_MENUS
+#if wxUSE_MENUS && !defined(__WXUNIVERSAL__)
         case WM_MENUCHAR:
             // we're only interested in our own menus, not MF_SYSMENU
             if ( HIWORD(wParam) == MF_POPUP )
@@ -3470,7 +3557,27 @@ wxWindowMSW::MSWHandleMessage(WXLRESULT *result,
                 }
             }
             break;
-#endif // wxUSE_MENUS
+
+#if !defined(__WXMICROWIN__) && !defined(__WXWINCE__)
+        case WM_INITMENUPOPUP:
+            processed = HandleMenuPopup(wxEVT_MENU_OPEN, (WXHMENU)wParam);
+            break;
+
+        case WM_MENUSELECT:
+            {
+                WXWORD item, flags;
+                WXHMENU hmenu;
+                UnpackMenuSelect(wParam, lParam, &item, &flags, &hmenu);
+
+                processed = HandleMenuSelect(item, flags, hmenu);
+            }
+            break;
+
+        case WM_UNINITMENUPOPUP:
+            processed = HandleMenuPopup(wxEVT_MENU_CLOSE, (WXHMENU)wParam);
+            break;
+#endif // !__WXMICROWIN__
+#endif // wxUSE_MENUS && !defined(__WXUNIVERSAL__)
 
 #ifndef __WXWINCE__
         case WM_POWERBROADCAST:
@@ -4186,7 +4293,7 @@ bool wxWindowMSW::HandleSetCursor(WXHWND WXUNUSED(hWnd),
     if ( wxIsBusy() )
     {
         wxDialog* const
-            dlg = wxDynamicCast(wxGetTopLevelParent(this), wxDialog);
+            dlg = wxDynamicCast(wxGetTopLevelParent((wxWindow *)this), wxDialog);
         if ( !dlg || !dlg->IsModal() )
             isBusy = true;
     }

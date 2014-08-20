@@ -236,7 +236,7 @@ public:
 
         // window id uniquely identifies the window among its siblings unless
         // it is wxID_ANY which means "don't care"
-    void SetId( wxWindowID winid ) { m_windowId = winid; }
+    virtual void SetId( wxWindowID winid ) { m_windowId = winid; }
     wxWindowID GetId() const { return m_windowId; }
 
         // generate a unique id (or count of them consecutively), returns a
@@ -1915,13 +1915,6 @@ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
         #define wxWindowMac wxWindow
     #endif // wxUniv
     #include "wx/osx/window.h"
-#elif defined(__WXCOCOA__)
-    #ifdef __WXUNIVERSAL__
-        #define wxWindowNative wxWindowCocoa
-    #else // !wxUniv
-        #define wxWindowCocoa wxWindow
-    #endif // wxUniv
-    #include "wx/cocoa/window.h"
 #endif
 
 // for wxUniversal, we now derive the real wxWindow from wxWindow<platform>,

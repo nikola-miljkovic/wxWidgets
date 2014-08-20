@@ -27,10 +27,6 @@
 
 #include "wx/fontutil.h"
 
-#if wxOSX_USE_COCOA
-#include "wx/cocoa/string.h"
-#endif
-
 #ifdef __WXMAC__
 
 #if wxOSX_USE_CARBON
@@ -148,7 +144,7 @@ void wxFont::SetNativeInfoFromNSFont(WX_NSFont theFont, wxNativeFontInfo* info)
             fontstyle = wxFONTSTYLE_ITALIC ;
 
         info->Init(size,fontFamily,fontstyle,fontweight,underlined,
-            wxStringWithNSString([theFont familyName]), wxFONTENCODING_DEFAULT);
+                   wxCFStringRef::AsString([theFont familyName]), wxFONTENCODING_DEFAULT);
 
     }
 }
@@ -456,16 +452,10 @@ WX_NSImage WXDLLIMPEXP_CORE wxOSXGetNSImageFromIconRef( WXHICON iconref )
 
 CGImageRef WXDLLIMPEXP_CORE wxOSXGetCGImageFromNSImage( WX_NSImage nsimage, CGRect* r, CGContextRef cg)
 {
-#if wxOSX_USE_COCOA && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
-    if ( UMAGetSystemVersion() >= 0x1060 )
-    {
-        NSRect nsRect = NSRectFromCGRect(*r);
-        return [nsimage CGImageForProposedRect:&nsRect
-                                   context:[NSGraphicsContext graphicsContextWithGraphicsPort:cg flipped:YES]
-                                            hints:nil];
-    }
-#endif
-    return NULL;
+    NSRect nsRect = NSRectFromCGRect(*r);
+    return [nsimage CGImageForProposedRect:&nsRect
+                               context:[NSGraphicsContext graphicsContextWithGraphicsPort:cg flipped:YES]
+                                        hints:nil];
 }
 
 CGContextRef WXDLLIMPEXP_CORE wxOSXCreateBitmapContextFromNSImage( WX_NSImage nsimage)
