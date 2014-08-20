@@ -58,13 +58,8 @@ protected:
     #include "wx/gtk1/button.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/button.h"
-<<<<<<< HEAD
-#elif defined(__WXCOCOA__)
-    #include "wx/cocoa/button.h"
 #elif defined(__WXANDROID__)
     #include "wx/android/button.h"
-=======
->>>>>>> origin/master
 #endif
 
 #endif // wxUSE_BUTTON
