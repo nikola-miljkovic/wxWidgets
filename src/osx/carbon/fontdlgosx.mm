@@ -34,9 +34,6 @@
 // ============================================================================
 
 
-#include "wx/cocoa/autorelease.h"
-#include "wx/cocoa/string.h"
-
 #if wxOSX_USE_EXPERIMENTAL_FONTDIALOG
 
 #import <Foundation/Foundation.h>
@@ -146,7 +143,7 @@ int RunMixedFontDialog(wxFontDialog* dialog)
 #endif
     int retval = wxID_CANCEL ;
 
-    wxAutoNSAutoreleasePool pool;
+    wxMacAutoreleasePool pool;
 
     // setting up the ok/cancel buttons
     NSFontPanel* fontPanel = [NSFontPanel sharedFontPanel] ;

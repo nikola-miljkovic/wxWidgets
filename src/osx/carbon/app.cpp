@@ -65,9 +65,6 @@ BEGIN_EVENT_TABLE(wxApp, wxEvtHandler)
 END_EVENT_TABLE()
 
 
-// platform specific static variables
-static const short kwxMacAppleMenuId = 1 ;
-
 wxWindow* wxApp::s_captureWindow = NULL ;
 long      wxApp::s_lastModifiers = 0 ;
 
@@ -448,6 +445,9 @@ bool wxApp::OSXOnShouldTerminate()
 // if no native match they just return the passed-in id
 
 #if wxOSX_USE_CARBON
+
+// platform specific static variables
+static const short kwxMacAppleMenuId = 1 ;
 
 struct IdPair
 {
@@ -1399,11 +1399,11 @@ int wxMacKeyCodeToModifier(wxKeyCode key)
 }
 #endif
 
-#if wxOSX_USE_COCOA && MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+#if wxOSX_USE_COCOA
 
 // defined in utils.mm
 
-#elif wxOSX_USE_COCOA_OR_CARBON
+#elif wxOSX_USE_CARBON
 
 wxMouseState wxGetMouseState()
 {

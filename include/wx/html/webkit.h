@@ -13,12 +13,11 @@
 
 #if wxUSE_WEBKIT
 
-#if !defined(__WXMAC__) && !defined(__WXCOCOA__)
+#if !defined(__WXMAC__)
 #error "wxWebKitCtrl not implemented for this platform"
 #endif
 
 #include "wx/control.h"
-DECLARE_WXCOCOA_OBJC_CLASS(WebView); 
 
 // ----------------------------------------------------------------------------
 // Web Kit Control
@@ -107,7 +106,7 @@ private:
     wxString m_currentURL;
     wxString m_pageTitle;
 
-    WX_WebView m_webView;
+    OSXWebViewPtr m_webView;
 
     // we may use this later to setup our own mouse events,
     // so leave it in for now.

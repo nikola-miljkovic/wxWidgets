@@ -1787,6 +1787,9 @@
 			Name="wxHTML Headers"
 			UniqueIdentifier="{B4103426-A5DB-5CF0-A30E-BC9546513AAF}">
 			<File
+				RelativePath="..\..\include\wx\html\forcelnk.h">
+			</File>
+			<File
 				RelativePath="..\..\include\wx\html\helpctrl.h">
 			</File>
 			<File
@@ -2827,6 +2830,9 @@
 			</File>
 			<File
 				RelativePath="..\..\include\wx\xrc\xh_scwin.h">
+			</File>
+			<File
+				RelativePath="..\..\include\wx\xrc\xh_simplebook.h">
 			</File>
 			<File
 				RelativePath="..\..\include\wx\xrc\xh_sizer.h">

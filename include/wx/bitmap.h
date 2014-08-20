@@ -71,7 +71,6 @@ protected:
 #if defined(__WXDFB__) || \
     defined(__WXMAC__) || \
     defined(__WXGTK__) || \
-    defined(__WXCOCOA__) || \
     defined(__WXMOTIF__) || \
     defined(__WXX11__) || \
     defined(__WXANDROID__)
@@ -288,12 +287,15 @@ protected:
 #elif defined(__WXMAC__)
     #define wxBITMAP_DEFAULT_TYPE    wxBITMAP_TYPE_PICT_RESOURCE
     #include "wx/osx/bitmap.h"
+<<<<<<< HEAD
 #elif defined(__WXCOCOA__)
     #define wxBITMAP_DEFAULT_TYPE    wxBITMAP_TYPE_BMP_RESOURCE
     #include "wx/cocoa/bitmap.h"
 #elif defined(__WXANDROID__)
     #define wxBITMAP_DEFAULT_TYPE    wxBITMAP_TYPE_BMP_RESOURCE
     #include "wx/android/bitmap.h"
+=======
+>>>>>>> origin/master
 #endif
 
 #if wxUSE_IMAGE

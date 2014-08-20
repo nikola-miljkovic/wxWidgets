@@ -1351,10 +1351,22 @@ wxWinVersion wxGetWinVersion()
                     break;
 
                 case 6:
-                    return wxWinVersion_NT6;
-            }
-            break;
+                    switch ( verMin )
+                    {
+                        case 0:
+                            return wxWinVersion_Vista;
 
+                        case 1:
+                            return wxWinVersion_7;
+
+                        case 2:
+                            return wxWinVersion_8;
+
+                        case 3:
+                            return wxWinVersion_8_1;
+                    }
+                    break;
+            }
         default:
             // Do nothing just to silence GCC warning
             break;

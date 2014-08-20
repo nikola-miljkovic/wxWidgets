@@ -81,8 +81,6 @@ public:
     #include "wx/dfb/brush.h"
 #elif defined(__WXMAC__)
     #include "wx/osx/brush.h"
-#elif defined(__WXCOCOA__)
-    #include "wx/cocoa/brush.h"
 #elif defined(__WXANDROID__)
     #include "wx/android/brush.h"
 #endif

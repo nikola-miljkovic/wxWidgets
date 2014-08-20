@@ -30,6 +30,7 @@
     #include "wx/msw/wrapcctl.h" // include <commctrl.h> "properly"
     #include "wx/app.h"
     #include "wx/control.h"
+    #include "wx/toplevel.h"
 #endif
 
 #include "wx/tokenzr.h"
@@ -296,6 +297,40 @@ WXHWND wxToolTip::GetToolTipCtrl()
     }
 
     return ms_hwndTT;
+}
+
+/* static */
+void wxToolTip::UpdateVisibility()
+{
+    wxToolInfo ti(NULL, 0, wxRect());
+    ti.uFlags = 0;
+
+    if ( !SendTooltipMessage(ms_hwndTT, TTM_GETCURRENTTOOL, &ti) )
+        return;
+
+    wxWindow* const associatedWindow = wxFindWinFromHandle(ti.hwnd);
+    if ( !associatedWindow )
+        return;
+
+    bool hideTT = false;
+    if ( !associatedWindow->IsShownOnScreen() )
+    {
+        // If the associated window or its parent is hidden, the tooltip
+        // shouldn't remain shown.
+        hideTT = true;
+    }
+    else
+    {
+        // Even if it's not hidden, it could also be iconized.
+        wxTopLevelWindow* const
+            frame = wxDynamicCast(wxGetTopLevelParent(associatedWindow), wxTopLevelWindow);
+
+        if ( frame && frame->IsIconized() )
+            hideTT = true;
+    }
+
+    if ( hideTT )
+        ::ShowWindow(ms_hwndTT, SW_HIDE);
 }
 
 /* static */

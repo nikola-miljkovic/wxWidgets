@@ -196,13 +196,7 @@ NSView* wxMacEditHelper::ms_viewCurrentlyEdited = nil;
     wxUnusedVar(aNotification);
     wxWidgetCocoaImpl* impl = (wxWidgetCocoaImpl* ) wxWidgetImpl::FindFromWXWidget( self );
     if ( impl )
-    {
-        NSResponder * responder = wxNonOwnedWindowCocoaImpl::GetNextFirstResponder();
-        NSView* otherView = wxOSXGetViewFromResponder(responder);
-        
-        wxWidgetImpl* otherWindow = impl->FindBestFromWXWidget(otherView);
-        impl->DoNotifyFocusEvent( false, otherWindow );
-    }
+        impl->DoNotifyFocusLost();
 }
 
 - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
@@ -304,6 +298,29 @@ NSView* wxMacEditHelper::ms_viewCurrentlyEdited = nil;
     [super insertText:str];
 }
 
+- (BOOL) resignFirstResponder
+{
+    return [super resignFirstResponder];
+}
+
+- (BOOL) becomeFirstResponder
+{
+    // we need the stored text field, as at this point the delegate is not yet set
+    wxWidgetCocoaImpl* impl = (wxWidgetCocoaImpl* ) wxWidgetImpl::FindFromWXWidget( (WXWidget) textField );
+
+    BOOL r = [super becomeFirstResponder];
+    if ( impl != NULL && r )
+        impl->DoNotifyFocusSet();
+    
+    return r;
+}
+
+- (void) setTextField:(NSTextField*) field
+{
+    textField = field;
+}
+
+
 @end
 
 @implementation wxNSTextView
@@ -359,13 +376,7 @@ NSView* wxMacEditHelper::ms_viewCurrentlyEdited = nil;
 
     wxWidgetCocoaImpl* impl = (wxWidgetCocoaImpl* ) wxWidgetImpl::FindFromWXWidget( self );
     if ( impl )
-    {
-        NSResponder * responder = wxNonOwnedWindowCocoaImpl::GetNextFirstResponder();
-        NSView* otherView = wxOSXGetViewFromResponder(responder);
-        
-        wxWidgetImpl* otherWindow = impl->FindBestFromWXWidget(otherView);
-        impl->DoNotifyFocusEvent( false, otherWindow );
-    }
+        impl->DoNotifyFocusLost();
 }
 
 @end
@@ -528,17 +539,9 @@ NSView* wxMacEditHelper::ms_viewCurrentlyEdited = nil;
     if ( impl )
     {
         wxNSTextFieldControl* timpl = dynamic_cast<wxNSTextFieldControl*>(impl);
-        if ( fieldEditor )
-        {
-            NSRange range = [fieldEditor selectedRange];
-            timpl->SetInternalSelection(range.location, range.location + range.length);
-        }
-
-        NSResponder * responder = wxNonOwnedWindowCocoaImpl::GetNextFirstResponder();
-        NSView* otherView = wxOSXGetViewFromResponder(responder);
-        
-        wxWidgetImpl* otherWindow = impl->FindBestFromWXWidget(otherView);
-        impl->DoNotifyFocusEvent( false, otherWindow );
+        if ( timpl )
+            timpl->UpdateInternalSelectionFromEditor(fieldEditor);
+        impl->DoNotifyFocusLost();
     }
 }
 @end
@@ -965,6 +968,15 @@ void wxNSTextFieldControl::SetInternalSelection( long from , long to )
 {
     m_selStart = from;
     m_selEnd = to;
+}
+
+void wxNSTextFieldControl::UpdateInternalSelectionFromEditor( wxNSTextFieldEditor* fieldEditor )
+{
+    if ( fieldEditor )
+    {
+        NSRange range = [fieldEditor selectedRange];
+        SetInternalSelection(range.location, range.location + range.length);
+    }
 }
 
 // as becoming first responder on a window - triggers a resign on the same control, we have to avoid
