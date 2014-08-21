@@ -1,0 +1,66 @@
+Java classes and small descriptions
+------------------------------------------------------
+
+WXApp
+=====
+
+WXApp is class used for containing static variables that exist throughout
+whole app lifecycle. Among them are containers such as HashMap and Queue.
+
+Its role is also to make sure everything that currently exists in C++ can be accessed 
+to in java. This prevents loss of data and helps keep everything in sync.
+
+WXCalls
+=====
+
+WXCalls is only class that should be accessed from wxWidgets cpp code.
+It contains STATIC methods that pass data from cpp to java, and helps control
+flow. It may contain methods used by only one class or group of classes.
+
+Examples for group of classes that use same method would be invokeViewMethod(...),
+which is used by all wxControl(s).
+
+On other hand Notify(...)  is used only by wxNotificationMessage.
+
+WXFrameActivity
+=====
+
+Used by wxTopLevelWindow classes, this class represents a "frame" as single activity 
+in android. It can contain own menus, toolboxes, controls and anything a frame could hold
+in wxWidgets. Its events should be ones calling wxTLW's events, and later if no activity
+remains it should trigger application closing(which is handled by WXApp).
+
+WXLayout
+=====
+
+Class that copies android's original AbsoluteLayout, which allows placing view with given 
+position and size.
+
+This class can coorespond to wxPanel.
+
+WXNative
+=====
+
+Contains native methods that can be coded in cpp, those are located in src/android/jni.cpp.
+This class allows Java to send informations to cpp classes and as cpp should be main source of
+information, this one should only be used to tell cpp class when some event has happened and give 
+all informations about it.
+
+WXPair
+=====
+
+Represents pair of two integers.
+
+WXTextWatcher
+=====
+
+Event listener for all EditText views, events in this one use native functions to tell wxWidgets what is current text in 
+wxTextControl, it can also be used for any other wxControl that would require this feature.
+
+WXView
+=====
+
+Small class initial "build data" of any wxControl that may have "android.View" superclass in java. Purpose of this class 
+is to create object on damand by WXFrameActivity or WXApp, keeps reference to its view and assign event listeners,
+and class it self is event listener for "android.View" events such as onTouch that is shared among all views.
+
