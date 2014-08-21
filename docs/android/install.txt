@@ -176,3 +176,10 @@ There is static block. Set name of application/library there. Keep in mind there
     }
 
 After that run it as any other Android application.
+
+NOTE:
+
+You can change icon for your application easily by replacing files in project_dir/res/drawable-{...}.
+
+Easiest way to do this is by using tool located on this webpage:
+    http://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
