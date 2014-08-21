@@ -1,0 +1,178 @@
+                   Building wxWidgets for Android
+                   --------------------------------
+
+Table of Contents:
+    1 Getting started
+        1.1 Requirments
+        1.2 Preparations
+    2 Configuring and building
+        2.1 Building Minimal sample
+    3 Adding wxWidgets to Android project
+        3.1 Generating Android project
+        3.2 Configuring Android project
+  
+1. Getting started
+--------------------------------
+1.1 Requirments
+==================
+
+wxWidgets for Android requires following:
+
+For every platform:
+* Android SDK Tools - r4(December 2009) or newer.
+* Android NDK Tools - r9(July 2013) or newer. 
+* Android wxWidgets branch - this guide follows only newest revisions. 
+
+
+Windows only:
+* Cygwin - CLI and bash emulator.
+
+Recommended but '''not required''', for every platform:
+* Eclipse Standard IDE
+
+1.2 Preparations 
+==================
+
+After above mentioned NDK archive is downloaded and extracted you are supposed to 
+make standalone toolchain for platform you are building for.
+This can be realized with tool provided by NDK, which is located here:
+
+    $NDK_DIR/build/tools/make-standalone-toolchain.sh
+
+As of May 2014, Android allows three different arhitectures:
+ * arm-linux-androideabi => targetting ARM-based Android devices 
+ * x86 => targetting x86-based Android devices 
+ * mipsel-linux-android=> targetting MIPS-based Android devices 
+
+By default "arm-linux-androideabi" will be used, however you can choose which one you want.
+By using 
+    --toolchain=<name>
+
+Example:
+ 
+    $NDK_DIR/build/tools/make-standalone-toolchain.sh --toolchain=x86-4.8 --install-dir=/tmp/my-android-toolchain
+
+After NDK toolchain is placed in proper directory, $TOOLCHAIN_DIR/bin needs to
+be added to PATH.
+
+2. Configuring and building
+--------------------------------
+
+Configuring wxWidgets port for Android is similar
+to any other port, main difference is that host must 
+be specified to match toolchain we placed in path.
+
+First enter main folder of wxWidgets. 
+Then make new directory and navigate to it.
+Here is example, here name of our new directory
+is "wx-android":
+
+Open terminal and use following:
+
+>cd /{$directories}/$WX_WIDGETS_DIR
+>mkdir wx-android
+>cd wx-android
+
+Now we are located in our new directory.
+From here we need to run configuration that 
+will generate all needed files for building
+main wxWidgets lib using toolchain of our choosing.
+
+We do this by running following command:
+
+>../configure --with-android --host=<toolchain_name> 
+
+After running this simple make command should 
+build wxWidgets and output will be located in 
+folder you made/lib, ready to be used in your projects.
+
+    NOTE:
+
+Its worth noting that at this time, while it is possible
+to include all 4 types of libraries in your project 
+multi-file and monolithic, static and dynamic it is easiest
+to use monolithic(single file) static library.
+
+To do this configuration needs to be this:
+
+>../configure --with-android --host=<toolchain_name>  --enable-monolithic  --disable-shared
+
+2.1 Building Minimal sample 
+==================
+
+Seek directory  where configured makefile for 
+wxWidgets minimal app sample is.
+
+Normally it is located(Output dir is called "wx-android" here):
+
+ wx-android/samples/minimal
+
+Open Makefile.mk for editing there and add following:
+
+    LIBPREFIX = lib
+    SO_SUFFIX = so
+    LDFLAGS = @LDFLAGS@ -shared
+
+Now simply run make and compiled binary
+will be called "libminimal.so".
+  
+3 Adding wxWidgets to Android project 
+--------------------------------
+
+3.1 Generating Android project
+==================
+
+There are few ways to generate project files/directories:
+* Command line 
+* Eclipse plugin
+* Using code templates
+
+3.2 Configuring Android project
+==================
+
+Android project files are located in 
+    docs/android/project_dir
+    
+Before using them with your project you should edit some parameters in 
+"AndroidManifest.xml" and res/values/strings.xml.
+
+Changing versionCode, versionName and minSdkVersion 
+can be changed to what version your application is at and 
+what Android sdk you want to support(Minimal is 4 as mentioned
+at start of guide).
+
+strings.xml contains "app_name" field, and you should edit it for name of your
+application.
+
+
+Next you also need to put compiled wxWidgets app binary in project_dir/libs/<platform_name>/ directory,
+Where platform_name is one of following, depending on what platform you built for:
+* armeabi
+* armeabi-v7a
+* mips
+* x86
+
+After directories are arranged, content of "src/android/java/" directory should be placed in "project_dir/src/org/wxwidgets/" directory.
+
+In end a file WXFrameActivity.java should be edited liek this:
+
+There is static block. Set name of application/library there. Keep in mind there are different configurations.
+
+    static {
+            // Java uses following format:
+            // lib<app_name>.so
+            // Static wxWidgets library: 
+            // Call following to connect compiled wxWidgets app to Java
+            //System.loadLibrary("<app_name>");
+ 
+            // Shared wxWidgets library:
+            // First you need to load each wxWidgets library
+            // application depends on. In case of single file version
+            // where name of compiled and used wxWidgets library is
+            // "libwx_androidu.so" it would look like this:
+ 
+            //System.loadLibrary("wx_androidu");
+            //System.loadLibrary("<app_name>");
+    }
+
+After that run it as any other Android application.
