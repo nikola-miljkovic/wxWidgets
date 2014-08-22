@@ -37,7 +37,9 @@ WXNative class.
 
 There are still global references and JNI calls, but reference is only made if its needed by more then 
 single class, for example WXCalls class and object reference always exists since it is used each time
-we want to invoke java method.
+we want to invoke java method, however any other class such as control simply passes id to java methods
+to invoke certain view methods or change anything regarding them, this can be seen in wxControl, wxNotificationMessage, etc..
+
 JNI calls now only call through WXCalls static methods. Since they are static its less expensive to use them
 and those methods are flexible and effective in using data provided by wxWidgets.
 
@@ -66,6 +68,7 @@ Do not store unnecessary data.
 Native methods should send only data that is required for wxWidgets, do 
 not send any unnecessary data.
 
-
+Additional and more detailed explanation can be found on this link:
+http://developer.android.com/training/articles/perf-tips.html
 
 
